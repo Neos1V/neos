@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+  color: #1d2026;
+}
+
+img,
+p,
+span,
+div {
+  -webkit-user-drag: none; /* empêche le drag d'images sur WebKit */
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+
+  -webkit-user-select: none; /* empêche la sélection de texte */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.gradient-container {
+  background: #57CFFF;
+  background: linear-gradient(180deg, rgba(87, 207, 255, 1) 0%, rgba(237, 250, 255, 1) 89%, rgba(255, 252, 251, 1) 100%);
+}
+
+body {
+  background-color: #fffcfb;
+}
+
+strong {
+  font-weight: 600;
+}
+
+
+.text-orange {
+  color: #f6391a;
+}
+
+.text-orange p {
+  color: #f6391a;
+}
+
+.orangeStrong strong{
+  color: #f6391a;
+}
+
+.font-unbounded {
+  font-family: var(--font-unbounded);
+}
+
+.bg-orange {
+  background-color: #f6391a;
+}
+
+.bg-light {
+  background-color: #feedea;
+}
+
+body {
+  font-family: var(--font-raleway);
+}
+
+@media screen and (max-width: 1024px){
+  .noBr br{
+    display: none;
+  }
+
+}
+
+
