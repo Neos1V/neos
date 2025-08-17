@@ -11,16 +11,6 @@ export const nav = defineType({
       type: "image",
     },
     {
-      name: "logoMobile",
-      title: "Logo en mobile",
-      type: "image",
-    },
-    {
-      name: "connexionLink",
-      title: "Lien bouton connexion",
-      type: "string",
-    },
-    {
       name: "ctaButton",
       title: "Bouton CTA",
       type: "string",

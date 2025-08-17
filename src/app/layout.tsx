@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
-import { Raleway, Unbounded } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 
-const ralewayFont = Raleway({
-  variable: "--font-raleway",
-  subsets: ["latin"],
-});
-
-const UnboundedFont = Unbounded({
-  variable: "--font-unbounded",
+const manropeFont = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
@@ -24,9 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${ralewayFont.variable} ${UnboundedFont.variable}`}>
-        {children}
-      </body>
+      <body className={`${manropeFont.variable} `}>{children}</body>
     </html>
   );
 }

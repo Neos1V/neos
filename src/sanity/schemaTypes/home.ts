@@ -6,34 +6,16 @@ export const home = defineType({
   type: "document",
   fields: [
     {
-      name: "subtitle",
-      title: "Subtitle",
+      name: "titleCreateur",
+      title: "Titre Créateur",
       type: "string",
-      initialValue: "Welcome to WePlanify",
+      initialValue: "Titre du créateur",
     },
     {
-      name: "subtitleMobile",
-      title: "SubtitleMobile",
-      type: "string",
-      initialValue: "Welcome to WePlanify",
-    },
-    {
-      name: "title",
-      title: "Title",
-      type: "array",
-      of: [{ type: "block" }],
-    },
-    {
-      name: "titleMobile",
-      title: "TitleMobile",
-      type: "array",
-      of: [{ type: "block" }],
-    },
-    {
-      name: "title2",
-      title: "Title 2",
-      type: "array",
-      of: [{ type: "block" }],
+      name: "imageCreateurs",
+      title: "Image Créateurs",
+      type: "image",
+      options: { hotspot: true },
     },
     {
       name: "description",
@@ -42,41 +24,45 @@ export const home = defineType({
       of: [{ type: "block" }],
     },
     {
-      name: "buttonDemo",
-      title: "Demo Button Text",
+      name: "subtitle",
+      title: "Sous Titre",
       type: "string",
-      initialValue: "Try Demo",
+      initialValue: "Sous titre de la section",
     },
     {
-      name: "blocks",
-      title: "Content Blocks",
+      name: "validCheck",
+      title: "Valid Check",
       type: "array",
       of: [
         {
           type: "object",
           fields: [
             {
-              name: "tooltip",
-              title: "Tooltip",
+              name: "titre",
+              title: "Titre",
               type: "string",
             },
+          ],
+        },
+      ],
+    },
+    {
+      name: "createurs",
+      title: "Créateurs",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
             {
               name: "image",
               title: "Image",
               type: "image",
-              options: {
-                hotspot: true,
-              },
+              options: { hotspot: true },
             },
             {
-              name: "text",
-              title: "Text",
-              type: "array",
-              of: [{ type: "block" }],
-            },
-            {
-              name: "link",
-              title: "Link",
+              name: "prix",
+              title: "Prix",
               type: "string",
             },
           ],

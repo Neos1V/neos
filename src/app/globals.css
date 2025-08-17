@@ -4,7 +4,7 @@
 
 * {
   scroll-behavior: smooth;
-  color: #1d2026;
+  color: #000000;
 }
 
 img,
@@ -21,6 +21,11 @@ div {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  font-family: var(--font-manrope);
+}
+
+a {
+  font-family: var(--font-manrope);
 }
 
 .scrollbar-hide {
@@ -32,52 +37,43 @@ div {
 }
 
 .gradient-container {
-  background: #57CFFF;
-  background: linear-gradient(180deg, rgba(87, 207, 255, 1) 0%, rgba(237, 250, 255, 1) 89%, rgba(255, 252, 251, 1) 100%);
+  background: #57cfff;
+  background: linear-gradient(
+    180deg,
+    rgba(87, 207, 255, 1) 0%,
+    rgba(237, 250, 255, 1) 89%,
+    rgba(255, 252, 251, 1) 100%
+  );
 }
 
 body {
-  background-color: #fffcfb;
+  background-color: #f9f9f9;
+  font-family: var(--font-manrope);
 }
 
 strong {
   font-weight: 600;
 }
 
-
-.text-orange {
-  color: #f6391a;
+.blueText strong,
+em {
+  color: #0051d2 !important;
 }
 
-.text-orange p {
-  color: #f6391a;
-}
-
-.orangeStrong strong{
-  color: #f6391a;
-}
-
-.font-unbounded {
-  font-family: var(--font-unbounded);
-}
-
-.bg-orange {
-  background-color: #f6391a;
-}
-
-.bg-light {
-  background-color: #feedea;
-}
-
-body {
-  font-family: var(--font-raleway);
-}
-
-@media screen and (max-width: 1024px){
-  .noBr br{
+@media screen and (max-width: 1024px) {
+  .noBr br {
     display: none;
   }
-
 }
 
+@layer base {
+}
 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

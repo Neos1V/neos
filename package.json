@@ -1,5 +1,5 @@
 {
-  "name": "weplanify",
+  "name": "neos",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -16,6 +16,8 @@
     "@sanity/vision": "^3.92.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "lucide-react": "^0.539.0",
+    "motion": "^12.23.12",
     "next": "15.0.4",
     "next-sanity": "^9.12.0",
     "react": "^19.0.0",
