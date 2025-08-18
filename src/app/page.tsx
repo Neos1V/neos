@@ -1,4 +1,6 @@
+import { CountingNumber } from "@/components/animate-ui/text/counting-number";
 import Clients from "@/components/Clients";
+import Faces from "@/components/Faces";
 import Logos from "@/components/Logos";
 import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
 import Nav from "@/components/Nav";
@@ -142,6 +144,23 @@ export default async function HomePage() {
             alt="tiktok"
             className="absolute bottom-10 -left-[200px]"
           />
+        </div>
+      </div>
+      <div className="flex items-center justify-center mt-[145px] relative">
+        <img src="ellipseTiktok.png" alt="tiktk" className="absolute " />
+        <div className="text-[128px] text-center gradient-text font-bold relative">
+          <CountingNumber number={tiktok.vues} className="" />
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-[#EEF0F4]">
+            <span className="w-[8px] h-[8px] rounded-full bg-gradient-to-r from-[#0051D2] to-[#2978FE]"></span>
+            <p className="text-sm text-black">{tiktok.texteVues}</p>
+          </div>
+        </div>
+      </div>
+      <Faces logos={tiktok.photosProfil} />
+      <div className="flex flex-col items-center justify-center mt-[40px]">
+        <p className="text-center w-1/3 mx-auto">{tiktok.sousTitreTextVues}</p>
+        <div className="mt-8">
+          <CtaButton text={tiktok.buttonTextVues} link={navData.ctaLink} />
         </div>
       </div>
     </div>

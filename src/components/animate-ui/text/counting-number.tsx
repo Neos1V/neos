@@ -1,106 +1,147 @@
-'use client';
+"use client";
 
-import * as React from 'react';
 import {
   type SpringOptions,
   type UseInViewOptions,
   useInView,
   useMotionValue,
   useSpring,
-} from 'motion/react';
+} from "motion/react";
+import * as React from "react";
 
-type CountingNumberProps = React.ComponentProps<'span'> & {
+type CountingNumberProps = Omit<React.ComponentProps<"span">, "ref"> & {
   number: number;
   fromNumber?: number;
   padStart?: boolean;
   inView?: boolean;
-  inViewMargin?: UseInViewOptions['margin'];
+  inViewMargin?: UseInViewOptions["margin"];
   inViewOnce?: boolean;
   decimalSeparator?: string;
+  thousandsSeparator?: string;
   transition?: SpringOptions;
   decimalPlaces?: number;
+} & {
+  ref?: React.Ref<HTMLSpanElement>;
 };
 
-function CountingNumber({
-  ref,
-  number,
-  fromNumber = 0,
-  padStart = false,
-  inView = false,
-  inViewMargin = '0px',
-  inViewOnce = true,
-  decimalSeparator = '.',
-  transition = { stiffness: 90, damping: 50 },
-  decimalPlaces = 0,
-  className,
-  ...props
-}: CountingNumberProps) {
-  const localRef = React.useRef<HTMLSpanElement>(null);
-  React.useImperativeHandle(ref, () => localRef.current as HTMLSpanElement);
+const CountingNumber = React.forwardRef<
+  HTMLSpanElement,
+  Omit<CountingNumberProps, "ref">
+>(
+  (
+    {
+      number,
+      fromNumber = 0,
+      padStart = false,
+      inView = false,
+      inViewMargin = "0px",
+      inViewOnce = true,
+      decimalSeparator = ".",
+      thousandsSeparator = ".",
+      transition = { stiffness: 90, damping: 50 },
+      decimalPlaces = 0,
+      className = "",
+      style = {},
+      ...props
+    },
+    ref
+  ) => {
+    const localRef = React.useRef<HTMLSpanElement>(null);
 
-  const numberStr = number.toString();
-  const decimals =
-    typeof decimalPlaces === 'number'
-      ? decimalPlaces
-      : numberStr.includes('.')
-        ? (numberStr.split('.')[1]?.length ?? 0)
-        : 0;
+    React.useImperativeHandle(ref, () => localRef.current!);
 
-  const motionVal = useMotionValue(fromNumber);
-  const springVal = useSpring(motionVal, transition);
-  const inViewResult = useInView(localRef, {
-    once: inViewOnce,
-    margin: inViewMargin,
-  });
-  const isInView = !inView || inViewResult;
+    const numberStr = number.toString();
+    const decimals =
+      typeof decimalPlaces === "number"
+        ? decimalPlaces
+        : numberStr.includes(".")
+          ? (numberStr.split(".")[1]?.length ?? 0)
+          : 0;
 
-  React.useEffect(() => {
-    if (isInView) motionVal.set(number);
-  }, [isInView, number, motionVal]);
+    const motionVal = useMotionValue(fromNumber);
+    const springVal = useSpring(motionVal, transition);
+    const inViewResult = useInView(localRef, {
+      once: inViewOnce,
+      margin: inViewMargin,
+    });
+    const isInView = !inView || inViewResult;
 
-  React.useEffect(() => {
-    const unsubscribe = springVal.on('change', (latest) => {
-      if (localRef.current) {
+    const formatNumber = React.useCallback(
+      (value: number): string => {
         let formatted =
-          decimals > 0
-            ? latest.toFixed(decimals)
-            : Math.round(latest).toString();
+          decimals > 0 ? value.toFixed(decimals) : Math.round(value).toString();
 
-        if (decimals > 0) {
-          formatted = formatted.replace('.', decimalSeparator);
+        // Remplacer le point par le séparateur décimal personnalisé
+        if (decimals > 0 && decimalSeparator !== ".") {
+          formatted = formatted.replace(".", decimalSeparator);
+        }
+
+        // Ajouter le séparateur de milliers seulement si différent de ""
+        if (thousandsSeparator !== "") {
+          const [intPart, fracPart] = formatted.split(decimalSeparator);
+          const formattedInt =
+            intPart?.replace(/\B(?=(\d{3})+(?!\d))/g, thousandsSeparator) ?? "";
+          formatted = fracPart
+            ? `${formattedInt}${decimalSeparator}${fracPart}`
+            : formattedInt;
         }
 
         if (padStart) {
           const finalIntLength = Math.floor(Math.abs(number)).toString().length;
-          const [intPart, fracPart] = formatted.split(decimalSeparator);
-          const paddedInt = intPart?.padStart(finalIntLength, '0') ?? '';
-          formatted = fracPart
-            ? `${paddedInt}${decimalSeparator}${fracPart}`
+          const [paddedIntPart, paddedFracPart] =
+            formatted.split(decimalSeparator);
+          const paddedInt = paddedIntPart?.padStart(finalIntLength, "0") ?? "";
+          formatted = paddedFracPart
+            ? `${paddedInt}${decimalSeparator}${paddedFracPart}`
             : paddedInt;
         }
 
-        localRef.current.textContent = formatted;
-      }
-    });
-    return () => unsubscribe();
-  }, [springVal, decimals, padStart, number, decimalSeparator]);
+        return `+${formatted}`;
+      },
+      [decimals, decimalSeparator, thousandsSeparator, padStart, number]
+    );
 
-  const finalIntLength = Math.floor(Math.abs(number)).toString().length;
-  const initialText = padStart
-    ? '0'.padStart(finalIntLength, '0') +
-      (decimals > 0 ? decimalSeparator + '0'.repeat(decimals) : '')
-    : '0' + (decimals > 0 ? decimalSeparator + '0'.repeat(decimals) : '');
+    React.useEffect(() => {
+      if (isInView) motionVal.set(number);
+    }, [isInView, number, motionVal]);
 
-  return (
-    <span
-      ref={localRef}
-      data-slot="counting-number"
-      className={className}
-      {...props}
-    >
-      {initialText}
-    </span>
-  );
-}
+    React.useEffect(() => {
+      const unsubscribe = springVal.on("change", (latest: number) => {
+        if (localRef.current) {
+          const formatted = formatNumber(latest);
+          localRef.current.textContent = formatted;
+        }
+      });
+      return () => unsubscribe();
+    }, [springVal, formatNumber]);
+
+    const finalIntLength = Math.floor(Math.abs(number)).toString().length;
+    const initialText = padStart
+      ? "+0".padStart(finalIntLength + 1, "0") +
+        (decimals > 0 ? decimalSeparator + "0".repeat(decimals) : "")
+      : "+0" + (decimals > 0 ? decimalSeparator + "0".repeat(decimals) : "");
+
+    const finalFormattedText = formatNumber(number);
+
+    // Styles améliorés pour réduire l'espacement
+    const fixedStyles: React.CSSProperties = {
+      fontFamily: "monospace",
+      fontStyle: "italic",
+      display: "inline-block",
+      minWidth: `${finalFormattedText.length * 0.6}ch`, // Réduit la largeur minimale
+      textAlign: "right",
+      letterSpacing: "-0.05em", // Réduit l'espacement entre les caractères
+      ...style,
+    };
+
+    return (
+      <span ref={localRef} className={className} style={fixedStyles} {...props}>
+        {initialText}
+      </span>
+    );
+  }
+);
+
+CountingNumber.displayName = "CountingNumber";
 
 export { CountingNumber, type CountingNumberProps };

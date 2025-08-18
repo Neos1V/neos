@@ -55,6 +55,14 @@ strong {
   font-weight: 600;
 }
 
+.gradient-text {
+  background: linear-gradient(to right, #0051d2, #2978fe);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent; /* Fallback pour les navigateurs qui ne supportent pas background-clip */
+}
+
 .blueText strong,
 .blueText em {
   color: #0051d2 !important;
