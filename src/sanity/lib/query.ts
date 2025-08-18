@@ -47,3 +47,56 @@ export const tiktokQuery = groq`
     buttonTextVues,
   }
 `;
+
+export const shortsQuery = groq`
+  *[_type == "shorts"][0] {
+    title,
+    richText,
+    videos[] {
+      url,
+      title,
+      "thumbnail": thumbnail.asset->url,
+    },
+  }
+`;
+
+export const pourquoiQuery = groq`
+  *[_type == "pourquoi"][0] {
+    titre,
+    richText,
+    description,
+    boutonTitle,
+    price,
+    "image1": image1.asset->url,
+    descImage1,
+    "image2": image2.asset->url,
+    descImage2,
+    numbers[] {
+      number,
+      text,
+    },
+  }
+`;
+
+export const workQuery = groq`
+  *[_type == "work"][0] {
+    tooltip,
+    titre,
+    "logo": logo.asset->url,
+    "images": images[].asset->url,
+    titre1,
+    desc1,
+    titre2,
+    titresArray,
+    sousTitre2,
+    desc2,
+    titre3,
+    desc3,
+    "image3_1": image3_1.asset->url,
+    "image3_2": image3_2.asset->url,
+    desc3_1,
+    titre4,
+    desc4,
+    "illustration4": illustration4.asset->url,
+  }
+`;

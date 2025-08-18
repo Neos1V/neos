@@ -7,4 +7,7 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem("nav").title("Navigation"),
       S.documentTypeListItem("home").title("Home"),
       S.documentTypeListItem("tiktok").title("Tiktok"),
+      S.documentTypeListItem("shorts").title("Shorts"),
+      S.documentTypeListItem("pourquoi").title("Pourquoi"),
+      S.documentTypeListItem("work").title("Comment ça marche"),
     ]);

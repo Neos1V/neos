@@ -5,9 +5,24 @@ import Logos from "@/components/Logos";
 import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
 import Nav from "@/components/Nav";
 import CtaButton from "@/components/shared/CtaButton";
+import Tooltip from "@/components/shared/Tooltip";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { homeQuery, navQuery, tiktokQuery } from "@/sanity/lib/query";
-import { Home, NavType, Tiktok } from "@/sanity/lib/type";
+import {
+  homeQuery,
+  navQuery,
+  pourquoiQuery,
+  shortsQuery,
+  tiktokQuery,
+  workQuery,
+} from "@/sanity/lib/query";
+import {
+  Home,
+  NavType,
+  Pourquoi,
+  Shorts,
+  Tiktok,
+  Work,
+} from "@/sanity/lib/type";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 
@@ -24,6 +39,21 @@ export default async function HomePage() {
   const tiktok: Tiktok = await sanityFetch({
     query: tiktokQuery,
     tags: ["tiktok"],
+  });
+
+  const shorts: Shorts = await sanityFetch({
+    query: shortsQuery,
+    tags: ["shorts"],
+  });
+
+  const pourquoi: Pourquoi = await sanityFetch({
+    query: pourquoiQuery,
+    tags: ["pourquoi"],
+  });
+
+  const work: Work = await sanityFetch({
+    query: workQuery,
+    tags: ["work"],
   });
 
   return (
@@ -161,6 +191,123 @@ export default async function HomePage() {
         <p className="text-center w-1/3 mx-auto">{tiktok.sousTitreTextVues}</p>
         <div className="mt-8">
           <CtaButton text={tiktok.buttonTextVues} link={navData.ctaLink} />
+        </div>
+      </div>
+      {/* section : shorts */}
+      {/* <div className="mt-20 mb-20 w-full flex flex-col items-center">
+        <h2 className="text-4xl font-bold mb-6">{shorts.title}</h2>
+        <div className="max-w-2xl w-full mb-8">
+          <PortableText value={shorts.richText} />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl">
+          {shorts.videos.map((video, idx) => (
+            <div
+              key={video.url + idx}
+              className="bg-white rounded-lg shadow p-4 flex flex-col items-center"
+            >
+              {video.thumbnail && (
+                <img
+                  src={video.thumbnail}
+                  alt={video.title}
+                  className="w-full h-48 object-cover rounded mb-4"
+                />
+              )}
+              <h3 className="text-xl font-semibold mb-2">{video.title}</h3>
+              <a
+                href={video.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 underline"
+              >
+                Watch Video
+              </a>
+            </div>
+          ))}
+        </div>
+      </div> */}
+      {/*
+        section : pourquoi 
+
+        - titre
+        - richText
+        - description
+        - bouton title
+        -price 
+        - 1 image
+        - desc image 1 
+        - 2 image
+        - desc image 2
+        - array de number et text
+
+      */}
+      <div className="mt-20 mb-20 w-full flex flex-col items-center">
+        <Tooltip text={pourquoi.titre} />
+        <div className="mt-3.5 blueText h2">
+          <PortableText value={pourquoi.richText} />
+        </div>
+        <p className="mt-6 w-2/4 mx-auto text-center text-lg">
+          {pourquoi.description}
+        </p>
+        <div className="flex flex-col items-center justify-center">
+          <div className="mt-8">
+            <CtaButton text={pourquoi.boutonTitle} link={navData.ctaLink} />
+          </div>
+          <div className="flex gap-4 mt-4">
+            {home.validCheck.map((item, idx) => (
+              <div key={item.titre + idx} className="flex items-center gap-2">
+                <Image src="check.svg" alt="neos" width={16} height={16} />
+                <p>{item.titre}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex gap-3 mt-12">
+          <div className="relative">
+            <Image
+              src={pourquoi.image1}
+              alt="Image 1"
+              className=" rounded-2xl"
+              width={625}
+              height={575}
+            />
+            <div className="absolute bottom-10 left-6 [&>p]:text-white/60">
+              <PortableText value={pourquoi.descImage1} />
+            </div>
+          </div>
+          <Image
+            src={pourquoi.image2}
+            alt="Image 1"
+            className=" rounded-2xl"
+            width={625}
+            height={575}
+          />
+        </div>
+
+        <div className="flex gap-3 mt-6">
+          {pourquoi.numbers.map((item, idx) => (
+            <div
+              key={item.number + idx}
+              className="bg-white rounded-2xl shadow px-10 py-6 flex flex-col "
+            >
+              <span className="gradient-text text-[64px] font-bold">
+                {item.number}%
+              </span>
+              <p className="text-black/70">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-[85px] flex flex-col items-center justify-center">
+        <Tooltip text={work.tooltip} />
+        <div className="mt-3.5 blueText h2">
+          <PortableText value={work.titre} />
+        </div>
+        <div className="max-w-[1400px] grid grid-cols-4 gap-6 h-[600px]">
+          <div className="col-span-3 rounded-2xl bg-red-800"></div>
+          <div className="col-span-1 rounded-2xl bg-red-600"></div>
+          <div className="col-span-1 rounded-2xl bg-red-600"></div>
+          <div className="col-span-3 rounded-2xl bg-red-800"></div>
         </div>
       </div>
     </div>
