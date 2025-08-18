@@ -56,10 +56,9 @@ strong {
 }
 
 .blueText strong,
-em {
+.blueText em {
   color: #0051d2 !important;
 }
-
 @media screen and (max-width: 1024px) {
   .noBr br {
     display: none;

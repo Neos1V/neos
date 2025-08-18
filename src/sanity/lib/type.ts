@@ -15,6 +15,14 @@ export interface HomeCreateur {
   prix: string;
 }
 
+export interface HomeClient {
+  image: string;
+  prix: string;
+  nom: string;
+  job: string;
+  description: PortableTextBlock[];
+}
+
 export interface Home {
   titleCreateur: string;
   imageCreateurs: string;
@@ -22,4 +30,20 @@ export interface Home {
   subtitle: string;
   validCheck: HomeValidCheck[];
   createurs: HomeCreateur[];
+  logos: string[];
+  clients: HomeClient[];
+  sousTitreClients: string;
+}
+
+export interface Tiktok {
+  sousTitre: string;
+  titre: PortableTextBlock[];
+  richText: PortableTextBlock[];
+  buttonText: string;
+  image: string;
+  vues: number;
+  texteVues: string;
+  photosProfil: string[];
+  sousTitreTextVues: string;
+  buttonTextVues: string;
 }
