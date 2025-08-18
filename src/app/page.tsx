@@ -18,9 +18,9 @@ export default async function HomePage() {
   });
 
   return (
-    <div className="flex flex-col items-center justify-center w-full">
+    <div className="">
       <Nav data={navData} />
-      <div className="mt-[180px] flex flex-col items-center justify-center w-fit">
+      <div className="mx-auto mt-[180px] flex flex-col items-center justify-center w-fit relative">
         <div className="mb-6 flex items-center justify-center gap-2 p-3 border border-[#E5E7EB]/50 rounded-full shadow-md">
           <img src={home.imageCreateurs} alt="Créateurs" />
           <p>{home.titleCreateur}</p>
@@ -43,21 +43,28 @@ export default async function HomePage() {
             </div>
           ))}
         </div>
-        <div className="">
+        {/* <div className="">
           {home.createurs.map((createur, idx) => (
             <div key={idx}>
               <img src={createur.image} alt={"Créateur " + idx} />
               <p>{createur.prix}</p>
             </div>
           ))}
+        </div> */}
+        <div className="mt-8 w-3/4 mx-auto">
+          <HeroVideoDialog
+            className="block dark:hidden"
+            animationStyle="top-in-bottom-out"
+            videoSrc="https://www.youtube.com/embed/qh3NGpYRG3I?si=4rb-zSdDkVK9qxxb"
+            thumbnailSrc="https://startup-template-sage.vercel.app/hero-light.png"
+            thumbnailAlt="Hero Video"
+          />
         </div>
-        <HeroVideoDialog
-          className="block dark:hidden"
-          animationStyle="from-center"
-          videoSrc="https://www.example.com/dummy-video"
-          thumbnailSrc="https://www.example.com/dummy-thumbnail.png"
-          thumbnailAlt="Dummy Video Thumbnail"
-        />
+        {/* <img
+          src="waves.svg"
+          alt="waves"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 -z-10"
+        /> */}
       </div>
     </div>
   );
