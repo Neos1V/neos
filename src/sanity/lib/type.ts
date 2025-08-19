@@ -50,8 +50,6 @@ export interface Tiktok {
 
 export interface ShortsVideo {
   url: string;
-  title: string;
-  thumbnail: string;
 }
 
 export interface Shorts {
@@ -150,4 +148,30 @@ export interface Community {
   }[];
   btnText: string;
   videos: { url: string }[];
+}
+
+export interface Faq {
+  title: PortableTextBlock[];
+  subtitle: string;
+  questions: {
+    question: string;
+    response: string;
+  }[];
+  video: string;
+}
+
+export interface JoinUs {
+  image: string;
+  tooltip: string;
+  titre: PortableTextBlock[];
+  description: PortableTextBlock[];
+  txtBtm: string;
+}
+
+export interface Footer {
+  socials: {
+    logo: string;
+    link: string;
+  }[];
+  logoNeos: string;
 }

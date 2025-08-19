@@ -27,8 +27,8 @@ export const shorts = defineType({
           fields: [
             {
               name: "url",
-              title: "Video URL",
-              type: "url",
+              title: "Video File",
+              type: "file",
             },
             {
               name: "title",

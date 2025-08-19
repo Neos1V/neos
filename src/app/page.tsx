@@ -1,17 +1,24 @@
 import { CountingNumber } from "@/components/animate-ui/text/counting-number";
+import { Avis } from "@/components/Avis";
 import Clients from "@/components/Clients";
 import Faces from "@/components/Faces";
+import FaqComponent from "@/components/FaqComponent";
 import Logos from "@/components/Logos";
 import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
 import Nav from "@/components/Nav";
 import Price from "@/components/Price";
 import CtaButton from "@/components/shared/CtaButton";
 import Tooltip from "@/components/shared/Tooltip";
+import { ShortsVideos } from "@/components/ShortsVideos";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import Videos from "@/components/Videos";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
   communityQuery,
+  faqQuery,
+  footerQuery,
   homeQuery,
+  joinusQuery,
   marqueQuery,
   navQuery,
   pourquoiQuery,
@@ -22,7 +29,10 @@ import {
 } from "@/sanity/lib/query";
 import {
   Community,
+  Faq,
+  Footer,
   Home,
+  JoinUs,
   Marque,
   NavType,
   Pourquoi,
@@ -33,6 +43,7 @@ import {
 } from "@/sanity/lib/type";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function HomePage() {
   const navData: NavType = await sanityFetch({
@@ -79,10 +90,25 @@ export default async function HomePage() {
     tags: ["community"],
   });
 
+  const faq: Faq = await sanityFetch({
+    query: faqQuery,
+    tags: ["faq"],
+  });
+
+  const joinus: JoinUs = await sanityFetch({
+    query: joinusQuery,
+    tags: ["joinus"],
+  });
+
+  const footer: Footer = await sanityFetch({
+    query: footerQuery,
+    tags: ["footer"],
+  });
+
   return (
     <div className="">
       <Nav data={navData} />
-      <div className="mx-auto mt-[180px] flex flex-col items-center justify-center w-fit relative">
+      <div className="w-full mt-[180px] flex flex-col items-center justify-center relative">
         <div className="mb-6 flex items-center justify-center gap-2 p-3 border border-[#E5E7EB]/50 rounded-full shadow-md">
           <img src={home.imageCreateurs} alt="Créateurs" />
           <p>{home.titleCreateur}</p>
@@ -122,14 +148,13 @@ export default async function HomePage() {
             thumbnailAlt="Hero Video"
           />
         </div>
-        {/* <img
+        <img
           src="waves.svg"
           alt="waves"
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 -z-10"
-        /> */}
+          className="absolute -bottom-40 left-1/2 -translate-x-1/2 -z-10"
+        />
       </div>
       <Logos logos={home.logos} />
-
       <Clients clients={home.clients} />
       <div className="mt-10">
         <p className="text-center w-1/3 mx-auto relative">
@@ -163,7 +188,7 @@ export default async function HomePage() {
           ))}
         </div>
       </div>
-      <div className="mt-12 flex gap-[90px] justify-center ">
+      <div className="mt-12 flex gap-[90px] justify-center py-[70px] px-[56px] mx-[52px] rounded-3xl shadow border-[#D9D9D9] bg-gradient-to-b from-white to-transparent">
         <div className="border border-[#F6F6F8] bg-white rounded-xl shadow-md p-8 max-w-[600px] h-fit">
           <span className="px-3.5 py-2.5 border border-[#F2F3F5] rounded-full shadow">
             {tiktok.sousTitre}
@@ -193,11 +218,14 @@ export default async function HomePage() {
       </div>
       <div className="flex items-center justify-center mt-[145px] relative">
         <img src="ellipseTiktok.png" alt="tiktk" className="absolute " />
-        <div className="text-[128px] text-center gradient-text font-bold relative">
-          <CountingNumber number={tiktok.vues} className="" />
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-[#EEF0F4]">
+        <div className="text-[128px] text-center font-bold relative">
+          <CountingNumber
+            number={tiktok.vues}
+            className="gradient-text font-manrope"
+          />
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2.5 rounded-full bg-white text-black border border-[#EEF0F4]">
             <span className="w-[8px] h-[8px] rounded-full bg-gradient-to-r from-[#0051D2] to-[#2978FE]"></span>
-            <p className="text-sm text-black">{tiktok.texteVues}</p>
+            <p className="text-black text-sm">{tiktok.texteVues}</p>
           </div>
         </div>
       </div>
@@ -208,7 +236,13 @@ export default async function HomePage() {
           <CtaButton text={tiktok.buttonTextVues} link={navData.ctaLink} />
         </div>
       </div>
+      <div className="mt-20 mb-20 w-full flex flex-col items-center">
+        <div className="mt-3.5 blueText h2">
+          <PortableText value={shorts.richText} />
+        </div>
 
+        <ShortsVideos data={shorts.videos} />
+      </div>
       <div className="mt-20 mb-20 w-full flex flex-col items-center">
         <Tooltip text={pourquoi.titre} />
         <div className="mt-3.5 blueText h2">
@@ -266,7 +300,6 @@ export default async function HomePage() {
           ))}
         </div>
       </div>
-
       <div className="mt-[85px] flex flex-col items-center justify-center">
         <Tooltip text={work.tooltip} />
         <div className="mt-3.5 blueText h2">
@@ -306,7 +339,6 @@ export default async function HomePage() {
           ))}
         </div>
       </div>
-
       <div>
         <AnimatedTestimonials testimonials={marque.marques} />
       </div>
@@ -349,57 +381,104 @@ export default async function HomePage() {
         </div>
       </div>
       <Price data={pricing} />
-      {/* 
-        section community : 
-
-        tooltip
-        titre : rich text
-        array: photo de profil, titre, description
-        btnText
-        array: Videos
-
-      */}
       <div className="mt-20 mb-20 w-full flex flex-col items-center">
         <Tooltip text={community.tooltip} />
         <div className="mt-3.5 blueText h2">
           <PortableText value={community.titre} />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl mb-8 mt-8">
-          {community.members.map((member, idx) => (
-            <div
-              key={member.titre + idx}
-              className="bg-white rounded-lg shadow p-4 flex flex-col items-center"
-            >
-              {member.photoProfil && (
-                <img
-                  src={member.photoProfil}
-                  alt={member.titre}
-                  className="w-20 h-20 object-cover rounded-full mb-2"
-                />
-              )}
-              <h4 className="text-lg font-semibold mb-1">{member.titre}</h4>
-              <p className="text-gray-600 text-center">{member.description}</p>
-            </div>
-          ))}
-        </div>
+
+        <Avis reviews={community.members} />
         <div className="mt-8">
-          <CtaButton text={community.btnText} link={navData.ctaLink} />
+          <CtaButton text={pourquoi.boutonTitle} link={navData.ctaLink} />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl mt-8">
-          {community.videos.map((video, idx) => (
-            <div
-              key={video.url + idx}
-              className="bg-gray-100 rounded-lg shadow p-4 flex flex-col items-center"
-            >
-              <video controls className="w-full rounded-lg">
-                <source src={video.url} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          ))}
+
+        <div>
+          <Videos vids={community.videos} />
         </div>
       </div>
-      {/* end section community */}
+      <div className="flex flex-col items-center justify-center bg-white rounded-2xl shadow-xl mx-12">
+        <div className="blueText h2 mb-4 pt-12">
+          <PortableText value={faq.title} />
+        </div>
+        <p>{faq.subtitle}</p>
+        <FaqComponent data={faq} />
+      </div>
+      <div className="mt-[120px] flex flex-col justify-center items-center">
+        <div className="flex gap-2 items-center tooltip bg-white">
+          <img src={joinus.image} alt="joinus" />
+          <p>{joinus.tooltip}</p>
+        </div>
+        <div className="mt-3.5 blueText h2">
+          <PortableText value={joinus.titre} />
+        </div>
+        <div className="text-center mt-6 w-1/2 mx-auto">
+          <PortableText value={joinus.description} />
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <div className="mt-8">
+            <CtaButton text={joinus.txtBtm} link={navData.ctaLink} />
+          </div>
+          <div className="flex gap-4 mt-4">
+            {home.validCheck.map((item, idx) => (
+              <div key={item.titre + idx} className="flex items-center gap-2">
+                <Image src="check.svg" alt="neos" width={16} height={16} />
+                <p>{item.titre}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="bg-gradient-to-r from-[#0051D2] to-[#2978FE] py-[70px] px-[100px] ">
+        <div className="flex justify-between border-b border-[#FFFFFF]/20 pb-11">
+          <div className="flex flex-col w-2/5">
+            <Image src={footer.logoNeos} width={158} height={70} alt="joinus" />
+            <div className="flex gap-4 mt-8">
+              {footer.socials.map((item, idx) => (
+                <a
+                  key={idx}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image src={item.logo} width={20} height={20} alt="joinus" />
+                </a>
+              ))}
+            </div>
+          </div>
+          <div className="flex w-3/5 justify-between">
+            <p className=" text-white">A propos</p>
+            <p className="text-white">Feature</p>
+            <p className=" text-white">Programme</p>
+            <p className=" text-white">Testimonial</p>
+            <p className=" text-white">Faq</p>
+          </div>
+        </div>
+        <div className="pt-8 flex justify-between">
+          <p className="text-white">© 2025 NEOS. tout droit réservé</p>
+          <div className="flex items-center gap-1">
+            <p className="text-white">Made with 🤍 by</p>
+            <a
+              className="underline text-white"
+              href="https://www.neos.fr"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              La-landing.fr
+            </a>
+          </div>
+          <div className="flex justify-between">
+            <Link className="underline text-white" href="https://www.neos.fr">
+              Privacy policy
+            </Link>
+            <Link className="underline text-white" href="https://www.neos.fr">
+              Terms of service
+            </Link>
+            <Link className="underline text-white" href="https://www.neos.fr">
+              Cookies settings
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

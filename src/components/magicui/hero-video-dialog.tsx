@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 import { Play, XIcon } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -78,7 +78,7 @@ export default function HeroVideoDialog({
   const selectedAnimation = animationVariants[animationStyle];
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn("relative rounded-2xl", className)}>
       <button
         type="button"
         aria-label="Play video"
@@ -90,7 +90,7 @@ export default function HeroVideoDialog({
           alt={thumbnailAlt}
           width={1920}
           height={1080}
-          className="w-full rounded-md border shadow-lg transition-all duration-200 ease-out group-hover:brightness-[0.8]"
+          className="w-full rounded-2xl border shadow-lg transition-all duration-200 ease-out group-hover:brightness-[0.8]"
         />
         <div className="absolute inset-0 flex scale-[0.9] items-center justify-center rounded-2xl transition-all duration-200 ease-out group-hover:scale-100">
           <div className="flex size-28 items-center justify-center rounded-full bg-primary/10 backdrop-blur-md">
@@ -132,7 +132,7 @@ export default function HeroVideoDialog({
               <motion.button className="absolute -top-16 right-0 rounded-full bg-neutral-900/50 p-2 text-xl text-white ring-1 backdrop-blur-md dark:bg-neutral-100/50 dark:text-black">
                 <XIcon className="size-5" />
               </motion.button>
-              <div className="relative isolate z-[1] size-full overflow-hidden rounded-2xl border-2 border-white">
+              <div className="relative isolate z-[1] size-full overflow-hidden rounded-2xl shadow-[0_0_50px_rgba(255,255,255,0.3)]">
                 <iframe
                   src={videoSrc}
                   title="Hero Video player"

@@ -48,17 +48,15 @@ export const tiktokQuery = groq`
   }
 `;
 
-export const shortsQuery = groq`
-  *[_type == "shorts"][0] {
+export const shortsQuery = groq`*[_type == "shorts"][0] {
+  title,
+  richText,
+  videos[] {
+    "url": url.asset->url,
     title,
-    richText,
-    videos[] {
-      url,
-      title,
-      "thumbnail": thumbnail.asset->url,
-    },
-  }
-`;
+    "thumbnail": thumbnail.asset->url,
+  },
+}`;
 
 export const pourquoiQuery = groq`
   *[_type == "pourquoi"][0] {
@@ -154,4 +152,27 @@ export const communityQuery = groq`*[_type == "community"][0] {
   videos[] {
     "url": asset->url,
   },
+}`;
+
+export const faqQuery = groq`*[_type == "faq"][0] {
+  title,
+  subtitle,
+  questions,
+  "video": video.asset->url,
+}`;
+
+export const joinusQuery = groq`*[_type == "joinus"][0] {
+  "image": image.asset->url,
+  tooltip,
+  titre,
+  description,
+  txtBtm,
+}`;
+
+export const footerQuery = groq`*[_type == "footer"][0] {
+  socials[] {
+    "logo": logo.asset->url,
+    link,
+  },
+  "logoNeos": logoNeos.asset->url,
 }`;

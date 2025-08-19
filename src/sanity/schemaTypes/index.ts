@@ -1,6 +1,9 @@
 import { type SchemaTypeDefinition } from "sanity";
 import { community } from "./community";
+import { faq } from "./faq";
+import { footer } from "./footer";
 import { home } from "./home";
+import { joinus } from "./joinus";
 import { marque } from "./marque";
 import { nav } from "./nav";
 import { pourquoi } from "./pourquoi";
@@ -20,5 +23,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     marque,
     pricing,
     community,
+    faq,
+    joinus,
+    footer,
   ],
 };

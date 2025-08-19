@@ -33,7 +33,7 @@ const CountingNumber = React.forwardRef<
       number,
       fromNumber = 0,
       padStart = false,
-      inView = false,
+      inView = true,
       inViewMargin = "0px",
       inViewOnce = true,
       decimalSeparator = ".",
@@ -123,14 +123,20 @@ const CountingNumber = React.forwardRef<
 
     const finalFormattedText = formatNumber(number);
 
-    // Styles améliorés pour réduire l'espacement
+    // Styles améliorés pour éviter le texte coupé
     const fixedStyles: React.CSSProperties = {
-      fontFamily: "monospace",
+      fontFamily: "var(--font-manrope)",
       fontStyle: "italic",
       display: "inline-block",
-      minWidth: `${finalFormattedText.length * 0.6}ch`, // Réduit la largeur minimale
+      // Option 1: Augmenter le multiplicateur pour plus de sécurité
+      minWidth: `${finalFormattedText.length * 0.8}ch`, // Augmenté de 0.6 à 0.8
       textAlign: "right",
-      letterSpacing: "-0.05em", // Réduit l'espacement entre les caractères
+      letterSpacing: "-0.05em",
+      // Option 2: Ajouter un padding pour plus de sécurité
+      paddingRight: "0.2ch",
+      // Option 3: Éviter l'overflow caché
+      overflow: "visible",
+      whiteSpace: "nowrap", // Empêche le retour à la ligne
       ...style,
     };
 

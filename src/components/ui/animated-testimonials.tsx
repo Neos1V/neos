@@ -217,8 +217,8 @@ export const AnimatedTestimonials = ({
                       y2="6.89203"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop stop-color="#0051D2" />
-                      <stop offset="1" stop-color="#297BFE" />
+                      <stop stopColor="#0051D2" />
+                      <stop offset="1" stopColor="#297BFE" />
                     </linearGradient>
                   </defs>
                 </svg>
@@ -247,8 +247,8 @@ export const AnimatedTestimonials = ({
                       y2="6.89215"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop stop-color="#0051D2" />
-                      <stop offset="1" stop-color="#297BFE" />
+                      <stop stopColor="#0051D2" />
+                      <stop offset="1" stopColor="#297BFE" />
                     </linearGradient>
                   </defs>
                 </svg>
