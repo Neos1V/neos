@@ -96,5 +96,58 @@ export interface Work {
   desc3_1: PortableTextBlock[];
   titre4: string;
   desc4: PortableTextBlock[];
+  illustration1: string;
+  illustration2: string;
+  illustration3: string;
   illustration4: string;
+}
+
+export interface Marque {
+  titre: PortableTextBlock[];
+  description: PortableTextBlock[];
+  marques: {
+    image: string;
+    prix: string;
+    nom: string;
+    titre: string;
+    description: string;
+    photoProfil: string;
+  }[];
+  illustration1_1: string;
+  illustration1_2: string;
+  illustration1_3: string;
+  illustration1_4: string;
+  illustration1_5: string;
+  illustration1_6: string;
+}
+
+export interface Pricing {
+  placesLefts: string;
+  title: string;
+  subtitle: string;
+  ancienPrix: string;
+  nouveauPrix: string;
+  btnText: string;
+  description: PortableTextBlock[];
+  arrayText: string[];
+  titrePremium: string;
+  descriptionPremium: PortableTextBlock[];
+  placeLeftPremium: string;
+  premiumArray: {
+    photo: string;
+    titre: string;
+    desc: string;
+  }[];
+}
+
+export interface Community {
+  tooltip: string;
+  titre: PortableTextBlock[];
+  members: {
+    photoProfil: string;
+    titre: string;
+    description: string;
+  }[];
+  btnText: string;
+  videos: { url: string }[];
 }

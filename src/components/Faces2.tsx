@@ -1,0 +1,107 @@
+"use client";
+import Image from "next/image";
+import React from "react";
+
+type FacesProps = {
+  photo: string;
+  titre: string;
+  desc: string;
+};
+
+function Faces({ logos }: { logos: FacesProps[] }) {
+  // We need to inject the keyframes animation into the document's head
+  // because Tailwind CSS doesn't directly support the 'cqw' unit.
+  React.useEffect(() => {
+    const styleSheet = document.createElement("style");
+    styleSheet.innerText = `
+      @keyframes marquee-move {
+        to {
+          transform: translateX(calc(-100cqw - var(--item-gap)));
+        }
+      }
+    `;
+    document.head.appendChild(styleSheet);
+    return () => {
+      document.head.removeChild(styleSheet);
+    };
+  }, []);
+
+  const Marquee = ({
+    direction = "forwards",
+    logos,
+  }: {
+    direction?: string;
+    logos: FacesProps[];
+  }) => {
+    const numItems = logos.length;
+    const speed = "25s";
+    const itemWidth = "165px";
+    const itemGap = "30px";
+
+    return (
+      <div
+        className="max-w-full overflow-hidden"
+        style={
+          {
+            "--speed": speed,
+            "--numItems": numItems,
+            "--item-width": itemWidth,
+            "--item-gap": itemGap,
+            "--direction": direction,
+            maskImage:
+              "linear-gradient(to right, transparent, black 2rem, black calc(100% - 2rem), transparent)",
+          } as React.CSSProperties
+        }
+      >
+        <div
+          className="w-max flex h-[70px]"
+          style={
+            {
+              "--track-width": `calc(var(--item-width) * ${numItems})`,
+              "--track-gap": `calc(var(--item-gap) * ${numItems})`,
+            } as React.CSSProperties
+          }
+        >
+          {[...logos, ...logos].map((logo, index) => (
+            <div
+              key={index}
+              style={
+                {
+                  width: "var(--item-width)",
+                  aspectRatio: "1 / 1.2",
+                  marginRight: "var(--item-gap)",
+                  animation: `marquee-move var(--speed) linear infinite ${direction}`,
+                  height: "fit-content",
+                } as React.CSSProperties
+              }
+            >
+              <div className="flex gap-2">
+                <Image
+                  src={logo.photo}
+                  alt="Logo"
+                  width={40}
+                  height={40}
+                  className="rounded-full border border-[#00BC62]"
+                />
+                <div>
+                  <p className="text-[18px]">{logo.titre}</p>
+                  <p className="text-sm">{logo.desc}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="items-center overflow-hidden mt-10">
+      <div className="w-full flex flex-col gap-y-6 mx-auto">
+        <Marquee logos={logos} />
+      </div>
+    </div>
+  );
+}
+
+export default Faces;

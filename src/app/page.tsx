@@ -4,21 +4,29 @@ import Faces from "@/components/Faces";
 import Logos from "@/components/Logos";
 import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
 import Nav from "@/components/Nav";
+import Price from "@/components/Price";
 import CtaButton from "@/components/shared/CtaButton";
 import Tooltip from "@/components/shared/Tooltip";
+import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
+  communityQuery,
   homeQuery,
+  marqueQuery,
   navQuery,
   pourquoiQuery,
+  pricingQuery,
   shortsQuery,
   tiktokQuery,
   workQuery,
 } from "@/sanity/lib/query";
 import {
+  Community,
   Home,
+  Marque,
   NavType,
   Pourquoi,
+  Pricing,
   Shorts,
   Tiktok,
   Work,
@@ -54,6 +62,21 @@ export default async function HomePage() {
   const work: Work = await sanityFetch({
     query: workQuery,
     tags: ["work"],
+  });
+
+  const marque: Marque = await sanityFetch({
+    query: marqueQuery,
+    tags: ["marque"],
+  });
+
+  const pricing: Pricing = await sanityFetch({
+    query: pricingQuery,
+    tags: ["pricing"],
+  });
+
+  const community: Community = await sanityFetch({
+    query: communityQuery,
+    tags: ["community"],
   });
 
   return (
@@ -106,14 +129,6 @@ export default async function HomePage() {
         /> */}
       </div>
       <Logos logos={home.logos} />
-      {/* 
-        ajouter en bas de home
-
-        array de : image, prix, nom, job, description qui s'apellera Clientsx§
-        text qui s'appelera sous titre clients
-
-      
-      */}
 
       <Clients clients={home.clients} />
       <div className="mt-10">
@@ -193,53 +208,7 @@ export default async function HomePage() {
           <CtaButton text={tiktok.buttonTextVues} link={navData.ctaLink} />
         </div>
       </div>
-      {/* section : shorts */}
-      {/* <div className="mt-20 mb-20 w-full flex flex-col items-center">
-        <h2 className="text-4xl font-bold mb-6">{shorts.title}</h2>
-        <div className="max-w-2xl w-full mb-8">
-          <PortableText value={shorts.richText} />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl">
-          {shorts.videos.map((video, idx) => (
-            <div
-              key={video.url + idx}
-              className="bg-white rounded-lg shadow p-4 flex flex-col items-center"
-            >
-              {video.thumbnail && (
-                <img
-                  src={video.thumbnail}
-                  alt={video.title}
-                  className="w-full h-48 object-cover rounded mb-4"
-                />
-              )}
-              <h3 className="text-xl font-semibold mb-2">{video.title}</h3>
-              <a
-                href={video.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 underline"
-              >
-                Watch Video
-              </a>
-            </div>
-          ))}
-        </div>
-      </div> */}
-      {/*
-        section : pourquoi 
 
-        - titre
-        - richText
-        - description
-        - bouton title
-        -price 
-        - 1 image
-        - desc image 1 
-        - 2 image
-        - desc image 2
-        - array de number et text
-
-      */}
       <div className="mt-20 mb-20 w-full flex flex-col items-center">
         <Tooltip text={pourquoi.titre} />
         <div className="mt-3.5 blueText h2">
@@ -303,13 +272,134 @@ export default async function HomePage() {
         <div className="mt-3.5 blueText h2">
           <PortableText value={work.titre} />
         </div>
-        <div className="max-w-[1400px] grid grid-cols-4 gap-6 h-[600px]">
-          <div className="col-span-3 rounded-2xl bg-red-800"></div>
-          <div className="col-span-1 rounded-2xl bg-red-600"></div>
-          <div className="col-span-1 rounded-2xl bg-red-600"></div>
-          <div className="col-span-3 rounded-2xl bg-red-800"></div>
+
+        <div className="max-w-[1400px] w-full mx-auto flex flex-col gap-6 mt-11">
+          <div className="flex w-full">
+            <div className="rounded-2xl">
+              <img src={work.illustration1} alt="illustration1" />
+            </div>
+            <div className=" rounded-2xl">
+              <img src={work.illustration2} alt="illustratio2" />
+            </div>
+          </div>
+
+          <div className="flex w-full">
+            <div className="shadow rounded-2xl">
+              <img src={work.illustration3} alt="illustration3" />
+            </div>
+            <div className="shadow rounded-2xl ">
+              <img src={work.illustration4} alt="illustration4" />
+            </div>
+          </div>
         </div>
       </div>
+      <div className="flex flex-col items-center justify-center">
+        <div className="mt-8">
+          <CtaButton text={pourquoi.boutonTitle} link={navData.ctaLink} />
+        </div>
+        <div className="flex gap-4 mt-4">
+          {home.validCheck.map((item, idx) => (
+            <div key={item.titre + idx} className="flex items-center gap-2">
+              <Image src="check.svg" alt="neos" width={16} height={16} />
+              <p>{item.titre}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <AnimatedTestimonials testimonials={marque.marques} />
+      </div>
+      <div className="mt-[150px] w-full flex flex-col items-center">
+        <div className="w-full flex flex-col items-center">
+          <div className="blueText h2 mb-4">
+            <PortableText value={marque.titre} />
+          </div>
+          <div className="mb-6 w-2/4 mx-auto text-center text-lg">
+            <PortableText value={marque.description} />
+          </div>
+
+          <div className="flex flex-wrap justify-center mt-8 max-w-[1400px]">
+            {[
+              marque.illustration1_1,
+              marque.illustration1_2,
+              marque.illustration1_3,
+              marque.illustration1_4,
+              marque.illustration1_5,
+              marque.illustration1_6,
+            ].map((url, idx) =>
+              url ? (
+                <img key={idx} src={url} alt={`illustration1_${idx + 1}`} />
+              ) : null
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col items-center justify-center">
+        <div className="mt-8">
+          <CtaButton text={pourquoi.boutonTitle} link={navData.ctaLink} />
+        </div>
+        <div className="flex gap-4 mt-4">
+          {home.validCheck.map((item, idx) => (
+            <div key={item.titre + idx} className="flex items-center gap-2">
+              <Image src="check.svg" alt="neos" width={16} height={16} />
+              <p>{item.titre}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <Price data={pricing} />
+      {/* 
+        section community : 
+
+        tooltip
+        titre : rich text
+        array: photo de profil, titre, description
+        btnText
+        array: Videos
+
+      */}
+      <div className="mt-20 mb-20 w-full flex flex-col items-center">
+        <Tooltip text={community.tooltip} />
+        <div className="mt-3.5 blueText h2">
+          <PortableText value={community.titre} />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl mb-8 mt-8">
+          {community.members.map((member, idx) => (
+            <div
+              key={member.titre + idx}
+              className="bg-white rounded-lg shadow p-4 flex flex-col items-center"
+            >
+              {member.photoProfil && (
+                <img
+                  src={member.photoProfil}
+                  alt={member.titre}
+                  className="w-20 h-20 object-cover rounded-full mb-2"
+                />
+              )}
+              <h4 className="text-lg font-semibold mb-1">{member.titre}</h4>
+              <p className="text-gray-600 text-center">{member.description}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-8">
+          <CtaButton text={community.btnText} link={navData.ctaLink} />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl mt-8">
+          {community.videos.map((video, idx) => (
+            <div
+              key={video.url + idx}
+              className="bg-gray-100 rounded-lg shadow p-4 flex flex-col items-center"
+            >
+              <video controls className="w-full rounded-lg">
+                <source src={video.url} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* end section community */}
     </div>
   );
 }

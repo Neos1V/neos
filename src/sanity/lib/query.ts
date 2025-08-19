@@ -97,6 +97,61 @@ export const workQuery = groq`
     desc3_1,
     titre4,
     desc4,
+    "illustration1": illustration1.asset->url,
+    "illustration2": illustration2.asset->url,
+    "illustration3": illustration3.asset->url,
     "illustration4": illustration4.asset->url,
   }
 `;
+
+export const marqueQuery = groq`*[_type == "marque"][0] {
+  titre,
+  description,
+  marques[] {
+    "image": image.asset->url,
+    prix,
+    nom,
+    titre,
+    description,
+    "photoProfil": photoProfil.asset->url,
+  },
+  "illustration1_1": illustration1_1.asset->url,
+  "illustration1_2": illustration1_2.asset->url,
+  "illustration1_3": illustration1_3.asset->url,
+  "illustration1_4": illustration1_4.asset->url,
+  "illustration1_5": illustration1_5.asset->url,
+  "illustration1_6": illustration1_6.asset->url,
+}`;
+
+export const pricingQuery = groq`*[_type == "pricing"][0] {
+  placesLefts,
+  title,
+  subtitle,
+  ancienPrix,
+  nouveauPrix,
+  btnText,
+  description,
+  arrayText,
+  titrePremium,
+  descriptionPremium,
+  placeLeftPremium,
+  premiumArray[] {
+    "photo": photo.asset->url,
+    titre,
+    desc,
+  },
+}`;
+
+export const communityQuery = groq`*[_type == "community"][0] {
+  tooltip,
+  titre,
+  members[] {
+    "photoProfil": photoProfil.asset->url,
+    titre,
+    description,
+  },
+  btnText,
+  videos[] {
+    "url": asset->url,
+  },
+}`;

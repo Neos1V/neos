@@ -102,6 +102,24 @@ export const work = defineType({
       of: [{ type: "block" }],
     },
     {
+      name: "illustration1",
+      title: "Illustration 1",
+      type: "image",
+      options: { hotspot: true },
+    },
+    {
+      name: "illustration2",
+      title: "Illustration 2",
+      type: "image",
+      options: { hotspot: true },
+    },
+    {
+      name: "illustration3",
+      title: "Illustration 3",
+      type: "image",
+      options: { hotspot: true },
+    },
+    {
       name: "illustration4",
       title: "Illustration 4",
       type: "image",
