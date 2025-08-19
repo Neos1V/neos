@@ -264,40 +264,41 @@ export default async function HomePage() {
             ))}
           </div>
         </div>
-        <div className="flex gap-3 mt-12">
-          <div className="relative">
+        <div className="max-w-[1262px]">
+          <div className="flex gap-3 mt-12">
+            <div className="relative">
+              <Image
+                src={pourquoi.image1}
+                alt="Image 1"
+                className=" rounded-2xl"
+                width={625}
+                height={575}
+              />
+              <div className="absolute bottom-10 left-6 [&>p]:text-white/60">
+                <PortableText value={pourquoi.descImage1} />
+              </div>
+            </div>
             <Image
-              src={pourquoi.image1}
+              src={pourquoi.image2}
               alt="Image 1"
               className=" rounded-2xl"
               width={625}
               height={575}
             />
-            <div className="absolute bottom-10 left-6 [&>p]:text-white/60">
-              <PortableText value={pourquoi.descImage1} />
-            </div>
           </div>
-          <Image
-            src={pourquoi.image2}
-            alt="Image 1"
-            className=" rounded-2xl"
-            width={625}
-            height={575}
-          />
-        </div>
-
-        <div className="flex gap-3 mt-6">
-          {pourquoi.numbers.map((item, idx) => (
-            <div
-              key={item.number + idx}
-              className="bg-white rounded-2xl shadow px-10 py-6 flex flex-col "
-            >
-              <span className="gradient-text text-[64px] font-bold">
-                {item.number}%
-              </span>
-              <p className="text-black/70">{item.text}</p>
-            </div>
-          ))}
+          <div className="flex justify-between w-full gap-3 mt-6">
+            {pourquoi.numbers.map((item, idx) => (
+              <div
+                key={item.number + idx}
+                className="bg-white rounded-2xl shadow px-10 py-6 flex w-full flex-col "
+              >
+                <span className="gradient-text text-[64px] font-bold">
+                  {item.number}%
+                </span>
+                <p className="text-black/70">{item.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <div className="mt-[85px] flex flex-col items-center justify-center">
@@ -307,7 +308,7 @@ export default async function HomePage() {
         </div>
 
         <div className="max-w-[1400px] w-full mx-auto flex flex-col gap-6 mt-11">
-          <div className="flex w-full">
+          <div className="flex w-full gap-5">
             <div className="rounded-2xl">
               <img src={work.illustration1} alt="illustration1" />
             </div>
@@ -316,7 +317,7 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="flex w-full">
+          <div className="flex w-full gap-5">
             <div className="shadow rounded-2xl">
               <img src={work.illustration3} alt="illustration3" />
             </div>
@@ -396,14 +397,15 @@ export default async function HomePage() {
           <Videos vids={community.videos} />
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center bg-white rounded-2xl shadow-xl mx-12">
+
+      <div className="flex flex-col items-center justify-center bg-white rounded-2xl shadow-xl w-fit mx-auto border-[#D9D9D9] bg-gradient-to-b from-white to-transparent">
         <div className="blueText h2 mb-4 pt-12">
           <PortableText value={faq.title} />
         </div>
         <p>{faq.subtitle}</p>
         <FaqComponent data={faq} />
       </div>
-      <div className="mt-[120px] flex flex-col justify-center items-center">
+      <div className="mt-[120px] flex flex-col justify-center items-center mb-[132px]">
         <div className="flex gap-2 items-center tooltip bg-white">
           <img src={joinus.image} alt="joinus" />
           <p>{joinus.tooltip}</p>

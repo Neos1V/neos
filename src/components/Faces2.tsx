@@ -96,7 +96,7 @@ function Faces({ logos }: { logos: FacesProps[] }) {
   };
 
   return (
-    <div className="items-center overflow-hidden mt-10">
+    <div className="items-center overflow-hidden mt-20">
       <div className="w-full flex flex-col gap-y-6 mx-auto">
         <Marquee logos={logos} />
       </div>

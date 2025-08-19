@@ -123,7 +123,7 @@ export const AnimatedTestimonials = ({
           </div>
         </div>
         <div className="flex flex-col justify-between pt-[50px] pl-8 pb-8 rounded-2xl w-[750px] bg-white shadow-xl relative">
-          <img src="star1.png" alt="star" className="absolute top-0 right-0" />
+          <img src="star.svg" alt="star" className="absolute top-0 right-0" />
           <p className="rounded-full bg-white border border-[#F7F8F9] py-1 px-2 shadow font-bold text-sm w-fit absolute -top-4 -left-8 -rotate-[30deg]">
             Avis client
           </p>

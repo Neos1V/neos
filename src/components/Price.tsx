@@ -7,14 +7,14 @@ import CtaButton from "./shared/CtaButton";
 export default function Price({ data }: { data: Pricing }) {
   return (
     <div className="relative py-16 md:py-32">
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-[1400px] px-6">
         <div className="mt-8 md:mt-20">
-          <div className="bg-card relative rounded-3xl bg-white shadow-2xl">
-            <span className="tooltip text-[#FF0000] bg-white -top-[15px] absolute left-[150px]">
-              {data.placesLefts}
-            </span>
+          <div className="bg-card relative rounded-3xl bg-white shadow-2xl px-12 py-16">
             <div className="grid items-center gap-12 divide-y p-12 pb-2 md:grid-cols-2 md:divide-x md:divide-y-0 divide-[#297BFE]">
-              <div className="pb-12 text-center md:pb-0 md:pr-12">
+              <div className="pb-12 text-center md:pb-0 md:pr-12 relative">
+                <span className="tooltip text-[#FF0000] bg-white absolute left-1/2 transform -translate-x-1/2 top-[-140px]">
+                  {data.placesLefts}
+                </span>
                 <h3 className="h2">{data.title}</h3>
                 <p className="mt-1">{data.subtitle}</p>
                 <div className="inline-block text-[128px] font-bold relative">
@@ -33,7 +33,7 @@ export default function Price({ data }: { data: Pricing }) {
                     <CtaButton text={data.btnText} link="#" />
                   </div>
                 </div>
-                <div className="[&>p]:text-black/70 mt-4 text-sm">
+                <div className="[&>p]:text-black/70 mt-4 text-sm w-[300px] mx-auto">
                   <PortableText value={data.description} />
                 </div>
               </div>
