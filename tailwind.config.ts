@@ -2,6 +2,17 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
+  safelist: [
+    // Ensure animation utilities and arbitrary properties survive production purge
+    "animate-marquee",
+    "animate-marquee-vertical",
+    "group-hover:[animation-play-state:paused]",
+    "[animation-direction:reverse]",
+    "[--duration:25s]",
+    "[--duration:40s]",
+    "[--gap:1rem]",
+    "[gap:var(--gap)]",
+  ],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
