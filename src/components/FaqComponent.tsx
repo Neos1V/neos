@@ -1,18 +1,13 @@
 "use client";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Faq } from "@/sanity/lib/type";
-import { Play } from "lucide-react";
+import { Play, Pause } from "lucide-react";
 import { useRef, useState } from "react";
 
 export default function FaqComponent({ data }: { data: Faq }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -26,54 +21,101 @@ export default function FaqComponent({ data }: { data: Faq }) {
     }
   };
 
+  const toggleQuestion = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
   return (
-    <section className="bg-muted dark:bg-background py-12 md:py-20">
-      <div className="mx-auto max-w-5xl px-4 md:px-6">
-        <div className="flex flex-col-reverse lg:flex-row gap-6 md:flex-row md:gap-16">
-          <div className="w-full md:w-2/3">
-            <Accordion type="single" collapsible className="w-full space-y-3">
-              {data.questions.map((item, idx) => (
-                <AccordionItem
-                  key={idx}
-                  value={item.question + idx.toString()}
-                  className="bg-white shadow-md rounded-2xl overflow-hidden border-none w-full md:max-w-[500px]"
+    <section className="py-20 px-6">
+      <div className="px-[50px] mx-auto">
+        <div className="flex flex-col lg:flex-row gap-12 items-start">
+          {/* FAQ Section */}
+          <div className="flex-1 space-y-4">
+            {data.questions.map((item, index) => (
+              <div
+                key={index}
+                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700"
+              >
+                <button
+                  onClick={() => toggleQuestion(index)}
+                  className="w-full p-6 text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
                 >
-                  <AccordionTrigger className="cursor-pointer items-center py-4 md:py-5 px-4 md:px-6 hover:no-underline border-none text-left">
-                    <span className="text-sm md:text-base font-medium">
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-semibold text-gray-900 dark:text-white pr-4">
                       {item.question}
-                    </span>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-4 md:px-6 pb-4 md:pb-5 pt-0 border-none">
-                    <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                    </h3>
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`transition-transform duration-300 ${
+                        activeIndex !== index ? "rotate-180" : ""
+                      }`}
+                    >
+                      <path
+                        d="M7 14.5834L12.0008 10L17 14.5834"
+                        stroke="currentColor"
+                        strokeOpacity="0.6"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </button>
+
+                <div
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    activeIndex === index
+                      ? "max-h-96 opacity-100"
+                      : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <div className="px-6 pb-6 pt-2">
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                       {item.response}
                     </p>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-          <div className="w-full md:w-1/3 flex justify-center md:justify-start">
-            <div
-              className="relative bg-white shadow-md rounded-2xl overflow-hidden cursor-pointer w-full max-w-[320px] md:max-w-[400px] md:w-[400px] h-[500px] md:h-[700px]"
-              onClick={togglePlay}
-            >
-              <video
-                ref={videoRef}
-                className="w-full h-full object-cover"
-                onEnded={() => setIsPlaying(false)}
-              >
-                <source src={data.video} type="video/mp4" />
-                Votre navigateur ne supporte pas la lecture de vidéos.
-              </video>
-
-              {/* Overlay avec bouton play/pause - visible seulement quand la vidéo ne joue pas */}
-              {!isPlaying && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 transition-opacity hover:bg-opacity-30">
-                  <div className="bg-white bg-opacity-90 rounded-full p-3 transition-transform hover:scale-110">
-                    <Play className="w-6 h-6 text-gray-800 ml-0.5" />
                   </div>
                 </div>
-              )}
+              </div>
+            ))}
+          </div>
+
+          {/* Video Section */}
+          <div className="flex-shrink-0">
+            <div className="sticky top-8">
+              <div
+                className="relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl cursor-pointer group w-[400px] h-[700px]"
+                onClick={togglePlay}
+              >
+                <video
+                  ref={videoRef}
+                  className="w-full h-full object-cover"
+                  onEnded={() => setIsPlaying(false)}
+                >
+                  <source src={data.video} type="video/mp4" />
+                  Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
+
+                {/* Play/Pause Overlay */}
+                <div
+                  className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
+                    isPlaying
+                      ? "opacity-0 group-hover:opacity-100"
+                      : "opacity-100"
+                  } bg-black bg-opacity-20`}
+                >
+                  <div className="bg-white bg-opacity-90 backdrop-blur-sm rounded-full p-4 transform transition-all duration-300 hover:scale-110 hover:bg-opacity-100">
+                    {isPlaying ? (
+                      <Pause className="w-8 h-8 text-gray-800" />
+                    ) : (
+                      <Play className="w-8 h-8 text-gray-800 ml-1" />
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -265,6 +265,16 @@ export default async function HomePage() {
       </div>
       <div className="flex items-center justify-center mt-[145px] relative">
         <img src="ellipseTiktok.png" alt="tiktk" className="absolute " />
+        <img
+          src="eyeLeft.svg"
+          alt="eye"
+          className="w-[22px] lg:w-[58px] absolute bottom-0 left-[5%] lg:left-[20%]"
+        />
+        <img
+          src="eyeRight.svg"
+          alt="eye"
+          className="w-[22px] lg:w-[58px] absolute top-[-20px] lg:top-0 right-[5%] lg:right-[20%]"
+        />
         <div className="text-[60px] lg:text-[128px] text-center font-bold relative">
           <CountingNumber
             number={tiktok.vues}
@@ -299,8 +309,16 @@ export default async function HomePage() {
           <ShortsVideosMobile data={shorts.videos} />
         </div>
       </div>
-      <div className="mt-20 mb-20 w-full flex flex-col items-center">
-        <Tooltip text={pourquoi.titre} />
+      <div className=" mt-20 lg:mt-40 mb-20 w-full flex flex-col items-center relative">
+        <img
+          src="slider.svg"
+          alt="absolute"
+          className="absolute top-0 left-1/2 z-[-1] w-[90%] -translate-x-1/2"
+        />
+
+        <div className="mt-[80px]">
+          <Tooltip text={pourquoi.titre} />
+        </div>
         <div className="mt-3.5 blueText h2 text-center lg:text-left w-[250px] mx-auto lg:w-fit">
           <PortableText value={pourquoi.richText} />
         </div>
@@ -450,7 +468,11 @@ export default async function HomePage() {
 
         <Avis reviews={community.members} />
         <div className="mt-8">
-          <CtaButton text={pourquoi.boutonTitle} link={navData.ctaLink} />
+          <CtaButton
+            person={true}
+            text={pourquoi.boutonTitle}
+            link={navData.ctaLink}
+          />
         </div>
 
         <div>
@@ -470,7 +492,7 @@ export default async function HomePage() {
           <img src={joinus.image} alt="joinus" />
           <p className="text-[10px] lg:text-base">{joinus.tooltip}</p>
         </div>
-        <div className="mt-3.5 blueText h2 text-center lg:text-left w-[250px] mx-auto lg:w-full">
+        <div className="mt-3.5 blueText h2 text-centermt-8 w-[250px] mx-auto lg:w-full">
           <PortableText value={joinus.titre} />
         </div>
         <div className="text-center mt-6 px-3 lg:px-0 lg:w-1/2 mx-auto">

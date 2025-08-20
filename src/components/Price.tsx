@@ -83,31 +83,41 @@ export default function Price({ data }: { data: Pricing }) {
                   </div>
 
                   {/* Titre Premium */}
-                  <div className="flex items-center gap-2">
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="flex-shrink-0"
-                    >
-                      <path
-                        d="M6.51886 10.125L3.76245 7.49969L4.68104 6.625L6.51886 8.37438L10.1932 4.875L11.1125 5.75031L6.51886 10.125Z"
-                        fill="#0051D2"
-                      />
-                      <rect
-                        x="0.5"
-                        y="1"
-                        width="13"
-                        height="13"
-                        rx="1.5"
-                        stroke="#0051D2"
-                      />
-                    </svg>
-                    <p className="text-xs sm:text-sm font-semibold">
-                      {data.titrePremium}
-                    </p>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-2">
+                      <svg
+                        width="14"
+                        height="15"
+                        viewBox="0 0 14 15"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="flex-shrink-0"
+                      >
+                        <path
+                          d="M6.51886 10.125L3.76245 7.49969L4.68104 6.625L6.51886 8.37438L10.1932 4.875L11.1125 5.75031L6.51886 10.125Z"
+                          fill="#0051D2"
+                        />
+                        <rect
+                          x="0.5"
+                          y="1"
+                          width="13"
+                          height="13"
+                          rx="1.5"
+                          stroke="#0051D2"
+                        />
+                      </svg>
+                      <p className="text-xs sm:text-sm font-semibold">
+                        {data.titrePremium}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <p className="text-black/20 text-[10px] line-through">
+                        153€
+                      </p>
+                      <p className="text-[#0051D2] font-semibold  text-xs">
+                        49€
+                      </p>
+                    </div>
                   </div>
 
                   {/* Description Premium */}

@@ -178,6 +178,7 @@ export const AnimatedTestimonials = ({
                 ))}
             </motion.p>
           </motion.div>
+
           <div className="flex gap-4 pt-12 md:pt-0 justify-between items-center pr-8 mt-7">
             <div className="flex gap-2 ">
               <Image
@@ -254,6 +255,43 @@ export const AnimatedTestimonials = ({
                 </svg>
               </button>
             </div>
+          </div>
+
+          {/* Slider de progression sous le bloc blanc */}
+          <div className="absolute -bottom-12 left-0 w-full bg-gray-200 rounded-full h-[7px] mt-8">
+            <motion.div
+              className="h-full rounded-full relative"
+              style={{
+                background: "linear-gradient(to right, #0051d2, #2978fe)",
+              }}
+              initial={{ width: "0%" }}
+              whileInView={{ width: "98%" }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: 2, ease: "easeInOut", delay: 0.5 }}
+            >
+              {/* Boule au bout (26x26) */}
+              <motion.div
+                className="absolute -top-[10px] right-0 w-[26px] h-[26px] rounded-full border-[3px] border-white z-10 flex items-center justify-center"
+                style={{
+                  background: "linear-gradient(to right, #0051d2, #2978fe)",
+                }}
+                initial={{ opacity: 0, scale: 0.6 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ delay: 1.8, duration: 0.3, ease: "easeOut" }}
+              >
+                {/* Texte sous la boule */}
+                <motion.span
+                  className="tooltip shadow absolute top-full mt-2 text-xs font-semibold text-gray-700 whitespace-nowrap"
+                  initial={{ opacity: 0, scale: 0.6 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, amount: 0.6 }}
+                  transition={{ delay: 2, duration: 0.3, ease: "easeOut" }}
+                >
+                  Satisfaction
+                </motion.span>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>
