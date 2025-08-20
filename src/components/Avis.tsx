@@ -60,7 +60,7 @@ export function Avis({ reviews }: MarqueeDemoVerticalProps) {
       <img
         src="avisMobile.png"
         alt="avis"
-        className="absolute -z-10 lg:hidden"
+        className="absolute -z-10 lg:hidden w-full"
       />
 
       {/* Version mobile - une seule colonne */}
