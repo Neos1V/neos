@@ -3,6 +3,7 @@ import { Avis } from "@/components/Avis";
 import Clients from "@/components/Clients";
 import Faces from "@/components/Faces";
 import FaqComponent from "@/components/FaqComponent";
+import ImageSection from "@/components/ImageSection";
 import Logos from "@/components/Logos";
 import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
 import Nav from "@/components/Nav";
@@ -10,7 +11,9 @@ import Price from "@/components/Price";
 import CtaButton from "@/components/shared/CtaButton";
 import Tooltip from "@/components/shared/Tooltip";
 import { ShortsVideos } from "@/components/ShortsVideos";
+import ShortsVideosMobile from "@/components/ShortsVideosMobile";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import { AnimatedTestimonialsMobile } from "@/components/ui/animated-testimonials-mobile";
 import Videos from "@/components/Videos";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import {
@@ -44,9 +47,6 @@ import {
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
-import ShortsVideosMobile from "@/components/ShortsVideosMobile";
-import ImageSection from "@/components/ImageSection";
-import { AnimatedTestimonialsMobile } from "@/components/ui/animated-testimonials-mobile";
 
 export default async function HomePage() {
   const navData: NavType = await sanityFetch({
@@ -181,7 +181,7 @@ export default async function HomePage() {
         </div>
       </div>
       {/* Vidéo */}
-      <div className="relative mt-12">
+      <div className="relative mt-12 overflow-x-clip">
         {/* Vagues en arrière-plan */}
         <img
           src="waves.svg"
@@ -191,7 +191,7 @@ export default async function HomePage() {
         <img
           src="wavesMobile.svg"
           alt="waves"
-          className="lg:hidden absolute bottom-12"
+          className="lg:hidden absolute bottom-12 w-[100vw] left-1/2 -translate-x-1/2"
         />
         <div className="lg:w-3/4 lg:mx-auto relative z-20 mb-20 lg:mb-0">
           <HeroVideoDialog
@@ -441,7 +441,7 @@ export default async function HomePage() {
             ].map((url, idx) =>
               url ? (
                 <img key={idx} src={url} alt={`illustration1_${idx + 1}`} />
-              ) : null,
+              ) : null
             )}
           </div>
         </div>
@@ -492,7 +492,7 @@ export default async function HomePage() {
           <img src={joinus.image} alt="joinus" />
           <p className="text-[10px] lg:text-base">{joinus.tooltip}</p>
         </div>
-        <div className="mt-3.5 blueText h2 text-center mt-8 w-[250px] mx-auto lg:w-full">
+        <div className="blueText h2 text-center mt-8 w-[250px] mx-auto lg:w-full">
           <PortableText value={joinus.titre} />
         </div>
         <div className="text-center mt-6 px-3 lg:px-0 lg:w-1/2 mx-auto">

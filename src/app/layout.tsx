@@ -19,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${manropeFont.variable} `}>{children}</body>
+      <body className={`${manropeFont.variable} overflow-x-hidden`}>
+        {children}
+      </body>
     </html>
   );
 }

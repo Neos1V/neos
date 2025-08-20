@@ -46,7 +46,7 @@ export function Avis({ reviews }: MarqueeDemoVerticalProps) {
   const firstRow = reviews.slice(0, Math.ceil(reviews.length / 3));
   const secondRow = reviews.slice(
     Math.ceil(reviews.length / 3),
-    Math.ceil((reviews.length * 2) / 3),
+    Math.ceil((reviews.length * 2) / 3)
   );
   const thirdRow = reviews.slice(Math.ceil((reviews.length * 2) / 3));
 
