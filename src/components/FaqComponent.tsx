@@ -27,10 +27,14 @@ export default function FaqComponent({ data }: { data: Faq }) {
 
   return (
     <section className="py-20 px-6">
-      <div className="px-[50px] mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 items-start">
           {/* FAQ Section */}
           <div className="flex-1 space-y-4">
+            <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
+              Questions fréquentes
+            </h2>
+
             {data.questions.map((item, index) => (
               <div
                 key={index}
@@ -51,7 +55,7 @@ export default function FaqComponent({ data }: { data: Faq }) {
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                       className={`transition-transform duration-300 ${
-                        activeIndex !== index ? "rotate-180" : ""
+                        activeIndex === index ? "rotate-180" : ""
                       }`}
                     >
                       <path
@@ -84,10 +88,10 @@ export default function FaqComponent({ data }: { data: Faq }) {
           </div>
 
           {/* Video Section */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 w-full lg:w-auto">
             <div className="sticky top-8">
               <div
-                className="relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl cursor-pointer group w-[400px] h-[700px]"
+                className="relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl cursor-pointer group w-full lg:w-[400px] h-[700px]"
                 onClick={togglePlay}
               >
                 <video
