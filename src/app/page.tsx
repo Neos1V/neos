@@ -430,7 +430,7 @@ export default async function HomePage() {
             <PortableText value={marque.description} />
           </div>
 
-          <div className="flex flex-wrap justify-center mt-8 max-w-[1400px]">
+          <div className="gap-9 flex flex-wrap justify-center mt-8 max-w-[1400px]">
             {[
               marque.illustration1_1,
               marque.illustration1_2,
@@ -440,8 +440,14 @@ export default async function HomePage() {
               marque.illustration1_6,
             ].map((url, idx) =>
               url ? (
-                <img key={idx} src={url} alt={`illustration1_${idx + 1}`} />
-              ) : null
+                <Image
+                  width={420}
+                  height={490}
+                  key={idx}
+                  src={url}
+                  alt={`illustration1_${idx + 1}`}
+                />
+              ) : null,
             )}
           </div>
         </div>

@@ -24,7 +24,7 @@ const ReviewCard = ({
   return (
     <figure
       className={
-        "relative w-[375px] cursor-pointer overflow-hidden rounded-xl bg-white p-2"
+        "relative lg:w-[375px] cursor-pointer overflow-hidden rounded-xl bg-white p-2"
       }
     >
       <div className="shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] flex flex-row items-center gap-2 p-4 rounded-b-xl">
@@ -46,7 +46,7 @@ export function Avis({ reviews }: MarqueeDemoVerticalProps) {
   const firstRow = reviews.slice(0, Math.ceil(reviews.length / 3));
   const secondRow = reviews.slice(
     Math.ceil(reviews.length / 3),
-    Math.ceil((reviews.length * 2) / 3)
+    Math.ceil((reviews.length * 2) / 3),
   );
   const thirdRow = reviews.slice(Math.ceil((reviews.length * 2) / 3));
 
@@ -64,7 +64,7 @@ export function Avis({ reviews }: MarqueeDemoVerticalProps) {
       />
 
       {/* Version mobile - une seule colonne */}
-      <div className="md:hidden w-full">
+      <div className="md:hidden w-full flex justify-center">
         <Marquee pauseOnHover vertical className="[--duration:20s]">
           {reviews.map((review, index) => (
             <ReviewCard
