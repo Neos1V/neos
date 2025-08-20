@@ -66,8 +66,10 @@ export const pourquoiQuery = groq`
     boutonTitle,
     price,
     "image1": image1.asset->url,
+    name1,
     descImage1,
     "image2": image2.asset->url,
+    name2,
     descImage2,
     numbers[] {
       number,

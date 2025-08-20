@@ -27,24 +27,24 @@ export default function FaqComponent({ data }: { data: Faq }) {
   };
 
   return (
-    <section className="bg-muted dark:bg-background py-20">
+    <section className="bg-muted dark:bg-background py-12 md:py-20">
       <div className="mx-auto max-w-5xl px-4 md:px-6">
-        <div className="flex flex-col gap-10 md:flex-row md:gap-16">
-          <div className="md:w-2/3 ">
+        <div className="flex flex-col-reverse lg:flex-row gap-6 md:flex-row md:gap-16">
+          <div className="w-full md:w-2/3">
             <Accordion type="single" collapsible className="w-full space-y-3">
               {data.questions.map((item, idx) => (
                 <AccordionItem
                   key={idx}
                   value={item.question + idx.toString()}
-                  className="bg-white shadow-md rounded-2xl overflow-hidden border-none max-w-[500px]"
+                  className="bg-white shadow-md rounded-2xl overflow-hidden border-none w-full md:max-w-[500px]"
                 >
-                  <AccordionTrigger className="cursor-pointer items-center py-5 px-6 hover:no-underline border-none text-left">
-                    <span className="text-base font-medium">
+                  <AccordionTrigger className="cursor-pointer items-center py-4 md:py-5 px-4 md:px-6 hover:no-underline border-none text-left">
+                    <span className="text-sm md:text-base font-medium">
                       {item.question}
                     </span>
                   </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-5 pt-0 border-none">
-                    <p className="text-base text-gray-600 leading-relaxed">
+                  <AccordionContent className="px-4 md:px-6 pb-4 md:pb-5 pt-0 border-none">
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed">
                       {item.response}
                     </p>
                   </AccordionContent>
@@ -52,11 +52,10 @@ export default function FaqComponent({ data }: { data: Faq }) {
               ))}
             </Accordion>
           </div>
-          <div className="md:w-1/3">
+          <div className="w-full md:w-1/3 flex justify-center md:justify-start">
             <div
-              className="relative bg-white shadow-md rounded-2xl overflow-hidden cursor-pointer"
+              className="relative bg-white shadow-md rounded-2xl overflow-hidden cursor-pointer w-full max-w-[320px] md:max-w-[400px] md:w-[400px] h-[500px] md:h-[700px]"
               onClick={togglePlay}
-              style={{ width: "400px", height: "700px" }}
             >
               <video
                 ref={videoRef}

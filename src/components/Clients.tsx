@@ -23,16 +23,18 @@ function Clients({ clients }: { clients: HomeClient[] }) {
   }, []);
 
   const Marquee = ({
-    direction = "forwards",
-    clients,
-  }: {
+                     direction = "forwards",
+                     clients,
+                   }: {
     direction?: string;
     clients: HomeClient[];
   }) => {
     const numItems = clients.length;
     const speed = "25s";
     const itemWidth = "265px"; // Taille exacte de l'image
+    const itemWidthMobile = "200px"; // Taille mobile
     const itemGap = "32px";
+    const itemGapMobile = "16px";
 
     return (
       <div
@@ -42,7 +44,9 @@ function Clients({ clients }: { clients: HomeClient[] }) {
             "--speed": speed,
             "--numItems": numItems,
             "--item-width": itemWidth,
+            "--item-width-mobile": itemWidthMobile,
             "--item-gap": itemGap,
+            "--item-gap-mobile": itemGapMobile,
             "--direction": direction,
             maskImage:
               "linear-gradient(to right, transparent, black 2rem, black calc(100% - 2rem), transparent)",
@@ -61,11 +65,9 @@ function Clients({ clients }: { clients: HomeClient[] }) {
           {[...clients, ...clients].map((data, index) => (
             <div
               key={index}
+              className="w-[200px] h-[340px] md:w-[265px] md:h-[465px] mr-[16px] md:mr-[32px]"
               style={
                 {
-                  width: "var(--item-width)",
-                  height: "465px", // Hauteur exacte de l'image
-                  marginRight: "var(--item-gap)",
                   animation: `marquee-move var(--speed) linear infinite ${direction}`,
                 } as React.CSSProperties
               }
@@ -91,7 +93,7 @@ function Clients({ clients }: { clients: HomeClient[] }) {
                   />
                 </div>
 
-                <div className="absolute bg-white top-6 left-6 flex items-center gap-1 p-2 rounded-full border border-[#EFEFEF]">
+                <div className="absolute bg-white top-3.5 left-3.5 lg:top-6 lg:left-6 flex items-center gap-1 p-2 rounded-full border border-[#EFEFEF]">
                   <svg
                     width="16"
                     height="16"
@@ -111,15 +113,15 @@ function Clients({ clients }: { clients: HomeClient[] }) {
                       fill="#F26940"
                     />
                   </svg>
-                  <p className="text-xs ">{data.prix}</p>
+                  <p className="text-[10px] lg:text-xs ">{data.prix}</p>
                 </div>
 
                 <div className="absolute bottom-6 left-6 flex flex-col z-10">
-                  <span className="text-white text-xs font-bold py-1 mb-2 px-2 rounded-full border-[#548CEA] border w-fit bg-gradient-to-r from-[#0051D2] to-[#2978FE]">
+                  <span className="text-white text-[8px] lg:text-xs font-bold py-1 mb-2 px-2 rounded-full border-[#548CEA] border w-fit bg-gradient-to-r from-[#0051D2] to-[#2978FE]">
                     {data.job}
                   </span>
-                  <p className="text-xl font-medium text-white">{data.nom}</p>
-                  <div className="text-sm [&>p]:text-white mt-2">
+                  <p className="text-sm lg:text-xl font-medium text-white">{data.nom}</p>
+                  <div className="text-[10px] lg:text-sm [&>p]:text-white mt-2">
                     <PortableText value={data.description} />
                   </div>
                 </div>

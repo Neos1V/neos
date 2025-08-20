@@ -44,6 +44,9 @@ import {
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
+import ShortsVideosMobile from "@/components/ShortsVideosMobile";
+import ImageSection from "@/components/ImageSection";
+import { AnimatedTestimonialsMobile } from "@/components/ui/animated-testimonials-mobile";
 
 export default async function HomePage() {
   const navData: NavType = await sanityFetch({
@@ -108,72 +111,114 @@ export default async function HomePage() {
   return (
     <div className="">
       <Nav data={navData} />
-      <div className="w-full mt-[180px] flex flex-col items-center justify-center relative">
-        <div className="mb-6 flex items-center justify-center gap-2 p-3 border border-[#E5E7EB]/50 rounded-full shadow-md">
-          <img src={home.imageCreateurs} alt="Créateurs" />
-          <p>{home.titleCreateur}</p>
+      <div className="w-full mt-[80px] lg:mt-[180px] flex flex-col items-center justify-center relative">
+        {/* Créateurs positionnés autour du contenu */}
+        <div className="absolute inset-0 hidden lg:block">
+          {home.createurs.map((createur, idx) => {
+            // Positions prédéfinies pour chaque créateur
+            const positions = [
+              "top-20 left-20", // Top gauche
+              "top-32 right-24", // Top droite
+              "top-1/2 left-12 -translate-y-1/2", // Milieu gauche
+              "top-1/2 right-16 -translate-y-1/2", // Milieu droite
+              "bottom-32 left-28", // Bottom gauche
+              "bottom-40 right-20", // Bottom droite
+            ];
+
+            return (
+              <div
+                key={idx}
+                className={`absolute ${positions[idx % positions.length]} z-10`}
+              >
+                <div className="flex items-center">
+                  <Image
+                    width={50}
+                    height={50}
+                    src={createur.image}
+                    alt={"Créateur " + idx}
+                    className="border-2 border-white rounded-full shadow-lg"
+                  />
+                  <p className="bg-[#F1F5FB] rounded-xl px-3 py-1.5 ml-[-10px] text-sm font-medium shadow-md">
+                    {createur.prix}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        <div className="text-[56px] font-bold text-center blueText">
-          <PortableText value={home.description} />
+        {/* Contenu principal */}
+        <div className="relative z-20 flex flex-col items-center">
+          <div className="mb-3 lg:mb-6 flex items-center justify-center gap-2 px-[10px] py-[5px] md:p-3 border border-[#E5E7EB]/50 rounded-full shadow-md bg-white/90 backdrop-blur-sm">
+            <img
+              src={home.imageCreateurs}
+              alt="Créateurs"
+              className="w-[58px] h-auto md:w-auto md:h-auto"
+            />
+            <p className="text-[10px] lg:text-base">{home.titleCreateur}</p>
+          </div>
+
+          <div className="text-[28px] lg:text-[56px] font-bold text-center blueText px-4 lg:px-0">
+            <PortableText value={home.description} />
+          </div>
+
+          <p className="text-sm lg:text-base px-3 lg:px-0 text-red mt-4 text-center lg:w-1/2 mx-auto">
+            {home.subtitle}
+          </p>
+
+          <div className="mt-6 lg:mt-8">
+            <CtaButton text={navData.ctaButton} link={navData.ctaLink} />
+          </div>
+
+          <div className="flex gap-4 mt-4 flex-wrap justify-center">
+            {home.validCheck.map((item, idx) => (
+              <div key={item.titre + idx} className="flex items-center gap-2">
+                <Image src="check.svg" alt="neos" width={16} height={16} />
+                <p className="text-[10px] lg:text-base">{item.titre}</p>
+              </div>
+            ))}
+          </div>
         </div>
-        <p className="text-red mt-4 text-center w-1/2 mx-auto">
-          {home.subtitle}
-        </p>
-        <div className="mt-8">
-          <CtaButton text={navData.ctaButton} link={navData.ctaLink} />
-        </div>
-        <div className="flex gap-4 mt-4">
-          {home.validCheck.map((item, idx) => (
-            <div key={item.titre + idx} className="flex items-center gap-2">
-              <Image src="check.svg" alt="neos" width={16} height={16} />
-              <p>{item.titre}</p>
-            </div>
-          ))}
-        </div>
-        {/* <div className="">
-          {home.createurs.map((createur, idx) => (
-            <div key={idx}>
-              <img src={createur.image} alt={"Créateur " + idx} />
-              <p>{createur.prix}</p>
-            </div>
-          ))}
-        </div> */}
-        <div className="mt-8 w-3/4 mx-auto">
+      </div>
+      {/* Vidéo */}
+      <div className="relative mt-12">
+        {/* Vagues en arrière-plan */}
+        <img
+          src="waves.svg"
+          alt="waves"
+          className="hidden lg:block absolute bottom-16 lg:bottom-0 left-1/2 -translate-x-1/2 -z-10 opacity-50"
+        />
+        <img
+          src="wavesMobile.svg"
+          alt="waves"
+          className="lg:hidden absolute bottom-12"
+        />
+        <div className="lg:w-3/4 lg:mx-auto relative z-20 mb-20 lg:mb-0">
           <HeroVideoDialog
-            className="block dark:hidden"
+            className="flex justify-center"
             animationStyle="top-in-bottom-out"
             videoSrc="https://www.youtube.com/embed/qh3NGpYRG3I?si=4rb-zSdDkVK9qxxb"
             thumbnailSrc="https://startup-template-sage.vercel.app/hero-light.png"
             thumbnailAlt="Hero Video"
           />
         </div>
-        <img
-          src="waves.svg"
-          alt="waves"
-          className="absolute -bottom-40 left-1/2 -translate-x-1/2 -z-10"
-        />
       </div>
       <Logos logos={home.logos} />
       <Clients clients={home.clients} />
       <div className="mt-10">
-        <p className="text-center w-1/3 mx-auto relative">
-          <Image
-            src="palm.svg"
-            alt="palm right"
-            className="absolute top-1/2 -right-10 -translate-y-1/2 -z-10"
-            width={19}
-            height={36}
-          />
-          {home.sousTitreClients}
+        <div className="flex items-center justify-center gap-[10px] mx-auto w-fit">
           <Image
             src="palm.svg"
             alt="palm left"
-            className="absolute top-1/2 -left-10 -translate-y-1/2 -z-10 scale-x-[-1]"
+            className="scale-x-[-1]"
             width={19}
             height={36}
           />
-        </p>
+          <p className="text-center w-[310px] text-xs lg:text-base lg:w-[470px]">
+            {home.sousTitreClients}
+          </p>
+          <Image src="palm.svg" alt="palm right" width={19} height={36} />
+        </div>
       </div>
       <div className="flex flex-col items-center justify-center">
         <div className="mt-8">
@@ -183,72 +228,83 @@ export default async function HomePage() {
           {home.validCheck.map((item, idx) => (
             <div key={item.titre + idx} className="flex items-center gap-2">
               <Image src="check.svg" alt="neos" width={16} height={16} />
-              <p>{item.titre}</p>
+              <p className="text-[10px] lg:text-base">{item.titre}</p>
             </div>
           ))}
         </div>
       </div>
-      <div className="mt-12 flex gap-[90px] justify-center py-[70px] px-[56px] mx-[52px] rounded-3xl shadow border-[#D9D9D9] bg-gradient-to-b from-white to-transparent">
-        <div className="border border-[#F6F6F8] bg-white rounded-xl shadow-md p-8 max-w-[600px] h-fit">
-          <span className="px-3.5 py-2.5 border border-[#F2F3F5] rounded-full shadow">
+      <div className="mt-12 flex flex-col lg:flex-row gap-6 lg:gap-[90px] justify-center lg:py-[70px] lg:px-[56px] lg:mx-[52px] lg:rounded-3xl lg:shadow lg:border-[#D9D9D9] lg:bg-gradient-to-b lg:from-white lg:to-transparent">
+        <div className=" flex flex-col items-center lg:block lg:border border-[#F6F6F8] bg-white/70 lg:bg-white rounded-xl shadow-md p-6 lg:p-8 max-w-full lg:max-w-[600px] h-fit order-2 lg:order-1 mx-4 -mt-[100px] lg:mx-0 lg:mt-0 relative z-10">
+          <span className="bg-white inline-block px-2 py-1 border border-[#F2F3F5] rounded-full shadow text-[10px] lg:text-sm">
             {tiktok.sousTitre}
           </span>
-          <div className="text-3xl font-bold mt-6 mb-2.5">
+          <div className="text-2xl lg:text-3xl font-bold mt-6 mb-2.5 text-center lg:text-left">
             <PortableText value={tiktok.titre} />
           </div>
-          <PortableText value={tiktok.richText} />
-          <div className="mt-8">
+          <div className="text-sm lg:text-base text-center lg:text-left">
+            <PortableText value={tiktok.richText} />
+          </div>
+          <div className="mt-6 lg:mt-8">
             <CtaButton text={tiktok.buttonText} link={navData.ctaLink} />
           </div>
         </div>
-        <div className="relative">
+        <div className="relative order-1 lg:order-2 lg:flex lg:justify-start">
           <Image
             src={tiktok.image}
             alt="tiktok"
             width={544}
             height={547}
-            className="rounded-xl"
+            className="rounded-xl w-full lg:max-w-none lg:w-[544px] h-auto"
           />
           <img
             src="tiktokArrow.svg"
             alt="tiktok"
-            className="absolute bottom-10 -left-[200px]"
+            className="absolute bottom-10 left-[200px] w-auto hidden lg:block"
           />
         </div>
       </div>
       <div className="flex items-center justify-center mt-[145px] relative">
         <img src="ellipseTiktok.png" alt="tiktk" className="absolute " />
-        <div className="text-[128px] text-center font-bold relative">
+        <div className="text-[60px] lg:text-[128px] text-center font-bold relative">
           <CountingNumber
             number={tiktok.vues}
-            className="gradient-text font-manrope"
+            className="gradient-text font-manrope max-w-[300px] w-[300px] lg:max-w-[1500px] lg:w-full"
           />
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2.5 rounded-full bg-white text-black border border-[#EEF0F4]">
-            <span className="w-[8px] h-[8px] rounded-full bg-gradient-to-r from-[#0051D2] to-[#2978FE]"></span>
-            <p className="text-black text-sm">{tiktok.texteVues}</p>
+          <div className="w-max absolute -bottom-2 lg:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 lg:px-4 py-2 lg:py-2.5 rounded-full bg-white text-black border border-[#EEF0F4]">
+            <span className="w-[6px] h-[6px] lg:w-[8px] lg:h-[8px] rounded-full bg-gradient-to-r from-[#0051D2] to-[#2978FE]"></span>
+            <p className="text-black font-medium text-xs lg:text-sm">
+              {tiktok.texteVues}
+            </p>
           </div>
         </div>
       </div>
       <Faces logos={tiktok.photosProfil} />
       <div className="flex flex-col items-center justify-center mt-[40px]">
-        <p className="text-center w-1/3 mx-auto">{tiktok.sousTitreTextVues}</p>
+        <p className="text-center px-3 text-xs lg:text-base lg:px-0 lg:w-1/3 mx-auto">
+          {tiktok.sousTitreTextVues}
+        </p>
         <div className="mt-8">
           <CtaButton text={tiktok.buttonTextVues} link={navData.ctaLink} />
         </div>
       </div>
       <div className="mt-20 mb-20 w-full flex flex-col items-center">
-        <div className="mt-3.5 blueText h2">
+        <div className="w-[210px] text-center lg:w-full mt-3.5 blueText h2">
           <PortableText value={shorts.richText} />
         </div>
 
-        <ShortsVideos data={shorts.videos} />
+        <div className="hidden lg:block">
+          <ShortsVideos data={shorts.videos} />
+        </div>
+        <div className="max-w-full block lg:hidden">
+          <ShortsVideosMobile data={shorts.videos} />
+        </div>
       </div>
       <div className="mt-20 mb-20 w-full flex flex-col items-center">
         <Tooltip text={pourquoi.titre} />
-        <div className="mt-3.5 blueText h2">
+        <div className="mt-3.5 blueText h2 text-center lg:text-left w-[250px] mx-auto lg:w-fit">
           <PortableText value={pourquoi.richText} />
         </div>
-        <p className="mt-6 w-2/4 mx-auto text-center text-lg">
+        <p className="mt-6 px-3 lg:px-0 lg:w-2/4 mx-auto text-center text-lg">
           {pourquoi.description}
         </p>
         <div className="flex flex-col items-center justify-center">
@@ -259,43 +315,26 @@ export default async function HomePage() {
             {home.validCheck.map((item, idx) => (
               <div key={item.titre + idx} className="flex items-center gap-2">
                 <Image src="check.svg" alt="neos" width={16} height={16} />
-                <p>{item.titre}</p>
+                <p className="text-[10px] lg:text-base">{item.titre}</p>
               </div>
             ))}
           </div>
         </div>
-        <div className="max-w-[1262px]">
-          <div className="flex gap-3 mt-12">
-            <div className="relative">
-              <Image
-                src={pourquoi.image1}
-                alt="Image 1"
-                className=" rounded-2xl"
-                width={625}
-                height={575}
-              />
-              <div className="absolute bottom-10 left-6 [&>p]:text-white/60">
-                <PortableText value={pourquoi.descImage1} />
-              </div>
-            </div>
-            <Image
-              src={pourquoi.image2}
-              alt="Image 1"
-              className=" rounded-2xl"
-              width={625}
-              height={575}
-            />
-          </div>
-          <div className="flex justify-between w-full gap-3 mt-6">
+        <div className="lg:max-w-[1262px]">
+          <ImageSection pourquoi={pourquoi} />
+
+          <div className="px-3 lg:px-0 flex flex-col lg:flex-row justify-between w-full gap-3 mt-6">
             {pourquoi.numbers.map((item, idx) => (
               <div
                 key={item.number + idx}
-                className="bg-white rounded-2xl shadow px-10 py-6 flex w-full flex-col "
+                className="items-center lg:items-start bg-white rounded-2xl shadow px-10 py-6 flex w-full flex-col "
               >
-                <span className="gradient-text text-[64px] font-bold">
+                <span className="gradient-text text-[40px] lg:text-[64px] font-bold">
                   {item.number}%
                 </span>
-                <p className="text-black/70">{item.text}</p>
+                <p className="text-sm lg:text-base text-black/70">
+                  {item.text}
+                </p>
               </div>
             ))}
           </div>
@@ -303,26 +342,42 @@ export default async function HomePage() {
       </div>
       <div className="mt-[85px] flex flex-col items-center justify-center">
         <Tooltip text={work.tooltip} />
-        <div className="mt-3.5 blueText h2">
+        <div className="w-[300px] text-center lg:w-full mt-3.5 blueText h2">
           <PortableText value={work.titre} />
         </div>
 
-        <div className="max-w-[1400px] w-full mx-auto flex flex-col gap-6 mt-11">
-          <div className="flex w-full gap-5">
+        <div className="max-w-[1400px] w-full mx-auto flex flex-col gap-6 mt-11 px-3 lg:px-0">
+          <div className="flex flex-col lg:flex-row w-full gap-5">
             <div className="rounded-2xl">
-              <img src={work.illustration1} alt="illustration1" />
+              <img
+                src={work.illustration1}
+                alt="illustration1"
+                className="w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
+              />
             </div>
-            <div className=" rounded-2xl">
-              <img src={work.illustration2} alt="illustratio2" />
+            <div className="rounded-2xl">
+              <img
+                src={work.illustration2}
+                alt="illustration2"
+                className="w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
+              />
             </div>
           </div>
 
-          <div className="flex w-full gap-5">
+          <div className="flex flex-col lg:flex-row w-full gap-5">
             <div className="shadow rounded-2xl">
-              <img src={work.illustration3} alt="illustration3" />
+              <img
+                src={work.illustration3}
+                alt="illustration3"
+                className="w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
+              />
             </div>
-            <div className="shadow rounded-2xl ">
-              <img src={work.illustration4} alt="illustration4" />
+            <div className="shadow rounded-2xl">
+              <img
+                src={work.illustration4}
+                alt="illustration4"
+                className="w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
+              />
             </div>
           </div>
         </div>
@@ -335,20 +390,25 @@ export default async function HomePage() {
           {home.validCheck.map((item, idx) => (
             <div key={item.titre + idx} className="flex items-center gap-2">
               <Image src="check.svg" alt="neos" width={16} height={16} />
-              <p>{item.titre}</p>
+              <p className="text-[10px] lg:text-base">{item.titre}</p>
             </div>
           ))}
         </div>
       </div>
       <div>
-        <AnimatedTestimonials testimonials={marque.marques} />
+        <div className="hidden lg:block">
+          <AnimatedTestimonials testimonials={marque.marques} />
+        </div>
+        <div className="lg:hidden">
+          <AnimatedTestimonialsMobile testimonials={marque.marques} />
+        </div>
       </div>
-      <div className="mt-[150px] w-full flex flex-col items-center">
+      <div className="mt-[30px] lg:mt-[150px] w-full flex flex-col items-center">
         <div className="w-full flex flex-col items-center">
-          <div className="blueText h2 mb-4">
+          <div className="w-[300px] text-center lg:w-full mt-3.5 blueText h2">
             <PortableText value={marque.titre} />
           </div>
-          <div className="mb-6 w-2/4 mx-auto text-center text-lg">
+          <div className="mb-6 px-3 lg:px-0 lg:w-2/4 mx-auto text-center text-lg">
             <PortableText value={marque.description} />
           </div>
 
@@ -363,7 +423,7 @@ export default async function HomePage() {
             ].map((url, idx) =>
               url ? (
                 <img key={idx} src={url} alt={`illustration1_${idx + 1}`} />
-              ) : null
+              ) : null,
             )}
           </div>
         </div>
@@ -376,13 +436,13 @@ export default async function HomePage() {
           {home.validCheck.map((item, idx) => (
             <div key={item.titre + idx} className="flex items-center gap-2">
               <Image src="check.svg" alt="neos" width={16} height={16} />
-              <p>{item.titre}</p>
+              <p className="text-[10px] lg:text-base">{item.titre}</p>
             </div>
           ))}
         </div>
       </div>
       <Price data={pricing} />
-      <div className="mt-20 mb-20 w-full flex flex-col items-center">
+      <div className="mt-20 lg:mb-20 w-full flex flex-col items-center">
         <Tooltip text={community.tooltip} />
         <div className="mt-3.5 blueText h2">
           <PortableText value={community.titre} />
@@ -408,12 +468,12 @@ export default async function HomePage() {
       <div className="mt-[120px] flex flex-col justify-center items-center mb-[132px]">
         <div className="flex gap-2 items-center tooltip bg-white">
           <img src={joinus.image} alt="joinus" />
-          <p>{joinus.tooltip}</p>
+          <p className="text-[10px] lg:text-base">{joinus.tooltip}</p>
         </div>
-        <div className="mt-3.5 blueText h2">
+        <div className="mt-3.5 blueText h2 text-center lg:text-left w-[250px] mx-auto lg:w-full">
           <PortableText value={joinus.titre} />
         </div>
-        <div className="text-center mt-6 w-1/2 mx-auto">
+        <div className="text-center mt-6 px-3 lg:px-0 lg:w-1/2 mx-auto">
           <PortableText value={joinus.description} />
         </div>
         <div className="flex flex-col items-center justify-center">
@@ -424,14 +484,14 @@ export default async function HomePage() {
             {home.validCheck.map((item, idx) => (
               <div key={item.titre + idx} className="flex items-center gap-2">
                 <Image src="check.svg" alt="neos" width={16} height={16} />
-                <p>{item.titre}</p>
+                <p className="text-[10px] lg:text-base">{item.titre}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <div className="bg-gradient-to-r from-[#0051D2] to-[#2978FE] py-[70px] px-[100px] ">
-        <div className="flex justify-between border-b border-[#FFFFFF]/20 pb-11">
+      <div className="bg-gradient-to-r from-[#0051D2] to-[#2978FE] py-[32px] lg:py-[70px] px-[28px] lg:px-[100px] ">
+        <div className="flex flex-col lg:flex-row justify-between border-b border-[#FFFFFF]/20 pb-11">
           <div className="flex flex-col w-2/5">
             <Image src={footer.logoNeos} width={158} height={70} alt="joinus" />
             <div className="flex gap-4 mt-8">
@@ -447,7 +507,7 @@ export default async function HomePage() {
               ))}
             </div>
           </div>
-          <div className="flex w-3/5 justify-between">
+          <div className="mt-6 lg:mt-0 flex flex-col lg:flex-row gap-2 lg:gap-0 lg:w-3/5 justify-between">
             <p className=" text-white">A propos</p>
             <p className="text-white">Feature</p>
             <p className=" text-white">Programme</p>
@@ -455,7 +515,7 @@ export default async function HomePage() {
             <p className=" text-white">Faq</p>
           </div>
         </div>
-        <div className="pt-8 flex justify-between">
+        <div className="pt-8 flex justify-between flex-col lg:flex-row gap-3 lg:gap-0">
           <p className="text-white">© 2025 NEOS. tout droit réservé</p>
           <div className="flex items-center gap-1">
             <p className="text-white">Made with 🤍 by</p>
@@ -468,7 +528,7 @@ export default async function HomePage() {
               La-landing.fr
             </a>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between flex-col lg:flex-row gap-2 lg:gap-0">
             <Link className="underline text-white" href="https://www.neos.fr">
               Privacy policy
             </Link>

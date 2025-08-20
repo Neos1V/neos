@@ -70,6 +70,8 @@ export interface Pourquoi {
   boutonTitle: string;
   price: number;
   image1: string;
+  name1: string;
+  name2: string;
   descImage1: PortableTextBlock[];
   image2: string;
   descImage2: PortableTextBlock[];

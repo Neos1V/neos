@@ -39,6 +39,18 @@ export const pourquoi = defineType({
       options: { hotspot: true },
     },
     {
+      name: "name1",
+      title: "Name 1",
+      type: "string",
+      initialValue: "Nom de l'image 1",
+    },
+    {
+      name: "name2",
+      title: "Name 2",
+      type: "string",
+      initialValue: "Nom de l'image 2",
+    },
+    {
       name: "descImage1",
       title: "Description Image 1",
       type: "array",
