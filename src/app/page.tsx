@@ -492,7 +492,7 @@ export default async function HomePage() {
           <img src={joinus.image} alt="joinus" />
           <p className="text-[10px] lg:text-base">{joinus.tooltip}</p>
         </div>
-        <div className="mt-3.5 blueText h2 text-centermt-8 w-[250px] mx-auto lg:w-full">
+        <div className="mt-3.5 blueText h2 text-center mt-8 w-[250px] mx-auto lg:w-full">
           <PortableText value={joinus.titre} />
         </div>
         <div className="text-center mt-6 px-3 lg:px-0 lg:w-1/2 mx-auto">
