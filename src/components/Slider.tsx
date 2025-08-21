@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 
 export default function Slider() {
   return (
-    <div className="w-full">
+    <div className="w-full mb-6">
       <div className="relative w-full bg-gray-200 rounded-full h-[7px] mt-8 overflow-visible">
         <motion.div
           className="h-full rounded-full relative"

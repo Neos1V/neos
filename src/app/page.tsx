@@ -118,12 +118,12 @@ export default async function HomePage() {
           {home.createurs.map((createur, idx) => {
             // Positions prédéfinies pour chaque créateur
             const positions = [
-              "top-20 left-[20%]", // Top gauche
-              "top-32 right-[20%]", // Top droite
-              "top-1/2 left-[15%] -translate-y-1/2", // Milieu gauche
-              "top-1/2 right-[15%] -translate-y-1/2", // Milieu droite
-              "bottom-32 left-[20%]", // Bottom gauche
-              "bottom-40 right-[20%]", // Bottom droite
+              "top-20 left-[15%]", // Top gauche
+              "top-32 right-[15%]", // Top droite
+              "top-1/2 left-[10%] -translate-y-1/2", // Milieu gauche
+              "top-1/2 right-[10%] -translate-y-1/2", // Milieu droite
+              "bottom-32 left-[15%]", // Bottom gauche
+              "bottom-40 right-[15%]", // Bottom droite
             ];
 
             return (
