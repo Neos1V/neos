@@ -306,9 +306,9 @@ export default async function HomePage() {
         <div className="hidden lg:block">
           <ShortsVideos data={shorts.videos} />
         </div>
-        <div className="max-w-full block lg:hidden">
-          <ShortsVideosMobile data={shorts.videos} />
-        </div>
+        {/*<div className="max-w-full block lg:hidden">*/}
+        {/*  <ShortsVideosMobile data={shorts.videos} />*/}
+        {/*</div>*/}
       </div>
       <div className=" mt-20 lg:mt-40 mb-20 w-full flex flex-col items-center relative">
         <div className="mt-[80px]">
