@@ -109,6 +109,41 @@ export default async function HomePage() {
     tags: ["footer"],
   });
 
+  const items = [
+    {
+      url: marque.illustration1_1,
+      title: marque.title1,
+      desc: marque.description1,
+    },
+    {
+      url: marque.illustration1_2,
+      title: marque.title2,
+      desc: marque.description2,
+    },
+    {
+      url: marque.illustration1_3,
+      title: marque.title3,
+      desc: marque.description3,
+    },
+    {
+      url: marque.illustration1_4,
+      title: marque.title4,
+      desc: marque.description4,
+    },
+    {
+      url: marque.illustration1_5,
+      title: marque.title5,
+      desc: marque.description5,
+    },
+    {
+      url: marque.illustration1_6,
+      title: marque.title6,
+      desc: marque.description6,
+    },
+  ];
+
+  console.log(`marque`, marque);
+
   return (
     <div className="">
       <Nav data={navData} />
@@ -306,9 +341,9 @@ export default async function HomePage() {
         <div className="hidden lg:block">
           <ShortsVideos data={shorts.videos} />
         </div>
-        {/*<div className="max-w-full block lg:hidden">*/}
-        {/*  <ShortsVideosMobile data={shorts.videos} />*/}
-        {/*</div>*/}
+        <div className="max-w-full block lg:hidden">
+          <ShortsVideosMobile data={shorts.videos} />
+        </div>
       </div>
       <div className=" mt-20 lg:mt-40 mb-20 w-full flex flex-col items-center relative">
         <div className="mt-[80px]">
@@ -428,23 +463,22 @@ export default async function HomePage() {
             <PortableText value={marque.description} />
           </div>
 
-          <div className="gap-9 flex flex-wrap justify-center mt-8 max-w-[1400px]">
-            {[
-              marque.illustration1_1,
-              marque.illustration1_2,
-              marque.illustration1_3,
-              marque.illustration1_4,
-              marque.illustration1_5,
-              marque.illustration1_6,
-            ].map((url, idx) =>
+          <div className="hidden lg:grid grid-cols-3 gap-9 max-w-[1400px] mx-auto mt-8">
+            {items.map(({ url, title, desc }, idx) =>
               url ? (
-                <Image
-                  width={420}
-                  height={490}
-                  key={idx}
-                  src={url}
-                  alt={`illustration1_${idx + 1}`}
-                />
+                <div className="relative" key={idx}>
+                  <div className="absolute bottom-8 left-6">
+                    <p className="text-2xl font-bold">{title}</p>
+                    <p>{desc}</p>
+                  </div>
+                  <Image
+                    src={url}
+                    width={420}
+                    height={490}
+                    alt={`${title} ${desc}`.trim()}
+                    className="w-full h-auto"
+                  />
+                </div>
               ) : null,
             )}
           </div>

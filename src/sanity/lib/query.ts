@@ -116,11 +116,23 @@ export const marqueQuery = groq`*[_type == "marque"][0] {
     "photoProfil": photoProfil.asset->url,
   },
   "illustration1_1": illustration1_1.asset->url,
+  title1,
+  description1,
   "illustration1_2": illustration1_2.asset->url,
+  title2,
+  description2,
   "illustration1_3": illustration1_3.asset->url,
+  title3,
+  description3,
   "illustration1_4": illustration1_4.asset->url,
+  title4,
+  description4,
   "illustration1_5": illustration1_5.asset->url,
+  title5,
+  description5,
   "illustration1_6": illustration1_6.asset->url,
+  title6,
+  description6,
 }`;
 
 export const pricingQuery = groq`*[_type == "pricing"][0] {
