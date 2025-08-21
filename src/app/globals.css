@@ -81,30 +81,31 @@ strong {
   line-height: normal;
 }
 
-.marquee {
-  animation: marquee 10s linear infinite;
-}
-.marquee-reverse {
-  animation: marquee 10s linear infinite reverse;
-}
-.marquee-vertical .marquee { animation-name: marquee-vertical; }
-.marquee-vertical .marquee-reverse { animation-name: marquee-vertical; }
-
-/* Pause au survol (optionnel) */
-.marquee-wrap.marquee-pause-on-hover:hover .marquee,
-.marquee-wrap.marquee-pause-on-hover:hover .marquee-reverse {
-  animation-play-state: paused;
-}
-
-/* Keyframes */
 @keyframes marquee {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(-50%, 0, 0); }          /* 50% car on duplique le contenu */
-}
 
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+.animate-marquee {
+  animation: marquee var(--duration) linear infinite;
+}
 @keyframes marquee-vertical {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(0, -50%, 0); }          /* 50% car on duplique le contenu */
+
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration) linear infinite;
 }
 
 @layer base {
