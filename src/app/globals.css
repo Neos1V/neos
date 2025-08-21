@@ -77,6 +77,10 @@ strong {
   }
 }
 
+.customLeading p{
+  line-height: normal;
+}
+
 @layer base {
   .theme {
     --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;

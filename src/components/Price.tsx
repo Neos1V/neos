@@ -1,3 +1,6 @@
+"use client";
+
+import { useMemo, useState } from "react";
 import { Pricing } from "@/sanity/lib/type";
 import { Check } from "lucide-react";
 import { PortableText } from "next-sanity";
@@ -5,6 +8,33 @@ import Faces2 from "./Faces2";
 import CtaButton from "./shared/CtaButton";
 
 export default function Price({ data }: { data: Pricing }) {
+  // Prix de base (converti en number)
+  const baseNew = useMemo(
+    () => Number(String(data.nouveauPrix).replace(/[^\d.]/g, "")) || 0,
+    [data.nouveauPrix],
+  );
+  const baseOld = useMemo(
+    () => Number(String(data.ancienPrix).replace(/[^\d.]/g, "")) || 0,
+    [data.ancienPrix],
+  );
+
+  // Prix premium (prend ce qui est affiché dans la carte Premium)
+  const premiumNew = 49; // 49€
+  const premiumOld = 153; // 153€
+
+  const [withPremium, setWithPremium] = useState(false);
+
+  // Prix calculés (bundle si premium coché)
+  const displayedNew = useMemo(
+    () => baseNew + (withPremium ? premiumNew : 0),
+    [baseNew, withPremium],
+  );
+  const displayedOld = useMemo(() => {
+    // On n’affiche l’ancien prix que si on en a un
+    const candidate = (baseOld || 0) + (withPremium ? premiumOld : 0);
+    return candidate > 0 ? candidate : null;
+  }, [baseOld, withPremium]);
+
   return (
     <div className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-32">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
@@ -28,18 +58,21 @@ export default function Price({ data }: { data: Pricing }) {
 
                 {/* Prix */}
                 <div className="inline-block text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[128px] font-bold relative my-4 sm:my-6 md:my-8">
-                  {/* Ancien prix */}
-                  <div className="absolute bottom-2 lg:bottom-2 flex -left-8 sm:-left-12 md:-left-16 lg:-left-20 items-end">
-                    <span className="text-xs sm:text-sm md:text-base text-[#B30000]">
-                      €
-                    </span>
-                    <p className="text-xs sm:text-sm text-[#B30000] font-normal leading-none line-through">
-                      {data.ancienPrix}
-                    </p>
-                  </div>
-                  {/* Nouveau prix */}
+                  {/* Ancien prix (bundle si premium) */}
+                  {displayedOld !== null && (
+                    <div className="absolute bottom-2 lg:bottom-2 flex -left-8 sm:-left-12 md:-left-16 lg:-left-20 items-end">
+                      <span className="text-xs sm:text-sm md:text-base text-[#B30000]">
+                        €
+                      </span>
+                      <p className="text-xs sm:text-sm text-[#B30000] font-normal leading-none line-through">
+                        {displayedOld}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Nouveau prix (bundle si premium) */}
                   <span className="text-2xl sm:text-3xl md:text-4xl">€</span>
-                  {data.nouveauPrix}
+                  {displayedNew}
                 </div>
 
                 {/* Bouton CTA */}
@@ -76,46 +109,82 @@ export default function Price({ data }: { data: Pricing }) {
                 </ul>
 
                 {/* Carte Premium */}
-                <div className=" relative flex flex-col gap-3 sm:gap-4 rounded-xl bg-white shadow-lg px-3 sm:px-4 py-4 sm:py-6 border border-[#F7F8F9]">
+                <div className="relative flex flex-col gap-3 sm:gap-4 rounded-xl bg-white shadow-lg px-3 sm:px-4 py-4 sm:py-6 border border-[#F7F8F9]">
                   {/* Tooltip Premium */}
                   <div className="tooltip shadow absolute -top-2 sm:-top-3 -right-6 sm:-right-8 md:-right-12 lg:-right-[50px] rotate-3 font-semibold text-xs bg-white px-2 py-1 rounded hidden sm:block">
                     Pour ceux qui veulent gagner vite
                   </div>
 
-                  {/* Titre Premium */}
+                  {/* Titre Premium + Checkbox réelle */}
                   <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-2">
-                      <svg
-                        width="14"
-                        height="15"
-                        viewBox="0 0 14 15"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="flex-shrink-0"
+                    <label className="flex items-center gap-2 cursor-pointer select-none">
+                      {/* Checkbox native (accessible) + SVG custom */}
+                      <input
+                        type="checkbox"
+                        className="peer sr-only"
+                        aria-label="Activer l’option Premium"
+                        checked={withPremium}
+                        onChange={(e) => setWithPremium(e.target.checked)}
+                      />
+                      {/* SVG stylisé selon l'état de la checkbox */}
+                      <span
+                        aria-hidden
+                        className="grid place-items-center w-4 h-4 rounded-[4px] border border-[#0051D2] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-offset-2 peer-focus:ring-[#0051D2]"
                       >
-                        <path
-                          d="M6.51886 10.125L3.76245 7.49969L4.68104 6.625L6.51886 8.37438L10.1932 4.875L11.1125 5.75031L6.51886 10.125Z"
-                          fill="#0051D2"
-                        />
-                        <rect
-                          x="0.5"
-                          y="1"
-                          width="13"
-                          height="13"
-                          rx="1.5"
-                          stroke="#0051D2"
-                        />
-                      </svg>
+                        {withPremium && (
+                          <svg
+                            width="14"
+                            height="15"
+                            viewBox="0 0 14 15"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M6.51886 10.125L3.76245 7.49969L4.68104 6.625L6.51886 8.37438L10.1932 4.875L11.1125 5.75031L6.51886 10.125Z"
+                              fill="#0051D2"
+                            />
+                            <rect
+                              x="0.5"
+                              y="1"
+                              width="13"
+                              height="13"
+                              rx="1.5"
+                              stroke="#0051D2"
+                            />
+                          </svg>
+                        )}
+                        {!withPremium && (
+                          <svg
+                            width="14"
+                            height="15"
+                            viewBox="0 0 14 15"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <rect
+                              x="0.5"
+                              y="1"
+                              width="13"
+                              height="13"
+                              rx="1.5"
+                              stroke="#0051D2"
+                            />
+                          </svg>
+                        )}
+                      </span>
+
                       <p className="text-xs sm:text-sm font-semibold">
                         {data.titrePremium}
                       </p>
-                    </div>
+                    </label>
+
+                    {/* Petits prix affichés dans la carte Premium (indicatif) */}
                     <div className="flex items-center gap-2">
                       <p className="text-black/20 text-[10px] line-through">
-                        153€
+                        {premiumOld}€
                       </p>
-                      <p className="text-[#0051D2] font-semibold  text-xs">
-                        49€
+                      <p className="text-[#0051D2] font-semibold text-xs">
+                        {premiumNew}€
                       </p>
                     </div>
                   </div>

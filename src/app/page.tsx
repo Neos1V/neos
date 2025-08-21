@@ -47,6 +47,7 @@ import {
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
+import Slider from "@/components/Slider";
 
 export default async function HomePage() {
   const navData: NavType = await sanityFetch({
@@ -117,12 +118,12 @@ export default async function HomePage() {
           {home.createurs.map((createur, idx) => {
             // Positions prédéfinies pour chaque créateur
             const positions = [
-              "top-20 left-20", // Top gauche
-              "top-32 right-24", // Top droite
-              "top-1/2 left-12 -translate-y-1/2", // Milieu gauche
-              "top-1/2 right-16 -translate-y-1/2", // Milieu droite
-              "bottom-32 left-28", // Bottom gauche
-              "bottom-40 right-20", // Bottom droite
+              "top-20 left-[20%]", // Top gauche
+              "top-32 right-[20%]", // Top droite
+              "top-1/2 left-[15%] -translate-y-1/2", // Milieu gauche
+              "top-1/2 right-[15%] -translate-y-1/2", // Milieu droite
+              "bottom-32 left-[20%]", // Bottom gauche
+              "bottom-40 right-[20%]", // Bottom droite
             ];
 
             return (
@@ -158,7 +159,7 @@ export default async function HomePage() {
             <p className="text-[10px] lg:text-base">{home.titleCreateur}</p>
           </div>
 
-          <div className="text-[28px] lg:text-[56px] font-bold text-center blueText px-4 lg:px-0">
+          <div className="text-[28px] lg:text-[56px] font-bold text-center blueText px-4 lg:px-0 customLeading">
             <PortableText value={home.description} />
           </div>
 
@@ -186,7 +187,7 @@ export default async function HomePage() {
         <img
           src="waves.svg"
           alt="waves"
-          className="hidden lg:block absolute bottom-16 lg:bottom-0 left-1/2 -translate-x-1/2 -z-10 opacity-50"
+          className="hidden lg:block absolute bottom-16 lg:bottom-[180px] left-1/2 -translate-x-1/2 -z-10 opacity-50"
         />
         <img
           src="wavesMobile.svg"
@@ -310,18 +311,13 @@ export default async function HomePage() {
         </div>
       </div>
       <div className=" mt-20 lg:mt-40 mb-20 w-full flex flex-col items-center relative">
-        <img
-          src="slider.svg"
-          alt="absolute"
-          className="absolute top-0 left-1/2 z-[-1] w-[90%] -translate-x-1/2"
-        />
-
         <div className="mt-[80px]">
           <Tooltip text={pourquoi.titre} />
         </div>
         <div className="mt-3.5 blueText h2 text-center lg:text-left w-[250px] mx-auto lg:w-fit">
           <PortableText value={pourquoi.richText} />
         </div>
+
         <p className="mt-6 px-3 lg:px-0 lg:w-2/4 mx-auto text-center text-lg">
           {pourquoi.description}
         </p>
@@ -329,6 +325,7 @@ export default async function HomePage() {
           <div className="mt-8">
             <CtaButton text={pourquoi.boutonTitle} link={navData.ctaLink} />
           </div>
+
           <div className="flex gap-4 mt-4">
             {home.validCheck.map((item, idx) => (
               <div key={item.titre + idx} className="flex items-center gap-2">
@@ -337,6 +334,7 @@ export default async function HomePage() {
               </div>
             ))}
           </div>
+          <Slider />
         </div>
         <div className="lg:max-w-[1262px]">
           <ImageSection pourquoi={pourquoi} />
