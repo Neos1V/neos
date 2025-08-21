@@ -122,8 +122,8 @@ export default async function HomePage() {
               "top-32 right-[15%]", // Top droite
               "top-1/2 left-[10%] -translate-y-1/2", // Milieu gauche
               "top-1/2 right-[10%] -translate-y-1/2", // Milieu droite
-              "bottom-32 left-[15%]", // Bottom gauche
-              "bottom-40 right-[15%]", // Bottom droite
+              "bottom-20 left-[15%]", // Bottom gauche
+              "bottom-32 right-[15%]", // Bottom droite
             ];
 
             return (
