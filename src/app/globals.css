@@ -81,12 +81,30 @@ strong {
   line-height: normal;
 }
 
-@layer base {
-  .theme {
-    --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
-    --animate-marquee: marquee var(--duration) infinite linear;
-    --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
-  }
+.marquee {
+  animation: marquee 10s linear infinite;
+}
+.marquee-reverse {
+  animation: marquee 10s linear infinite reverse;
+}
+.marquee-vertical .marquee { animation-name: marquee-vertical; }
+.marquee-vertical .marquee-reverse { animation-name: marquee-vertical; }
+
+/* Pause au survol (optionnel) */
+.marquee-wrap.marquee-pause-on-hover:hover .marquee,
+.marquee-wrap.marquee-pause-on-hover:hover .marquee-reverse {
+  animation-play-state: paused;
+}
+
+/* Keyframes */
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }          /* 50% car on duplique le contenu */
+}
+
+@keyframes marquee-vertical {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(0, -50%, 0); }          /* 50% car on duplique le contenu */
 }
 
 @layer base {
