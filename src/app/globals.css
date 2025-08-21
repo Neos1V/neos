@@ -1,26 +1,53 @@
+/* ─────────────────────────────────────────────────────────────
+   Tailwind directives
+───────────────────────────────────────────────────────────── */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────────────────────────
+   Variables & animation defaults
+───────────────────────────────────────────────────────────── */
+:root {
+  /* gaps pour les marquages */
+  --marquee-gap-x: 16px;
+  --marquee-gap-y: 16px;
+
+  /* durées par défaut (faciles à ajuster) */
+  --marquee-duration-x: 20s;
+  --marquee-duration-y: 20s;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Resets & global
+───────────────────────────────────────────────────────────── */
 * {
   scroll-behavior: smooth;
   color: #000000;
 }
 
+body {
+  background-color: #f9f9f9;
+  font-family: var(--font-manrope);
+}
+
+/* Empêche le drag sur WebKit et la sélection de texte
+   (appliqué aux éléments courants selon ton besoin) */
 img,
 p,
 span,
 div {
-  -webkit-user-drag: none; /* empêche le drag d'images sur WebKit */
+  -webkit-user-drag: none;
   -khtml-user-drag: none;
   -moz-user-drag: none;
   -o-user-drag: none;
   user-drag: none;
 
-  -webkit-user-select: none; /* empêche la sélection de texte */
+  -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
   font-family: var(--font-manrope);
 }
 
@@ -28,6 +55,7 @@ a {
   font-family: var(--font-manrope);
 }
 
+/* Scrollbar hidden util */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -36,81 +64,9 @@ a {
   display: none;
 }
 
-.gradient-container {
-  background: #57cfff;
-  background: linear-gradient(
-    180deg,
-    rgba(87, 207, 255, 1) 0%,
-    rgba(237, 250, 255, 1) 89%,
-    rgba(255, 252, 251, 1) 100%
-  );
-}
-
-body {
-  background-color: #f9f9f9;
-  font-family: var(--font-manrope);
-}
-
-.font-manrope span {
-  font-family: var(--font-manrope);
-}
-
-strong {
-  font-weight: 600;
-}
-
-.gradient-text {
-  background: linear-gradient(to right, #0051d2, #2978fe);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent; /* Fallback pour les navigateurs qui ne supportent pas background-clip */
-}
-
-.blueText strong,
-.blueText em {
-  color: #0051d2 !important;
-}
-@media screen and (max-width: 1024px) {
-  .noBr br {
-    display: none;
-  }
-}
-
-.customLeading p{
-  line-height: normal;
-}
-
-
-.animate-marquee-vertical {
-  animation: marquee-vertical 20s linear infinite;
-}
-
-
-@keyframes marquee {
-
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(calc(-100% - 16px));
-  }
-}
-.animate-marquee {
-  animation: marquee 20s linear infinite;
-}
-@keyframes marquee-vertical {
-
-  from {
-    transform: translateY(0);
-  }
-
-  to {
-    transform: translateY(calc(-100% - 20s));
-  }
-}
-
+/* ─────────────────────────────────────────────────────────────
+   Base layer Tailwind (respecte tes tokens shadcn/ui)
+───────────────────────────────────────────────────────────── */
 @layer base {
   * {
     @apply border-border;
@@ -120,6 +76,9 @@ strong {
   }
 }
 
+/* ─────────────────────────────────────────────────────────────
+   Typo & helpers
+───────────────────────────────────────────────────────────── */
 .h2 {
   font-size: 32px;
   font-weight: 700;
@@ -130,8 +89,56 @@ strong {
   font-weight: 700;
 }
 
+strong {
+  font-weight: 600;
+}
 
+.font-manrope span,
+a {
+  font-family: var(--font-manrope);
+}
 
+.customLeading p {
+  line-height: normal;
+}
+
+/* gradient de texte réutilisable */
+.gradient-text {
+  background: linear-gradient(to right, #0051d2, #2978fe);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent; /* fallback */
+}
+
+/* accentuer strong/em dans zones bleues */
+.blueText strong,
+.blueText em {
+  color: #0051d2 !important;
+}
+
+/* supprime les <br> en mobile pour éviter les retours */
+@media screen and (max-width: 1024px) {
+  .noBr br {
+    display: none;
+  }
+
+  .h2 {
+    font-size: 24px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Backgrounds & décorations
+───────────────────────────────────────────────────────────── */
+.gradient-container {
+  background: linear-gradient(
+          180deg,
+          rgba(87, 207, 255, 1) 0%,
+          rgba(237, 250, 255, 1) 89%,
+          rgba(255, 252, 251, 1) 100%
+  );
+}
 
 .tooltip {
   padding: 5px 10px;
@@ -139,6 +146,9 @@ strong {
   border: 1px solid #f2f3f5;
 }
 
+/* ─────────────────────────────────────────────────────────────
+   Vidéo – cartes & grilles
+───────────────────────────────────────────────────────────── */
 .video-grid-advice {
   display: flex;
   align-items: center;
@@ -148,11 +158,13 @@ strong {
   margin-bottom: 110px;
   flex-wrap: wrap;
 }
+
 .video-card {
   position: relative;
   border-radius: 15px;
   cursor: pointer;
 }
+
 .video-preview {
   width: 320px;
   height: 480px;
@@ -160,29 +172,35 @@ strong {
   border-radius: 8px;
   object-fit: cover;
 }
+
 .video-info {
   text-align: center;
   margin-top: 12px;
 }
+
 .video-title-advice {
   text-transform: uppercase;
   font-size: 14px;
   color: black;
 }
+
 .color-pink {
   color: #f47ab2;
   text-transform: uppercase;
 }
+
 .advice-title {
   font-family: "Austin News Deck", sans-serif;
   line-height: 50px;
   font-size: 45px;
   text-transform: uppercase;
 }
+
 .modal-video {
   height: 600px !important;
   object-fit: cover;
 }
+
 @media screen and (max-width: 768px) {
   .video-grid-advice {
     overflow-x: auto;
@@ -209,6 +227,9 @@ strong {
   z-index: 10;
 }
 
+/* ─────────────────────────────────────────────────────────────
+   Loader
+───────────────────────────────────────────────────────────── */
 .loader {
   border: 4px solid #f3f3f3;
   border-top: 4px solid black;
@@ -218,9 +239,63 @@ strong {
   animation: spin 0.6s linear infinite;
 }
 
-@media screen and (max-width: 1024px) {
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
-  .h2 {
-    font-size: 24px;
+/* ─────────────────────────────────────────────────────────────
+   Marquee (horizontal & vertical) — CORRIGÉ
+───────────────────────────────────────────────────────────── */
+/* Piste horizontale */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-100% - var(--marquee-gap-x))); }
+}
+.animate-marquee {
+  animation: marquee var(--marquee-duration-x) linear infinite;
+}
+
+/* Piste verticale (fix: utiliser une distance, pas une unité de temps) */
+@keyframes marquee-vertical {
+  from { transform: translateY(0); }
+  to   { transform: translateY(calc(-100% - var(--marquee-gap-y))); }
+}
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--marquee-duration-y) linear infinite;
+}
+
+/* Utilitaires pour pauser au hover si besoin */
+.marquee-paused:hover {
+  animation-play-state: paused;
+}
+
+/* Tracks conseillés pour performance et spacing cohérent */
+.marquee-track-x {
+  display: inline-flex;
+  gap: var(--marquee-gap-x);
+  will-change: transform;
+}
+.marquee-track-y {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--marquee-gap-y);
+  will-change: transform;
+}
+
+/* Viewport recommandé pour cacher le débordement */
+.marquee-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Accessibilité: respecte la préférence utilisateur */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-vertical,
+  .loader {
+    animation: none !important;
+    transform: none !important;
   }
 }
