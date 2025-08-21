@@ -81,6 +81,11 @@ strong {
   line-height: normal;
 }
 
+
+.animate-marquee-vertical {
+  animation: marquee-vertical 20s linear infinite;
+}
+
 @keyframes marquee {
 
   from {
@@ -88,11 +93,11 @@ strong {
   }
 
   to {
-    transform: translateX(calc(-100% - var(--gap)));
+    transform: translateX(calc(-100% - 16px));
   }
 }
 .animate-marquee {
-  animation: marquee var(--duration) linear infinite;
+  animation: marquee 20s linear infinite;
 }
 @keyframes marquee-vertical {
 
@@ -101,11 +106,8 @@ strong {
   }
 
   to {
-    transform: translateY(calc(-100% - var(--gap)));
+    transform: translateY(calc(-100% - 20s));
   }
-}
-.animate-marquee-vertical {
-  animation: marquee-vertical var(--duration) linear infinite;
 }
 
 @layer base {
