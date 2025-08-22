@@ -148,16 +148,12 @@ export default async function HomePage() {
     },
   ];
 
-  console.log(`marque`, marque);
-
   return (
     <div className="">
       <Nav data={navData} />
       <div className="w-full mt-[80px] lg:mt-[180px] flex flex-col items-center justify-center relative">
-        {/* Créateurs positionnés autour du contenu */}
         <div className="absolute inset-0 hidden lg:block">
           {home.createurs.map((createur, idx) => {
-            // Positions prédéfinies pour chaque créateur
             const positions = [
               "top-20 left-[15%]", // Top gauche
               "top-32 right-[15%]", // Top droite
