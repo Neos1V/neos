@@ -51,7 +51,7 @@ export function Avis({ reviews }: MarqueeDemoVerticalProps) {
   const thirdRow = reviews.slice(Math.ceil((reviews.length * 2) / 3));
 
   return (
-    <div className="mt-6 relative flex h-[700px] w-full flex-row items-center justify-center overflow-hidden gap-6">
+    <div className="mt-6 relative flex h-[700px] w-full flex-row items-center justify-center overflow-hidden gap-6 px-3 lg:px-0">
       <img
         src="avis.png"
         alt="avis"

@@ -48,6 +48,12 @@ import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
 import Slider from "@/components/Slider";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default async function HomePage() {
   const navData: NavType = await sanityFetch({
@@ -399,36 +405,88 @@ export default async function HomePage() {
 
         <div className="max-w-[1400px] w-full mx-auto flex flex-col gap-6 mt-11 px-3 lg:px-0">
           <div className="flex flex-col lg:flex-row w-full gap-5">
-            <div className="rounded-2xl">
+            <div className="rounded-2xl relative">
               <img
-                src={work.illustration1}
+                src={work.illustrations[0].image}
                 alt="illustration1"
-                className="w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
+                className="hidden lg:block w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
               />
-            </div>
-            <div className="rounded-2xl">
               <img
-                src={work.illustration2}
-                alt="illustration2"
-                className="w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
+                src={work.illustrations[0].imageMobile}
+                alt="illustration1 mobile"
+                className="lg:hidden w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
               />
+              <div className="absolute bottom-4 left-4 text-white white-white rounded-t-2xl p-6">
+                <p className="text-xl lg:text-2xl font-semibold">
+                  {work.illustrations[0].title1}
+                </p>
+                <div className="mt-1">
+                  <PortableText value={work.illustrations[0].desc1} />
+                </div>
+              </div>
+            </div>
+            <div className="rounded-2xl relative">
+              <img
+                src={work.illustrations[1].image}
+                alt="illustration1"
+                className="hidden lg:block w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
+              />
+              <img
+                src={work.illustrations[1].imageMobile}
+                alt="illustration1 mobile"
+                className="lg:hidden w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
+              />
+              <div className="absolute bottom-4 left-4 text-white white-white rounded-t-2xl p-6">
+                <p className="text-xl lg:text-2xl font-semibold">
+                  {work.illustrations[1].title1}
+                </p>
+                <div className="mt-1">
+                  <PortableText value={work.illustrations[1].desc1} />
+                </div>
+              </div>
             </div>
           </div>
 
           <div className="flex flex-col lg:flex-row w-full gap-5">
-            <div className="shadow rounded-2xl">
+            <div className="shadow rounded-2xl relative">
               <img
-                src={work.illustration3}
-                alt="illustration3"
-                className="w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
+                src={work.illustrations[2].image}
+                alt="illustration1"
+                className="hidden lg:block w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
               />
+              <img
+                src={work.illustrations[2].imageMobile}
+                alt="illustration1 mobile"
+                className="lg:hidden w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
+              />
+              <div className="absolute bottom-4 left-4 text-white white-white rounded-t-2xl p-6">
+                <p className="text-xl lg:text-2xl font-semibold">
+                  {work.illustrations[2].title1}
+                </p>
+                <div className="mt-1">
+                  <PortableText value={work.illustrations[2].desc1} />
+                </div>
+              </div>
             </div>
-            <div className="shadow rounded-2xl">
+            <div className="shadow rounded-2xl relative">
               <img
-                src={work.illustration4}
-                alt="illustration4"
-                className="w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
+                src={work.illustrations[3].image}
+                alt="illustration1"
+                className="hidden lg:block w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
               />
+              <img
+                src={work.illustrations[3].imageMobile}
+                alt="illustration1 mobile"
+                className="lg:hidden w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
+              />
+              <div className="absolute bottom-4 left-4 text-white white-white rounded-t-2xl p-6">
+                <p className="text-xl lg:text-2xl font-semibold">
+                  {work.illustrations[3].title1}
+                </p>
+                <div className="mt-1">
+                  <PortableText value={work.illustrations[3].desc1} />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -463,24 +521,96 @@ export default async function HomePage() {
             <PortableText value={marque.description} />
           </div>
 
-          <div className="hidden lg:grid grid-cols-3 gap-9 max-w-[1400px] mx-auto mt-8">
-            {items.map(({ url, title, desc }, idx) =>
-              url ? (
-                <div className="relative" key={idx}>
-                  <div className="absolute bottom-8 left-6">
-                    <p className="text-2xl font-bold">{title}</p>
-                    <p>{desc}</p>
+          <div className="w-full">
+            {/* Mobile: accordion */}
+            <div className="md:hidden w-full px-3">
+              <Accordion type="single" collapsible>
+                {items.map(({ url, title, desc }, idx) => (
+                  <AccordionItem
+                    key={idx}
+                    value={`item-${idx}`}
+                    className="w-full rounded-2xl bg-white shadow mb-3 border-none"
+                  >
+                    <AccordionTrigger className="px-6 py-7 text-left [&>svg]:hidden">
+                      <div className="flex flex-col items-start gap-1">
+                        <p className="text-lg font-bold leading-tight">
+                          {title}
+                        </p>
+                        {desc ? (
+                          <p className="mt-2.5 text-sm opacity-80 leading-snug">
+                            {desc}
+                          </p>
+                        ) : null}
+                      </div>
+                      {/* Icône custom */}
+                      <span className="ml-auto transition-transform border border-[#F7F8F9] rounded-xl bg-white p-2">
+                        <svg
+                          width="19"
+                          height="19"
+                          viewBox="0 0 19 19"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M15.381 8.31311V3.64496L10.6763 3.61914M8.3239 15.381H3.61914V10.6601"
+                            stroke="url(#paint0_linear_288_541)"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <defs>
+                            <linearGradient
+                              id="paint0_linear_288_541"
+                              x1="3.61914"
+                              y1="9.50009"
+                              x2="15.381"
+                              y2="9.50009"
+                              gradientUnits="userSpaceOnUse"
+                            >
+                              <stop stop-color="#0051D2" />
+                              <stop offset="1" stop-color="#297BFE" />
+                            </linearGradient>
+                          </defs>
+                        </svg>
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-4 pb-4">
+                      {url ? (
+                        <div className="overflow-hidden rounded-xl">
+                          <Image
+                            src={url}
+                            width={840}
+                            height={980}
+                            alt={`${title} ${desc ?? ""}`.trim()}
+                            className="w-full h-auto"
+                          />
+                        </div>
+                      ) : null}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+
+            {/* Desktop: original grid layout */}
+            <div className="hidden md:grid grid-cols-3 gap-9 max-w-[1400px] mx-auto mt-8">
+              {items.map(({ url, title, desc }, idx) =>
+                url ? (
+                  <div className="relative" key={idx}>
+                    <div className="absolute bottom-8 left-6">
+                      <p className="text-2xl font-bold">{title}</p>
+                      {desc ? <p>{desc}</p> : null}
+                    </div>
+                    <Image
+                      src={url}
+                      width={420}
+                      height={490}
+                      alt={`${title} ${desc ?? ""}`.trim()}
+                      className="w-full h-auto"
+                    />
                   </div>
-                  <Image
-                    src={url}
-                    width={420}
-                    height={490}
-                    alt={`${title} ${desc}`.trim()}
-                    className="w-full h-auto"
-                  />
-                </div>
-              ) : null,
-            )}
+                ) : null,
+              )}
+            </div>
           </div>
         </div>
       </div>

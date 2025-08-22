@@ -81,25 +81,12 @@ export interface Pourquoi {
 export interface Work {
   tooltip: string;
   titre: PortableTextBlock[];
-  logo: string;
-  images: string[];
-  titre1: string;
-  desc1: PortableTextBlock[];
-  titre2: string;
-  titresArray: string[];
-  sousTitre2: string;
-  desc2: PortableTextBlock[];
-  titre3: string;
-  desc3: PortableTextBlock[];
-  image3_1: string;
-  image3_2: string;
-  desc3_1: PortableTextBlock[];
-  titre4: string;
-  desc4: PortableTextBlock[];
-  illustration1: string;
-  illustration2: string;
-  illustration3: string;
-  illustration4: string;
+  illustrations: {
+    image: string;
+    imageMobile: string;
+    title1: string;
+    desc1: PortableTextBlock[];
+  }[];
 }
 
 export interface Marque {

@@ -82,25 +82,12 @@ export const workQuery = groq`
   *[_type == "work"][0] {
     tooltip,
     titre,
-    "logo": logo.asset->url,
-    "images": images[].asset->url,
-    titre1,
-    desc1,
-    titre2,
-    titresArray,
-    sousTitre2,
-    desc2,
-    titre3,
-    desc3,
-    "image3_1": image3_1.asset->url,
-    "image3_2": image3_2.asset->url,
-    desc3_1,
-    titre4,
-    desc4,
-    "illustration1": illustration1.asset->url,
-    "illustration2": illustration2.asset->url,
-    "illustration3": illustration3.asset->url,
-    "illustration4": illustration4.asset->url,
+    illustrations[] {
+      "image": image.asset->url,
+      "imageMobile": imageMobile.asset->url,
+      title1,
+      desc1,
+    },
   }
 `;
 
