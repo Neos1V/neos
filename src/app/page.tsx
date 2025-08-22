@@ -416,7 +416,7 @@ export default async function HomePage() {
                 alt="illustration1 mobile"
                 className="lg:hidden w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
               />
-              <div className="absolute bottom-4 left-4 text-white white-white rounded-t-2xl p-6">
+              <div className="absolute bottom-0 bg-white w-full left-0 rounded-2xl p-6">
                 <p className="text-xl lg:text-2xl font-semibold">
                   {work.illustrations[0].title1}
                 </p>
@@ -436,7 +436,7 @@ export default async function HomePage() {
                 alt="illustration1 mobile"
                 className="lg:hidden w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
               />
-              <div className="absolute bottom-4 left-4 text-white white-white rounded-t-2xl p-6">
+              <div className="absolute bottom-0 bg-white w-full left-0 rounded-2xl p-6">
                 <p className="text-xl lg:text-2xl font-semibold">
                   {work.illustrations[1].title1}
                 </p>
@@ -459,7 +459,7 @@ export default async function HomePage() {
                 alt="illustration1 mobile"
                 className="lg:hidden w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
               />
-              <div className="absolute bottom-4 left-4 text-white white-white rounded-t-2xl p-6">
+              <div className="absolute top-0 w-full left-0 rounded-2xl p-6">
                 <p className="text-xl lg:text-2xl font-semibold">
                   {work.illustrations[2].title1}
                 </p>
@@ -477,9 +477,9 @@ export default async function HomePage() {
               <img
                 src={work.illustrations[3].imageMobile}
                 alt="illustration1 mobile"
-                className="lg:hidden w-full h-[500px] lg:w-auto lg:h-auto object-cover rounded-2xl"
+                className="lg:hidden w-full h-[800px] lg:w-auto lg:h-auto object-cover rounded-2xl"
               />
-              <div className="absolute bottom-4 left-4 text-white white-white rounded-t-2xl p-6">
+              <div className="absolute bottom-4 left-4 rounded-t-2xl p-6">
                 <p className="text-xl lg:text-2xl font-semibold">
                   {work.illustrations[3].title1}
                 </p>
