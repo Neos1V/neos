@@ -38,13 +38,13 @@ const CountingNumber = React.forwardRef<
       inViewOnce = true,
       decimalSeparator = ".",
       thousandsSeparator = ".",
-      transition = { stiffness: 90, damping: 50 },
+      transition = { stiffness: 180, damping: 50 }, // Stiffness doublée (90 → 180)
       decimalPlaces = 0,
       className = "",
       style = {},
       ...props
     },
-    ref
+    ref,
   ) => {
     const localRef = React.useRef<HTMLSpanElement>(null);
 
@@ -98,7 +98,7 @@ const CountingNumber = React.forwardRef<
 
         return `+${formatted}`;
       },
-      [decimals, decimalSeparator, thousandsSeparator, padStart, number]
+      [decimals, decimalSeparator, thousandsSeparator, padStart, number],
     );
 
     React.useEffect(() => {
@@ -145,7 +145,7 @@ const CountingNumber = React.forwardRef<
         {initialText}
       </span>
     );
-  }
+  },
 );
 
 CountingNumber.displayName = "CountingNumber";

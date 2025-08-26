@@ -21,7 +21,7 @@ function Logos({ logos }: { logos: string[] }) {
   }, []);
 
   const Marquee = ({
-    direction = "forwards",
+    direction = "reverse", // Changé de "forwards" à "reverse"
     logos,
   }: {
     direction?: string;

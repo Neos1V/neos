@@ -13,6 +13,19 @@ function Faces({ logos }: { logos: string[] }) {
           transform: translateX(calc(-100cqw - var(--item-gap)));
         }
       }
+      .face-shadow {
+        box-shadow: 
+          0 8px 16px rgba(0, 0, 0, 0.12),
+          0 4px 8px rgba(0, 0, 0, 0.08),
+          0 2px 4px rgba(0, 0, 0, 0.06);
+        transition: box-shadow 0.3s ease;
+      }
+      .face-shadow:hover {
+        box-shadow: 
+          0 16px 32px rgba(0, 0, 0, 0.15),
+          0 8px 16px rgba(0, 0, 0, 0.12),
+          0 4px 8px rgba(0, 0, 0, 0.08);
+      }
     `;
     document.head.appendChild(styleSheet);
     return () => {
@@ -48,7 +61,7 @@ function Faces({ logos }: { logos: string[] }) {
         }
       >
         <div
-          className="w-max flex"
+          className="w-max flex pb-2"
           style={
             {
               "--track-width": `calc(var(--item-width) * ${numItems})`,
@@ -73,7 +86,7 @@ function Faces({ logos }: { logos: string[] }) {
                 alt="Logo"
                 width={53}
                 height={53}
-                className="rounded-full shadow-md"
+                className="rounded-full face-shadow"
               />
             </div>
           ))}

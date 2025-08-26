@@ -26,8 +26,8 @@ export const home = defineType({
     {
       name: "subtitle",
       title: "Sous Titre",
-      type: "string",
-      initialValue: "Sous titre de la section",
+      type: "array",
+      of: [{ type: "block" }],
     },
     {
       name: "validCheck",
@@ -40,7 +40,8 @@ export const home = defineType({
             {
               name: "titre",
               title: "Titre",
-              type: "string",
+              type: "array",
+              of: [{ type: "block" }],
             },
           ],
         },

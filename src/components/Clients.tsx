@@ -23,9 +23,9 @@ function Clients({ clients }: { clients: HomeClient[] }) {
   }, []);
 
   const Marquee = ({
-                     direction = "forwards",
-                     clients,
-                   }: {
+    direction = "forwards",
+    clients,
+  }: {
     direction?: string;
     clients: HomeClient[];
   }) => {
@@ -93,7 +93,7 @@ function Clients({ clients }: { clients: HomeClient[] }) {
                   />
                 </div>
 
-                <div className="absolute bg-white top-3.5 left-3.5 lg:top-6 lg:left-6 flex items-center gap-1 p-2 rounded-full border border-[#EFEFEF]">
+                <div className="absolute bg-white top-3.5 left-3.5 lg:top-6 lg:left-6 flex items-center gap-1 py-1 px-2 rounded-full font-semibold border border-[#EFEFEF]">
                   <svg
                     width="16"
                     height="16"
@@ -117,10 +117,12 @@ function Clients({ clients }: { clients: HomeClient[] }) {
                 </div>
 
                 <div className="absolute bottom-6 left-6 flex flex-col z-10">
-                  <span className="text-white text-[8px] lg:text-xs font-bold py-1 mb-2 px-2 rounded-full border-[#548CEA] border w-fit bg-gradient-to-r from-[#0051D2] to-[#2978FE]">
+                  <span className="text-white text-[10px] lg:text-xs font-semibold py-0 mb-2 px-2 rounded-full border-[#548CEA] border w-fit bg-gradient-to-r from-[#0051D2] to-[#2978FE]">
                     {data.job}
                   </span>
-                  <p className="text-sm lg:text-xl font-medium text-white">{data.nom}</p>
+                  <p className="text-sm lg:text-xl font-medium text-white">
+                    {data.nom}
+                  </p>
                   <div className="text-[10px] lg:text-sm [&>p]:text-white mt-2">
                     <PortableText value={data.description} />
                   </div>

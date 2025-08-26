@@ -7,7 +7,7 @@ export type NavType = {
 };
 
 export interface HomeValidCheck {
-  titre: string;
+  titre: PortableTextBlock[];
 }
 
 export interface HomeCreateur {
@@ -27,7 +27,7 @@ export interface Home {
   titleCreateur: string;
   imageCreateurs: string;
   description: PortableTextBlock[];
-  subtitle: string;
+  subtitle: PortableTextBlock[];
   validCheck: HomeValidCheck[];
   createurs: HomeCreateur[];
   logos: string[];

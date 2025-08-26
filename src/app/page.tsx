@@ -54,6 +54,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import AccordionCards from "@/components/AccordionCards";
 
 export default async function HomePage() {
   const navData: NavType = await sanityFetch({
@@ -196,25 +197,12 @@ export default async function HomePage() {
             <p className="text-[10px] lg:text-base">{home.titleCreateur}</p>
           </div>
 
-          <div className="text-[28px] lg:text-[56px] font-bold text-center blueText px-4 lg:px-0 customLeading">
+          <div className="text-[28px] lg:text-[56px] font-bold text-center blueText px-4 lg:px-0 customLeading emBold">
             <PortableText value={home.description} />
           </div>
 
-          <p className="text-sm lg:text-base px-3 lg:px-0 text-red mt-4 text-center lg:w-1/2 mx-auto">
-            {home.subtitle}
-          </p>
-
-          <div className="mt-6 lg:mt-8">
-            <CtaButton text={navData.ctaButton} link={navData.ctaLink} />
-          </div>
-
-          <div className="flex gap-4 mt-4 flex-wrap justify-center">
-            {home.validCheck.map((item, idx) => (
-              <div key={item.titre + idx} className="flex items-center gap-2">
-                <Image src="check.svg" alt="neos" width={16} height={16} />
-                <p className="text-[10px] lg:text-base">{item.titre}</p>
-              </div>
-            ))}
+          <div className="text-sm lg:text-base px-3 lg:px-0 text-red mt-4 text-center lg:w-1/2 mx-auto">
+            <PortableText value={home.subtitle} />
           </div>
         </div>
       </div>
@@ -229,9 +217,14 @@ export default async function HomePage() {
         <img
           src="wavesMobile.svg"
           alt="waves"
-          className="lg:hidden absolute bottom-12 w-[100vw] left-1/2 -translate-x-1/2"
+          className="lg:hidden absolute bottom-24 w-[100vw] left-1/2 -translate-x-1/2"
         />
-        <div className="lg:w-3/4 lg:mx-auto relative z-20 mb-20 lg:mb-0">
+        <img
+          src="wavesMobileBtm.svg"
+          alt="waves"
+          className="lg:hidden absolute top-36 w-[100vw] left-1/2 -translate-x-1/2 lg:hidden"
+        />
+        <div className="w-[95%] mx-auto lg:w-3/4 lg:mx-auto relative z-20 mb-20 lg:mb-0">
           <HeroVideoDialog
             className="flex justify-center"
             animationStyle="top-in-bottom-out"
@@ -239,6 +232,22 @@ export default async function HomePage() {
             thumbnailSrc="https://startup-template-sage.vercel.app/hero-light.png"
             thumbnailAlt="Hero Video"
           />
+        </div>
+      </div>
+      <div className="flex flex-col items-center justify-center">
+        <div className="mt-0 lg:mt-8">
+          <CtaButton text={navData.ctaButton} link={navData.ctaLink} />
+        </div>
+
+        <div className="flex gap-4 mt-4 flex-wrap justify-center">
+          {home.validCheck.map((item, idx) => (
+            <div key={idx} className="flex items-center gap-2">
+              <Image src="check.svg" alt="neos" width={16} height={16} />
+              <div className="text-[10px] lg:text-base">
+                <PortableText value={item.titre} />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
       <Logos logos={home.logos} />
@@ -264,9 +273,11 @@ export default async function HomePage() {
         </div>
         <div className="flex gap-4 mt-4">
           {home.validCheck.map((item, idx) => (
-            <div key={item.titre + idx} className="flex items-center gap-2">
+            <div key={idx} className="flex items-center gap-2">
               <Image src="check.svg" alt="neos" width={16} height={16} />
-              <p className="text-[10px] lg:text-base">{item.titre}</p>
+              <div className="text-[10px] lg:text-base">
+                <PortableText value={item.titre} />
+              </div>
             </div>
           ))}
         </div>
@@ -365,9 +376,11 @@ export default async function HomePage() {
 
           <div className="flex gap-4 mt-4">
             {home.validCheck.map((item, idx) => (
-              <div key={item.titre + idx} className="flex items-center gap-2">
+              <div key={idx} className="flex items-center gap-2">
                 <Image src="check.svg" alt="neos" width={16} height={16} />
-                <p className="text-[10px] lg:text-base">{item.titre}</p>
+                <div className="text-[10px] lg:text-base">
+                  <PortableText value={item.titre} />
+                </div>
               </div>
             ))}
           </div>
@@ -493,9 +506,11 @@ export default async function HomePage() {
         </div>
         <div className="flex gap-4 mt-4">
           {home.validCheck.map((item, idx) => (
-            <div key={item.titre + idx} className="flex items-center gap-2">
+            <div key={idx} className="flex items-center gap-2">
               <Image src="check.svg" alt="neos" width={16} height={16} />
-              <p className="text-[10px] lg:text-base">{item.titre}</p>
+              <div className="text-[10px] lg:text-base">
+                <PortableText value={item.titre} />
+              </div>
             </div>
           ))}
         </div>
@@ -519,73 +534,7 @@ export default async function HomePage() {
 
           <div className="w-full">
             {/* Mobile: accordion */}
-            <div className="md:hidden w-full px-3">
-              <Accordion type="single" collapsible>
-                {items.map(({ url, title, desc }, idx) => (
-                  <AccordionItem
-                    key={idx}
-                    value={`item-${idx}`}
-                    className="w-full rounded-2xl bg-white shadow mb-3 border-none"
-                  >
-                    <AccordionTrigger className="px-6 py-7 text-left [&>svg]:hidden">
-                      <div className="flex flex-col items-start gap-1">
-                        <p className="text-lg font-bold leading-tight">
-                          {title}
-                        </p>
-                        {desc ? (
-                          <p className="mt-2.5 text-sm opacity-80 leading-snug">
-                            {desc}
-                          </p>
-                        ) : null}
-                      </div>
-                      {/* Icône custom */}
-                      <span className="ml-auto transition-transform border border-[#F7F8F9] rounded-xl bg-white p-2">
-                        <svg
-                          width="19"
-                          height="19"
-                          viewBox="0 0 19 19"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M15.381 8.31311V3.64496L10.6763 3.61914M8.3239 15.381H3.61914V10.6601"
-                            stroke="url(#paint0_linear_288_541)"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <defs>
-                            <linearGradient
-                              id="paint0_linear_288_541"
-                              x1="3.61914"
-                              y1="9.50009"
-                              x2="15.381"
-                              y2="9.50009"
-                              gradientUnits="userSpaceOnUse"
-                            >
-                              <stop stop-color="#0051D2" />
-                              <stop offset="1" stop-color="#297BFE" />
-                            </linearGradient>
-                          </defs>
-                        </svg>
-                      </span>
-                    </AccordionTrigger>
-                    <AccordionContent className="px-4 pb-4">
-                      {url ? (
-                        <div className="overflow-hidden rounded-xl">
-                          <Image
-                            src={url}
-                            width={840}
-                            height={980}
-                            alt={`${title} ${desc ?? ""}`.trim()}
-                            className="w-full h-auto"
-                          />
-                        </div>
-                      ) : null}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
+            <AccordionCards items={items} />
 
             {/* Desktop: original grid layout */}
             <div className="hidden md:grid grid-cols-3 gap-9 max-w-[1400px] mx-auto mt-8">
@@ -616,9 +565,11 @@ export default async function HomePage() {
         </div>
         <div className="flex gap-4 mt-4">
           {home.validCheck.map((item, idx) => (
-            <div key={item.titre + idx} className="flex items-center gap-2">
+            <div key={idx} className="flex items-center gap-2">
               <Image src="check.svg" alt="neos" width={16} height={16} />
-              <p className="text-[10px] lg:text-base">{item.titre}</p>
+              <div className="text-[10px] lg:text-base">
+                <PortableText value={item.titre} />
+              </div>
             </div>
           ))}
         </div>
@@ -668,9 +619,11 @@ export default async function HomePage() {
           </div>
           <div className="flex gap-4 mt-4">
             {home.validCheck.map((item, idx) => (
-              <div key={item.titre + idx} className="flex items-center gap-2">
+              <div key={idx} className="flex items-center gap-2">
                 <Image src="check.svg" alt="neos" width={16} height={16} />
-                <p className="text-[10px] lg:text-base">{item.titre}</p>
+                <div className="text-[10px] lg:text-base">
+                  <PortableText value={item.titre} />
+                </div>
               </div>
             ))}
           </div>
