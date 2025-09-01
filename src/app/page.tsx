@@ -153,38 +153,71 @@ export default async function HomePage() {
     <div className="">
       <Nav data={navData} />
       <div className="w-full mt-[80px] lg:mt-[180px] flex flex-col items-center justify-center relative">
-        <div className="absolute inset-0 hidden lg:block">
-          {home.createurs.map((createur, idx) => {
-            const positions = [
-              "top-20 left-[15%]", // Top gauche
-              "top-32 right-[15%]", // Top droite
-              "top-1/2 left-[10%] -translate-y-1/2", // Milieu gauche
-              "top-1/2 right-[10%] -translate-y-1/2", // Milieu droite
-              "bottom-20 left-[15%]", // Bottom gauche
-              "bottom-32 right-[15%]", // Bottom droite
-            ];
+				{/* Section Desktop - cachée en mobile */}
+				<div className="absolute inset-0 hidden md:block">
+					{home.createurs.map((createur, idx) => {
+						const desktopPositions = [
+							"top-20 left-[15%]", // Top gauche
+							"top-32 right-[15%]", // Top droite
+							"top-1/2 left-[10%] -translate-y-1/2", // Milieu gauche
+							"top-1/2 right-[10%] -translate-y-1/2", // Milieu droite
+							"bottom-20 left-[15%]", // Bottom gauche
+							"bottom-32 right-[15%]", // Bottom droite
+						];
 
-            return (
-              <div
-                key={idx}
-                className={`absolute ${positions[idx % positions.length]} z-10`}
-              >
-                <div className="flex items-center">
-                  <Image
-                    width={50}
-                    height={50}
-                    src={createur.image}
-                    alt={"Créateur " + idx}
-                    className="border-2 border-white rounded-full shadow-lg"
-                  />
-                  <p className="bg-[#F1F5FB] rounded-xl px-3 py-1.5 ml-[-10px] text-sm font-medium shadow-md">
-                    {createur.prix}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+						return (
+							<div
+								key={`desktop-${idx}`}
+								className={`absolute ${desktopPositions[idx % desktopPositions.length]} z-10`}
+							>
+								<div className="flex items-center ">
+									<Image
+										width={50}
+										height={50}
+										src={createur.image}
+										alt={"Créateur " + idx}
+										className="border-2 border-white rounded-full shadow-lg w-[50px] h-[50px] object-cover"
+									/>
+									<p className="bg-[#F1F5FB] rounded-xl px-3 py-1.5 ml-[-10px] text-sm font-medium shadow-md">
+										{createur.prix}
+									</p>
+								</div>
+							</div>
+						);
+					})}
+				</div>
+
+				{/* Section Mobile - cachée en desktop */}
+				<div className="absolute inset-0 block md:hidden  z-10">
+					{home.createurs.slice(0, 4).map((createur, idx) => {
+						const mobilePositions = [
+							"-top-4 left-2 -rotate-[30deg]", // Haut gauche
+							"-top-4 right-2 rotate-[30deg]", // Haut droite
+							"-bottom-10 left-2 -rotate-[30deg]", // Bas gauche
+							"-bottom-10 right-2 rotate-[30deg]", // Bas droite
+						];
+
+						return (
+							<div
+								key={`mobile-${idx}`}
+								className={`absolute ${mobilePositions[idx]} z-10 `}
+							>
+								<div className="flex items-center flex-col justify-center">
+									<Image
+										width={50}
+										height={50}
+										src={createur.image}
+										alt={"Créateur " + idx}
+										className="border-2 border-white rounded-full shadow-lg w-[35px] h-[35px] object-cover"
+									/>
+									<p className="text-center bg-[#F1F5FB] rounded-xl px-2 py-0.5 -mt-1 text-[10px] font-medium shadow-md">
+										{createur.prix}
+									</p>
+								</div>
+							</div>
+						);
+					})}
+				</div>
 
         {/* Contenu principal */}
         <div className="relative z-20 flex flex-col items-center">
@@ -194,7 +227,7 @@ export default async function HomePage() {
               alt="Créateurs"
               className="w-[58px] h-auto md:w-auto md:h-auto"
             />
-            <p className="text-[10px] lg:text-base">{home.titleCreateur}</p>
+            <p className="text-sm lg:text-base">{home.titleCreateur}</p>
           </div>
 
           <div className="text-[28px] lg:text-[56px] font-bold text-center blueText px-4 lg:px-0 customLeading emBold">
@@ -222,9 +255,9 @@ export default async function HomePage() {
         <img
           src="wavesMobileBtm.svg"
           alt="waves"
-          className="lg:hidden absolute top-36 w-[100vw] left-1/2 -translate-x-1/2 lg:hidden"
+          className="absolute top-[120px] w-[100vw] left-1/2 -translate-x-1/2 lg:hidden"
         />
-        <div className="w-[95%] mx-auto lg:w-3/4 lg:mx-auto relative z-20 mb-20 lg:mb-0">
+        <div className="w-[95%] mx-auto lg:w-3/4 lg:mx-auto relative z-20 mb-8 lg:mb-20 lg:mb-0">
           <HeroVideoDialog
             className="flex justify-center"
             animationStyle="top-in-bottom-out"

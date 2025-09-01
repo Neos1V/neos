@@ -84,7 +84,7 @@ function Clients({ clients }: { clients: HomeClient[] }) {
                 {/* Overlay avec blur progressif */}
                 <div className="absolute inset-0 rounded-[24px] overflow-hidden">
                   <div
-                    className="absolute bottom-0 left-0 right-0 h-1/3 backdrop-blur-sm"
+                    className="absolute bottom-0 left-0 right-0 h-1/3 lg:backdrop-blur-sm"
                     style={{
                       background:
                         "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 100%)",
