@@ -257,7 +257,7 @@ export default async function HomePage() {
           alt="waves"
           className="absolute top-[120px] w-[100vw] left-1/2 -translate-x-1/2 lg:hidden"
         />
-        <div className="w-[95%] mx-auto lg:w-3/4 lg:mx-auto relative z-20 mb-8 lg:mb-20 lg:mb-0">
+        <div className="w-[95%] mx-auto lg:w-3/4 lg:mx-auto relative z-20 mb-8 lg:mb-0">
           <HeroVideoDialog
             className="flex justify-center"
             animationStyle="top-in-bottom-out"
@@ -561,7 +561,7 @@ export default async function HomePage() {
           <div className="w-[300px] text-center lg:w-full mt-3.5 blueText h2">
             <PortableText value={marque.titre} />
           </div>
-          <div className="mb-6 px-3 lg:px-0 lg:w-2/4 mx-auto text-center text-lg">
+          <div className="mb-6 px-3 lg:px-0 lg:w-2/4 mx-auto text-center text-lg mt-6 lg:mt-0">
             <PortableText value={marque.description} />
           </div>
 
