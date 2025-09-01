@@ -48,12 +48,6 @@ import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
 import Slider from "@/components/Slider";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import AccordionCards from "@/components/AccordionCards";
 
 export default async function HomePage() {
@@ -154,15 +148,15 @@ export default async function HomePage() {
       <Nav data={navData} />
       <div className="w-full mt-[80px] lg:mt-[180px] flex flex-col items-center justify-center relative">
 				{/* Section Desktop - cachée en mobile */}
-				<div className="absolute inset-0 hidden md:block">
+				<div className="absolute inset-0 hidden lg:block">
 					{home.createurs.map((createur, idx) => {
 						const desktopPositions = [
-							"top-20 left-[15%]", // Top gauche
-							"top-32 right-[15%]", // Top droite
+							"top-12 left-[15%]", // Top gauche - remonté
+							"top-16 right-[15%]", // Top droite - remonté
 							"top-1/2 left-[10%] -translate-y-1/2", // Milieu gauche
 							"top-1/2 right-[10%] -translate-y-1/2", // Milieu droite
-							"bottom-20 left-[15%]", // Bottom gauche
-							"bottom-32 right-[15%]", // Bottom droite
+							"bottom-12 left-[15%]", // Bottom gauche - descendu
+							"bottom-16 right-[15%]", // Bottom droite - descendu
 						];
 
 						return (
@@ -170,7 +164,7 @@ export default async function HomePage() {
 								key={`desktop-${idx}`}
 								className={`absolute ${desktopPositions[idx % desktopPositions.length]} z-10`}
 							>
-								<div className="flex items-center ">
+								<div className="flex items-center">
 									<Image
 										width={50}
 										height={50}
@@ -188,7 +182,7 @@ export default async function HomePage() {
 				</div>
 
 				{/* Section Mobile - cachée en desktop */}
-				<div className="absolute inset-0 block md:hidden  z-10">
+				<div className="absolute inset-0 block lg:hidden  z-10">
 					{home.createurs.slice(0, 4).map((createur, idx) => {
 						const mobilePositions = [
 							"-top-4 left-2 -rotate-[30deg]", // Haut gauche
