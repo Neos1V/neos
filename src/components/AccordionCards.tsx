@@ -181,7 +181,10 @@ const AccordionCards: React.FC<AccordionCardsProps> = ({ items }) => {
           >
             <AccordionTrigger className="px-6 py-7 text-left [&>svg]:hidden hover:bg-gray-50 transition-colors duration-200">
               <div className="flex flex-col items-start gap-1">
-                <p className="text-lg font-bold leading-tight">{title}</p>
+                <div className="flex justify-center items-center gap-3 text-lg font-bold leading-tight">
+									<p>{title}</p>
+									<Image className="lg:hidden" src={`/icons/${idx}.svg`} alt="" />
+								</div>
                 {desc ? (
                   <p className="mt-2.5 text-sm opacity-80 leading-snug">
                     {desc}
