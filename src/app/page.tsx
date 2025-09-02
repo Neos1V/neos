@@ -216,11 +216,14 @@ export default async function HomePage() {
         {/* Contenu principal */}
         <div className="relative z-20 flex flex-col items-center">
           <div className="mb-3 lg:mb-6 flex items-center justify-center gap-2 px-[10px] py-[5px] md:p-3 border border-[#E5E7EB]/50 rounded-full shadow-md bg-white/90 ">
-            <img
-              src={home.imageCreateurs}
-              alt="Créateurs"
-              className="w-[58px] h-auto md:w-auto md:h-auto"
-            />
+						<img
+							src={home.imageCreateurs}
+							alt="Créateurs"
+							className="  md:w-auto md:h-auto"
+							style={{
+								minWidth: '58px'
+							}}
+						/>
             <p className="text-sm lg:text-base">{home.titleCreateur}</p>
           </div>
 
@@ -639,8 +642,12 @@ export default async function HomePage() {
       </div>
       <div className="mt-[120px] flex flex-col justify-center items-center mb-[132px]">
         <div className="flex gap-2 items-center tooltip bg-white">
-          <img src={joinus.image} alt="joinus" />
-          <p className="text-[10px] lg:text-base">{joinus.tooltip}</p>
+					<img
+						src={joinus.image}
+						alt="joinus"
+						className="w-auto h-auto max-w-[100px] max-h-[50px]" // Ajustez selon vos besoins
+						style={{ minHeight: '20px', minWidth: '20px' }}
+					/>          <p className="text-[10px] lg:text-base">{joinus.tooltip}</p>
         </div>
         <div className="blueText h2 text-center mt-8 w-[250px] mx-auto lg:w-full">
           <PortableText value={joinus.titre} />
