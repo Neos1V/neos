@@ -82,7 +82,6 @@ function Clients({ clients }: { clients: HomeClient[] }) {
                 />
 
 
-
                 <div className="absolute bg-white top-3.5 left-3.5 lg:top-6 lg:left-6 flex items-center gap-1 py-1 px-2 rounded-full font-semibold border border-[#EFEFEF]">
                   <svg
                     width="16"

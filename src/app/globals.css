@@ -27,6 +27,7 @@
 }
 
 body {
+    overflow-x: hidden;
     line-height: normal;
   background-color: #f9f9f9;
   font-family: var(--font-manrope);
