@@ -99,7 +99,7 @@ export default function Price({ data }: { data: Pricing }) {
                     <li key={index} className="flex items-start gap-2 sm:gap-3">
                       <Check
                         className="size-3 sm:size-4 flex-shrink-0 mt-0.5"
-                        color="#00BC62"
+                        color="#0051D2"
                       />
                       <span className="text-sm sm:text-base leading-relaxed">
                         {item}

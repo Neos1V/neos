@@ -29,6 +29,18 @@ export const home = defineType({
       type: "array",
       of: [{ type: "block" }],
     },
+		{
+      name: "descriptionMobile",
+      title: "Description Mobile",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+    {
+      name: "subtitleMobile",
+      title: "Sous Titre Mobile",
+      type: "array",
+      of: [{ type: "block" }],
+    },
     {
       name: "validCheck",
       title: "Valid Check",

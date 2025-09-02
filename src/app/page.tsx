@@ -224,12 +224,19 @@ export default async function HomePage() {
             <p className="text-sm lg:text-base">{home.titleCreateur}</p>
           </div>
 
-          <div className="text-[28px] lg:text-[56px] font-bold text-center blueText px-4 lg:px-0 customLeading emBold">
+          <div className="hidden lg:block text-[28px] lg:text-[56px] font-bold text-center blueText px-4 lg:px-0 customLeading emBold">
             <PortableText value={home.description} />
           </div>
 
-          <div className="text-sm lg:text-base px-3 lg:px-0 text-red mt-4 text-center lg:w-1/2 mx-auto">
+          <div className="hidden lg:block text-sm lg:text-base px-3 lg:px-0 text-red mt-4 text-center lg:w-1/2 mx-auto">
             <PortableText value={home.subtitle} />
+          </div>
+					<div className="lg:hidden text-[28px] lg:text-[56px] font-bold text-center blueText px-4 lg:px-0 customLeading emBold">
+            <PortableText value={home.descriptionMobile} />
+          </div>
+
+          <div className="lg:hidden text-sm lg:text-base px-3 lg:px-0 text-red mt-4 text-center lg:w-1/2 mx-auto">
+            <PortableText value={home.subtitleMobile} />
           </div>
         </div>
       </div>
@@ -244,12 +251,12 @@ export default async function HomePage() {
         <img
           src="wavesMobile.svg"
           alt="waves"
-          className="lg:hidden absolute bottom-24 w-[100vw] left-1/2 -translate-x-1/2"
+          className="lg:hidden absolute bottom-[160px] w-[100vw] left-1/2 -translate-x-1/2"
         />
         <img
           src="wavesMobileBtm.svg"
           alt="waves"
-          className="absolute top-[120px] w-[100vw] left-1/2 -translate-x-1/2 lg:hidden"
+          className="absolute top-[50px] w-[100vw] left-1/2 -translate-x-1/2 lg:hidden"
         />
         <div className="w-[95%] mx-auto lg:w-3/4 lg:mx-auto relative z-20 mb-8 lg:mb-0">
           <HeroVideoDialog
@@ -309,7 +316,7 @@ export default async function HomePage() {
           ))}
         </div>
       </div>
-      <div className="mt-12 flex flex-col lg:flex-row gap-6 lg:gap-[90px] justify-center lg:py-[70px] lg:px-[56px] lg:mx-[52px] lg:rounded-3xl lg:shadow lg:border-[#D9D9D9] lg:bg-gradient-to-b lg:from-white lg:to-transparent">
+      <div className="hidden mt-12 flex flex-col lg:flex-row gap-6 lg:gap-[90px] justify-center lg:py-[70px] lg:px-[56px] lg:mx-[52px] lg:rounded-3xl lg:shadow lg:border-[#D9D9D9] lg:bg-gradient-to-b lg:from-white lg:to-transparent">
         <div className=" flex flex-col items-center lg:block lg:border border-[#F6F6F8] bg-white/70 lg:bg-white rounded-xl shadow-md p-6 lg:p-8 max-w-full lg:max-w-[600px] h-fit order-2 lg:order-1 mx-4 -mt-[100px] lg:mx-0 lg:mt-0 relative z-10">
           <span className="bg-white inline-block px-2 py-1 border border-[#F2F3F5] rounded-full shadow text-[10px] lg:text-sm">
             {tiktok.sousTitre}
@@ -351,9 +358,10 @@ export default async function HomePage() {
           alt="eye"
           className="w-[22px] lg:w-[58px] absolute top-[-20px] lg:top-0 right-[5%] lg:right-[20%]"
         />
-        <div className="text-[60px] lg:text-[128px] text-center font-bold relative">
+        <div className="text-[60px] lg:text-[128px] text-center font-bold relative w-[100%]">
           <CountingNumber
             number={tiktok.vues}
+						duration={2}
             className="gradient-text font-manrope max-w-[300px] w-[300px] lg:max-w-[1500px] lg:w-full"
           />
           <div className="w-max absolute -bottom-2 lg:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 lg:px-4 py-2 lg:py-2.5 rounded-full bg-white text-black border border-[#EEF0F4]">

@@ -13,7 +13,9 @@ export const homeQuery = groq`
     titleCreateur,
     "imageCreateurs": imageCreateurs.asset->url,
     description,
+    descriptionMobile,
     subtitle,
+    subtitleMobile,
     validCheck[] {
       titre,
     },

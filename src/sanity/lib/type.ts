@@ -27,7 +27,9 @@ export interface Home {
   titleCreateur: string;
   imageCreateurs: string;
   description: PortableTextBlock[];
+  descriptionMobile: PortableTextBlock[];
   subtitle: PortableTextBlock[];
+  subtitleMobile: PortableTextBlock[];
   validCheck: HomeValidCheck[];
   createurs: HomeCreateur[];
   logos: string[];

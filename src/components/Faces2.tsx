@@ -81,7 +81,7 @@ function Faces({ logos }: { logos: FacesProps[] }) {
                   alt="Logo"
                   width={40}
                   height={40}
-                  className="rounded-full border border-[#00BC62]"
+                  className="rounded-full border border-[#0653D4]"
                 />
                 <div>
                   <p className="text-[18px]">{logo.titre}</p>

@@ -13,7 +13,8 @@ export default function ImageSection({ pourquoi }: { pourquoi: Pourquoi }) {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-3 mt-12">
+    <div className="flex flex-col lg:flex-row gap-8 mt-12">
+			<p className="mb-4 h2 text-center">{pourquoi.titre}</p>
       {/* Image 1 */}
       <div className="px-3 lg:px-0 relative group cursor-pointer overflow-hidden rounded-2xl">
         <Image

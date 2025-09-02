@@ -77,7 +77,7 @@ function Logos({ logos }: { logos: string[] }) {
   };
 
   return (
-    <div className="items-center overflow-hidden mt-[50px] lg:mt-[120px]">
+    <div className="mb-[-15px] lg:mb-0 items-center overflow-hidden mt-[50px] lg:mt-[120px]">
       <div className="w-full max-w-6xl flex flex-col gap-y-6 mx-auto">
         <Marquee logos={logos} />
       </div>
