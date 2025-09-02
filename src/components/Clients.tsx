@@ -81,17 +81,7 @@ function Clients({ clients }: { clients: HomeClient[] }) {
                   className="w-full h-full object-cover rounded-[24px] border-[5px] border-white"
                 />
 
-                {/* Overlay avec blur progressif */}
-                <div className="absolute inset-0 rounded-[24px] overflow-hidden">
-                  <div
-                    className="absolute bottom-0 left-0 right-0 h-1/3 lg:backdrop-blur-sm"
-                    style={{
-                      background:
-                        "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 100%)",
-                      backdropFilter: "blur(0px) blur(2px)",
-                    }}
-                  />
-                </div>
+
 
                 <div className="absolute bg-white top-3.5 left-3.5 lg:top-6 lg:left-6 flex items-center gap-1 py-1 px-2 rounded-full font-semibold border border-[#EFEFEF]">
                   <svg
