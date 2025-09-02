@@ -182,7 +182,7 @@ export default async function HomePage() {
 				</div>
 
 				{/* Section Mobile - cachée en desktop */}
-				<div className="absolute inset-0 block lg:hidden  z-10">
+				<div className="hidden bsolute inset-0 block lg:hidden  z-10">
 					{home.createurs.slice(0, 4).map((createur, idx) => {
 						const mobilePositions = [
 							"-top-4 left-2 -rotate-[30deg]", // Haut gauche
