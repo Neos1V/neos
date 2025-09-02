@@ -40,7 +40,7 @@ export default function ImageSection({ pourquoi }: { pourquoi: Pourquoi }) {
             className="flex items-center justify-between w-full mt-3"
           >
             <span className="font-medium">{pourquoi.name1}</span>
-            <span className="text-xl font-bold">
+            <span className="text-[#0653D4] text-2xl font-bold">
               {openAccordion === 1 ? "−" : "+"}
             </span>
           </button>
@@ -82,7 +82,7 @@ export default function ImageSection({ pourquoi }: { pourquoi: Pourquoi }) {
             className="flex items-center justify-between w-full p- mt-3"
           >
             <span className="font-medium">{pourquoi.name2}</span>
-            <span className="text-xl font-bold">
+						<span className="text-[#0653D4] text-2xl font-bold">
               {openAccordion === 2 ? "−" : "+"}
             </span>
           </button>

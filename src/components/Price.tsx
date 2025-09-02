@@ -40,11 +40,11 @@ export default function Price({ data }: { data: Pricing }) {
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="mt-4 sm:mt-6 md:mt-8 lg:mt-12 xl:mt-20">
           <div className="bg-card relative rounded-2xl sm:rounded-3xl bg-white shadow-xl sm:shadow-2xl px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 md:py-16">
-            <div className="grid items-stretch gap-8 sm:gap-10 md:gap-12 divide-y lg:grid-cols-2 lg:divide-x lg:divide-y-0 divide-[#297BFE] p-4 sm:p-6 md:p-8 lg:p-12 pb-2">
+            <div className="grid items-stretch lg:gap-8 sm:gap-10 md:gap-12 lg:divide-y lg:grid-cols-2 lg:divide-x lg:divide-y-0 divide-[#297BFE] p-0 sm:p-6 md:p-8 lg:p-12 pb-2">
               {/* Section gauche - Pricing */}
-              <div className="pb-8 sm:pb-10 md:pb-12 text-center lg:pb-0 lg:pr-8 xl:pr-12 relative">
+              <div className="pb-12 sm:pb-10 md:pb-12 text-center lg:pb-0 lg:pr-8 xl:pr-12 relative">
                 {/* Tooltip places restantes */}
-                <span className="tooltip text-[#FF0000] bg-white absolute left-1/2 transform -translate-x-1/2 -top-8 sm:-top-12 md:-top-16  lg:-top-[125px] text-xs sm:text-sm">
+                <span className="tooltip text-[#FF0000] bg-white absolute left-1/2 transform -translate-x-1/2 -top-[60px] shadow-xl sm:-top-12 md:-top-16  lg:-top-[125px] text-xs sm:text-sm">
                   {data.placesLefts}
                 </span>
 
@@ -52,7 +52,7 @@ export default function Price({ data }: { data: Pricing }) {
                 <h3 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2">
                   {data.title}
                 </h3>
-                <p className="mt-1 text-sm sm:text-base text-gray-600">
+                <p className="-mt-2 lg:mt-1 text-sm sm:text-base ">
                   {data.subtitle}
                 </p>
 
@@ -83,17 +83,17 @@ export default function Price({ data }: { data: Pricing }) {
                 </div>
 
                 {/* Description */}
-                <div className="[&>p]:text-black/70 mt-4 text-xs sm:text-sm w-full max-w-[300px] mx-auto px-2">
+                <div className="[&>p]:text-black/70 mt-4 text-xs sm:text-sm w-full max-w-[300px] mx-auto lg:px-2">
                   <PortableText value={data.description} />
                 </div>
               </div>
 
               {/* Section droite - Features */}
-              <div className="lg:block flex flex-col-reverse relative pt-8 sm:pt-10 md:pt-12 lg:pt-0 lg:pl-8 xl:pl-12">
+              <div className="lg:block flex flex-col-reverse relative md:pt-12 lg:pl-8 xl:pl-12">
                 {/* Liste des features */}
                 <ul
                   role="list"
-                  className="mt-6 lg:mt-0 space-y-3 sm:space-y-4 mb-6 sm:mb-8"
+                  className="mt-6 lg:mt-0 space-y-3 sm:space-y-4 w-[90%] lg:w-full mx-auto pt-4 lg:pt-0 border-t border-[#0653D4] mb-0 lg:mb-8"
                 >
                   {data.arrayText.map((item, index) => (
                     <li key={index} className="flex items-start gap-2 sm:gap-3">
@@ -111,8 +111,7 @@ export default function Price({ data }: { data: Pricing }) {
                 {/* Carte Premium */}
                 <div className="relative flex flex-col gap-3 sm:gap-4 rounded-xl bg-white shadow-lg px-3 sm:px-4 py-4 sm:py-6 border border-[#F7F8F9]">
                   {/* Tooltip Premium */}
-                  <div className="tooltip shadow absolute -top-2 sm:-top-3 -right-6 sm:-right-8 md:-right-12 lg:-right-[50px] rotate-3 font-semibold text-xs bg-white px-2 py-1 rounded hidden sm:block">
-                    Pour ceux qui veulent gagner vite
+									<div className="tooltip shadow absolute -top-[20px] sm:-top-3 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:-right-8 md:-right-12 lg:-right-[50px] sm:rotate-3 font-semibold text-xs bg-white px-2 py-1 rounded text-nowrap">                    Pour ceux qui veulent gagner vite
                   </div>
 
                   {/* Titre Premium + Checkbox réelle */}
