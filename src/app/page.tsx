@@ -215,7 +215,7 @@ export default async function HomePage() {
 
         {/* Contenu principal */}
         <div className="relative z-20 flex flex-col items-center">
-          <div className="mb-3 lg:mb-6 flex items-center justify-center gap-2 px-[10px] py-[5px] md:p-3 border border-[#E5E7EB]/50 rounded-full shadow-md bg-white/90 backdrop-blur-sm">
+          <div className="mb-3 lg:mb-6 flex items-center justify-center gap-2 px-[10px] py-[5px] md:p-3 border border-[#E5E7EB]/50 rounded-full shadow-md bg-white/90 ">
             <img
               src={home.imageCreateurs}
               alt="Créateurs"
