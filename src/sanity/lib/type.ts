@@ -61,7 +61,7 @@ export interface Shorts {
 }
 
 export interface PourquoiNumber {
-  number: number;
+  number: string;
   text: string;
 }
 
@@ -177,4 +177,13 @@ export interface Footer {
     link: string;
   }[];
   logoNeos: string;
+}
+
+export interface Vsl {
+  title: string;
+  subtitle: string;
+  description: PortableTextBlock[];
+  videoUrl: string;
+  thumbnailImage: string;
+  thumbnailAlt: string;
 }

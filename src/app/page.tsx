@@ -1,3 +1,4 @@
+import AccordionCards from "@/components/AccordionCards";
 import { CountingNumber } from "@/components/animate-ui/text/counting-number";
 import { Avis } from "@/components/Avis";
 import Clients from "@/components/Clients";
@@ -12,10 +13,12 @@ import CtaButton from "@/components/shared/CtaButton";
 import Tooltip from "@/components/shared/Tooltip";
 import { ShortsVideos } from "@/components/ShortsVideos";
 import ShortsVideosMobile from "@/components/ShortsVideosMobile";
+import Slider from "@/components/Slider";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { AnimatedTestimonialsMobile } from "@/components/ui/animated-testimonials-mobile";
 import Videos from "@/components/Videos";
 import { sanityFetch } from "@/sanity/lib/fetch";
+import { urlFor } from "@/sanity/lib/image";
 import {
   communityQuery,
   faqQuery,
@@ -28,6 +31,7 @@ import {
   pricingQuery,
   shortsQuery,
   tiktokQuery,
+  vslQuery,
   workQuery,
 } from "@/sanity/lib/query";
 import {
@@ -42,13 +46,12 @@ import {
   Pricing,
   Shorts,
   Tiktok,
+  Vsl,
   Work,
 } from "@/sanity/lib/type";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
-import Slider from "@/components/Slider";
-import AccordionCards from "@/components/AccordionCards";
 
 export default async function HomePage() {
   const navData: NavType = await sanityFetch({
@@ -110,6 +113,11 @@ export default async function HomePage() {
     tags: ["footer"],
   });
 
+  const vsl: Vsl = await sanityFetch({
+    query: vslQuery,
+    tags: ["vsl"],
+  });
+
   const items = [
     {
       url: marque.illustration1_1,
@@ -147,83 +155,83 @@ export default async function HomePage() {
     <div className="">
       <Nav data={navData} />
       <div className="w-full mt-[80px] lg:mt-[180px] flex flex-col items-center justify-center relative">
-				{/* Section Desktop - cachée en mobile */}
-				<div className="absolute inset-0 hidden lg:block">
-					{home.createurs.map((createur, idx) => {
-						const desktopPositions = [
-							"top-12 left-[15%]", // Top gauche - remonté
-							"top-16 right-[15%]", // Top droite - remonté
-							"top-1/2 left-[10%] -translate-y-1/2", // Milieu gauche
-							"top-1/2 right-[10%] -translate-y-1/2", // Milieu droite
-							"bottom-12 left-[15%]", // Bottom gauche - descendu
-							"bottom-16 right-[15%]", // Bottom droite - descendu
-						];
+        {/* Section Desktop - cachée en mobile */}
+        <div className="absolute inset-0 hidden lg:block">
+          {home.createurs.map((createur, idx) => {
+            const desktopPositions = [
+              "top-12 left-[15%]", // Top gauche - remonté
+              "top-16 right-[15%]", // Top droite - remonté
+              "top-1/2 left-[10%] -translate-y-1/2", // Milieu gauche
+              "top-1/2 right-[10%] -translate-y-1/2", // Milieu droite
+              "bottom-12 left-[15%]", // Bottom gauche - descendu
+              "bottom-16 right-[15%]", // Bottom droite - descendu
+            ];
 
-						return (
-							<div
-								key={`desktop-${idx}`}
-								className={`absolute ${desktopPositions[idx % desktopPositions.length]} z-10`}
-							>
-								<div className="flex items-center">
-									<Image
-										width={50}
-										height={50}
-										src={createur.image}
-										alt={"Créateur " + idx}
-										className="border-2 border-white rounded-full shadow-lg w-[50px] h-[50px] object-cover"
-									/>
-									<p className="bg-[#F1F5FB] rounded-xl px-3 py-1.5 ml-[-10px] text-sm font-medium shadow-md">
-										{createur.prix}
-									</p>
-								</div>
-							</div>
-						);
-					})}
-				</div>
+            return (
+              <div
+                key={`desktop-${idx}`}
+                className={`absolute ${desktopPositions[idx % desktopPositions.length]} z-10`}
+              >
+                <div className="flex items-center">
+                  <Image
+                    width={50}
+                    height={50}
+                    src={createur.image}
+                    alt={"Créateur " + idx}
+                    className="border-2 border-white rounded-full shadow-lg w-[50px] h-[50px] object-cover"
+                  />
+                  <p className="bg-[#F1F5FB] rounded-xl px-3 py-1.5 ml-[-10px] text-sm font-medium shadow-md">
+                    {createur.prix}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
 
-				{/* Section Mobile - cachée en desktop */}
-				<div className="hidden bsolute inset-0 block lg:hidden  z-10">
-					{home.createurs.slice(0, 4).map((createur, idx) => {
-						const mobilePositions = [
-							"-top-4 left-2 -rotate-[30deg]", // Haut gauche
-							"-top-4 right-2 rotate-[30deg]", // Haut droite
-							"-bottom-10 left-2 -rotate-[30deg]", // Bas gauche
-							"-bottom-10 right-2 rotate-[30deg]", // Bas droite
-						];
+        {/* Section Mobile - cachée en desktop */}
+        <div className="hidden bsolute inset-0 block lg:hidden  z-10">
+          {home.createurs.slice(0, 4).map((createur, idx) => {
+            const mobilePositions = [
+              "-top-4 left-2 -rotate-[30deg]", // Haut gauche
+              "-top-4 right-2 rotate-[30deg]", // Haut droite
+              "-bottom-10 left-2 -rotate-[30deg]", // Bas gauche
+              "-bottom-10 right-2 rotate-[30deg]", // Bas droite
+            ];
 
-						return (
-							<div
-								key={`mobile-${idx}`}
-								className={`absolute ${mobilePositions[idx]} z-10 `}
-							>
-								<div className="flex items-center flex-col justify-center">
-									<Image
-										width={50}
-										height={50}
-										src={createur.image}
-										alt={"Créateur " + idx}
-										className="border-2 border-white rounded-full shadow-lg w-[35px] h-[35px] object-cover"
-									/>
-									<p className="text-center bg-[#F1F5FB] rounded-xl px-2 py-0.5 -mt-1 text-[10px] font-medium shadow-md">
-										{createur.prix}
-									</p>
-								</div>
-							</div>
-						);
-					})}
-				</div>
+            return (
+              <div
+                key={`mobile-${idx}`}
+                className={`absolute ${mobilePositions[idx]} z-10 `}
+              >
+                <div className="flex items-center flex-col justify-center">
+                  <Image
+                    width={50}
+                    height={50}
+                    src={createur.image}
+                    alt={"Créateur " + idx}
+                    className="border-2 border-white rounded-full shadow-lg w-[35px] h-[35px] object-cover"
+                  />
+                  <p className="text-center bg-[#F1F5FB] rounded-xl px-2 py-0.5 -mt-1 text-[10px] font-medium shadow-md">
+                    {createur.prix}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
 
         {/* Contenu principal */}
         <div className="relative z-20 flex flex-col items-center">
           <div className="mb-3 lg:mb-6 flex items-center justify-center gap-2 px-[10px] py-[5px] md:p-3 border border-[#E5E7EB]/50 rounded-full shadow-md bg-white/90 ">
-						<img
-							src={home.imageCreateurs}
-							alt="Créateurs"
-							className="  md:w-auto md:h-auto"
-							style={{
-								minWidth: '58px'
-							}}
-						/>
+            <img
+              src={home.imageCreateurs}
+              alt="Créateurs"
+              className="  md:w-auto md:h-auto"
+              style={{
+                minWidth: "58px",
+              }}
+            />
             <p className="text-sm lg:text-base">{home.titleCreateur}</p>
           </div>
 
@@ -234,7 +242,7 @@ export default async function HomePage() {
           <div className="hidden lg:block text-sm lg:text-base px-3 lg:px-0 text-red mt-4 text-center lg:w-1/2 mx-auto">
             <PortableText value={home.subtitle} />
           </div>
-					<div className="lg:hidden text-[28px] lg:text-[56px] font-bold text-center blueText px-4 lg:px-0 customLeading emBold">
+          <div className="lg:hidden text-[28px] lg:text-[56px] font-bold text-center blueText px-4 lg:px-0 customLeading emBold">
             <PortableText value={home.descriptionMobile} />
           </div>
 
@@ -246,28 +254,38 @@ export default async function HomePage() {
       {/* Vidéo */}
       <div className="relative mt-12 overflow-x-clip">
         {/* Vagues en arrière-plan */}
-        <img
-          src="waves.svg"
-          alt="waves"
-          className="hidden lg:block absolute bottom-16 lg:bottom-[180px] left-1/2 -translate-x-1/2 -z-10 opacity-50"
-        />
+					<img
+						src="bigWaves.svg"
+						alt="waves"
+						className="hidden md:block absolute bottom-[0] left-1/2 -translate-x-1/2 -z-10 w-full"
+					/>
+				{/*	<img*/}
+				{/*		src="wavesBottom.svg"*/}
+				{/*		alt="waves"*/}
+				{/*		className="hidden lg:block absolute top-[126px] left-1/2 -translate-x-1/2 -z-10 w-full"*/}
+				{/*	/>*/}
+				{/*	<img*/}
+				{/*		src="wavesTop.svg"*/}
+				{/*		alt="waves"*/}
+				{/*		className="hidden lg:block absolute bottom-[500px] left-1/2 -translate-x-1/2 -z-10 w-full"*/}
+				{/*	/>*/}
         <img
           src="wavesMobile.svg"
           alt="waves"
-          className="lg:hidden absolute bottom-[160px] w-[100vw] left-1/2 -translate-x-1/2"
+          className="md:hidden absolute bottom-[160px] w-[100vw] left-1/2 -translate-x-1/2"
         />
         <img
           src="wavesMobileBtm.svg"
           alt="waves"
-          className="absolute top-[50px] w-[100vw] left-1/2 -translate-x-1/2 lg:hidden"
+          className="absolute top-[30px] w-[100vw] left-1/2 -translate-x-1/2 md:hidden"
         />
         <div className="w-[95%] mx-auto lg:w-3/4 lg:mx-auto relative z-20 mb-8 lg:mb-0">
           <HeroVideoDialog
             className="flex justify-center"
             animationStyle="top-in-bottom-out"
-            videoSrc="https://www.youtube.com/embed/qh3NGpYRG3I?si=4rb-zSdDkVK9qxxb"
-            thumbnailSrc="https://startup-template-sage.vercel.app/hero-light.png"
-            thumbnailAlt="Hero Video"
+            videoSrc={vsl.videoUrl}
+            thumbnailSrc={vsl.thumbnailImage}
+            thumbnailAlt={vsl.thumbnailAlt}
           />
         </div>
       </div>
@@ -364,7 +382,7 @@ export default async function HomePage() {
         <div className="text-[60px] lg:text-[128px] text-center font-bold relative w-[100%]">
           <CountingNumber
             number={tiktok.vues}
-						duration={2}
+            duration={2}
             className="gradient-text font-manrope max-w-[300px] w-[300px] lg:max-w-[1500px] lg:w-full"
           />
           <div className="w-max absolute -bottom-2 lg:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 lg:px-4 py-2 lg:py-2.5 rounded-full bg-white text-black border border-[#EEF0F4]">
@@ -434,7 +452,7 @@ export default async function HomePage() {
                 className="items-center lg:items-start bg-white rounded-2xl shadow px-10 py-6 flex w-full flex-col "
               >
                 <span className="gradient-text text-[40px] lg:text-[64px] font-bold">
-                  {item.number}%
+                  {item.number}
                 </span>
                 <p className="text-sm lg:text-base text-black/70">
                   {item.text}
@@ -591,7 +609,7 @@ export default async function HomePage() {
                       className="w-full h-auto"
                     />
                   </div>
-                ) : null,
+                ) : null
               )}
             </div>
           </div>
@@ -642,12 +660,13 @@ export default async function HomePage() {
       </div>
       <div className="mt-[120px] flex flex-col justify-center items-center mb-[132px]">
         <div className="flex gap-2 items-center tooltip bg-white">
-					<img
-						src={joinus.image}
-						alt="joinus"
-						className="w-auto h-auto max-w-[100px] max-h-[50px]" // Ajustez selon vos besoins
-						style={{ minHeight: '20px', minWidth: '20px' }}
-					/>          <p className="text-[10px] lg:text-base">{joinus.tooltip}</p>
+          <img
+            src={joinus.image}
+            alt="joinus"
+            className="w-auto h-auto max-w-[100px] max-h-[50px]" // Ajustez selon vos besoins
+            style={{ minHeight: "20px", minWidth: "20px" }}
+          />
+          <p className="text-[10px] lg:text-base">{joinus.tooltip}</p>
         </div>
         <div className="blueText h2 text-center mt-8 w-[250px] mx-auto lg:w-full">
           <PortableText value={joinus.titre} />

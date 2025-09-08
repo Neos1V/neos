@@ -179,3 +179,9 @@ export const footerQuery = groq`*[_type == "footer"][0] {
   },
   "logoNeos": logoNeos.asset->url,
 }`;
+
+export const vslQuery = groq`*[_type == "vsl"][0] {
+  videoUrl,
+  "thumbnailImage": thumbnailImage.asset->url,
+  thumbnailAlt,
+}`;

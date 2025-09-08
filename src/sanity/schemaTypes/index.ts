@@ -10,6 +10,7 @@ import { pourquoi } from "./pourquoi";
 import { pricing } from "./pricing";
 import { shorts } from "./shorts";
 import { tiktok } from "./tiktok";
+import { vsl } from "./vsl";
 import { work } from "./work";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -26,5 +27,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     faq,
     joinus,
     footer,
+    vsl,
   ],
 };

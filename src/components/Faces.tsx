@@ -86,7 +86,7 @@ function Faces({ logos }: { logos: string[] }) {
                 alt="Logo"
                 width={53}
                 height={53}
-                className="rounded-full face-shadow"
+                className="rounded-full face-shadow max-h-[53px] max-w-[53px] h-[53px] w-[53px] object-cover"
               />
             </div>
           ))}

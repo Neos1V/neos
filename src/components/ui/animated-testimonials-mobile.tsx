@@ -46,7 +46,7 @@ export const AnimatedTestimonialsMobile = ({
   };
 
   return (
-    <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
+    <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12 overflow-hidden">
       <div className="relative grid grid-cols-1 gap-10 md:grid-cols-2 lg:flex lg:gap-[60px] lg:items-end lg:justify-between lg:max-w-[1200px] lg:mx-auto">
         {/* Section Images */}
         <div className="lg:flex-shrink-0">

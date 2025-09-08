@@ -79,7 +79,7 @@ export const pourquoi = defineType({
             {
               name: "number",
               title: "Number",
-              type: "number",
+              type: "string",
             },
             {
               name: "text",
