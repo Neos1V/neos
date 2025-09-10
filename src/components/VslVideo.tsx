@@ -48,11 +48,6 @@ const VslVideo: React.FC<WistiaPlayerProps> = ({
         }
       `}</style>
 
-			<wistia-player
-				media-id={mediaId}
-				aspect={aspectRatio.toString()}
-				className={className}
-			/>
 		</>
 	);
 };
