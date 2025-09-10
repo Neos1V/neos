@@ -18,7 +18,8 @@ import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { AnimatedTestimonialsMobile } from "@/components/ui/animated-testimonials-mobile";
 import Videos from "@/components/Videos";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { urlFor } from "@/sanity/lib/image";
+import VslVideo from "@/components/VslVideo";
+
 import {
   communityQuery,
   faqQuery,
@@ -251,7 +252,7 @@ export default async function HomePage() {
           </div>
         </div>
       </div>
-      {/* Vidéo */}
+
       <div className="relative mt-12 overflow-x-clip">
         {/* Vagues en arrière-plan */}
 					<img
@@ -279,6 +280,9 @@ export default async function HomePage() {
           alt="waves"
           className="absolute top-[30px] w-[100vw] left-1/2 -translate-x-1/2 md:hidden"
         />
+
+				{/*Video*/}
+				{/*<VslVideo mediaId="3e2pzaaino" />*/}
         <div className="w-[95%] mx-auto lg:w-3/4 lg:mx-auto relative z-20 mb-8 lg:mb-0">
           <HeroVideoDialog
             className="flex justify-center"
