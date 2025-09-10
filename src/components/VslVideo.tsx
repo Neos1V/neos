@@ -1,55 +1,24 @@
-import React, { useEffect } from 'react';
-import Head from 'next/head';
+"use client"
 
-interface WistiaPlayerProps {
-	mediaId: string;
-	aspectRatio?: number;
-	className?: string;
-}
-
-const VslVideo: React.FC<WistiaPlayerProps> = ({
-																										 mediaId,
-																										 aspectRatio = 1.7777777777777777,
-																										 className = ''
-																									 }) => {
-	useEffect(() => {
-		// Charger le script spécifique à la vidéo
-		const specificScript = document.createElement('script');
-		specificScript.src = `https://fast.wistia.com/embed/${mediaId}.js`;
-		specificScript.async = true;
-		specificScript.type = 'module';
-		document.head.appendChild(specificScript);
-
-		// Cleanup function pour retirer le script lors du démontage
-		return () => {
-			const existingScript = document.querySelector(`script[src="https://fast.wistia.com/embed/${mediaId}.js"]`);
-			if (existingScript) {
-				document.head.removeChild(existingScript);
-			}
-		};
-	}, [mediaId]);
-
+export default function VslVideo() {
 	return (
-		<>
-			<Head>
-				{/* Script principal Wistia */}
-				<script
-					src="https://fast.wistia.com/player.js"
-					async
-				/>
-			</Head>
+		<div className="w-[95%] mx-auto lg:w-3/4 lg:mx-auto relative z-20 mb-8 lg:mb-0">
 
-			<style jsx>{`
-        wistia-player[media-id='${mediaId}']:not(:defined) {
-          background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${mediaId}/swatch');
-          display: block;
-          filter: blur(5px);
-          padding-top: ${(100 / aspectRatio).toFixed(4)}%;
-        }
-      `}</style>
-
-		</>
-	);
-};
-
-export default VslVideo;
+	<div className="wistia_responsive_padding" style={{padding: "56.25% 0 0 0", position: "relative"}}>
+				<div className="wistia_responsive_wrapper" style={{height: "100%", left: 0, position: "absolute", top: 0, width: "100%"}}>
+					<iframe
+						src="https://fast.wistia.net/embed/iframe/70ntres3gl?web_component=true&seo=true"
+						title="VSL NEOS V5 Video"
+						allow="autoplay; fullscreen"
+						frameBorder={0}
+						scrolling="no"
+						className="wistia_embed"
+						name="wistia_embed"
+						width="100%"
+						height="100%"
+					/>
+				</div>
+			</div>
+			<script src="https://fast.wistia.net/player.js" async></script>
+		</div>
+	)

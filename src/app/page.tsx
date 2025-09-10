@@ -282,16 +282,16 @@ export default async function HomePage() {
         />
 
 				{/*Video*/}
-				{/*<VslVideo mediaId="3e2pzaaino" />*/}
-        <div className="w-[95%] mx-auto lg:w-3/4 lg:mx-auto relative z-20 mb-8 lg:mb-0">
-          <HeroVideoDialog
-            className="flex justify-center"
-            animationStyle="top-in-bottom-out"
-            videoSrc={vsl.videoUrl}
-            thumbnailSrc={vsl.thumbnailImage}
-            thumbnailAlt={vsl.thumbnailAlt}
-          />
-        </div>
+				<VslVideo  />
+        {/*<div className="w-[95%] mx-auto lg:w-3/4 lg:mx-auto relative z-20 mb-8 lg:mb-0">*/}
+        {/*  <HeroVideoDialog*/}
+        {/*    className="flex justify-center"*/}
+        {/*    animationStyle="top-in-bottom-out"*/}
+        {/*    videoSrc={vsl.videoUrl}*/}
+        {/*    thumbnailSrc={vsl.thumbnailImage}*/}
+        {/*    thumbnailAlt={vsl.thumbnailAlt}*/}
+        {/*  />*/}
+        {/*</div>*/}
       </div>
       <div className="flex flex-col items-center justify-center">
         <div className="mt-0 lg:mt-8">
