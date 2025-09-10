@@ -282,7 +282,7 @@ export default async function HomePage() {
         />
 
 				{/*Video*/}
-				<VslVideo  />
+				<VslVideo url={vsl.videoUrl} />
         {/*<div className="w-[95%] mx-auto lg:w-3/4 lg:mx-auto relative z-20 mb-8 lg:mb-0">*/}
         {/*  <HeroVideoDialog*/}
         {/*    className="flex justify-center"*/}

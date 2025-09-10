@@ -26,7 +26,7 @@ export default function FaqComponent({ data }: { data: Faq }) {
   };
 
   return (
-    <section className="py-20 px-6">
+    <section className="py-10 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 items-start">
           {/* FAQ Section */}
@@ -87,7 +87,9 @@ export default function FaqComponent({ data }: { data: Faq }) {
             ))}
           </div>
 
-          {/* Video Section */}
+					{
+						data.video && (
+
           <div className="flex-shrink-0 w-full lg:w-auto">
             <div className="sticky top-8">
               <div
@@ -122,6 +124,8 @@ export default function FaqComponent({ data }: { data: Faq }) {
               </div>
             </div>
           </div>
+						)
+					}
         </div>
       </div>
     </section>
