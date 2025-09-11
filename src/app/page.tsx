@@ -406,7 +406,7 @@ export default async function HomePage() {
         </div>
       </div>
       <div className="mt-20 mb-20 w-full flex flex-col items-center">
-        <div className="w-[210px] text-center lg:w-full mt-3.5 blueText h2">
+        <div className="w-[260px] text-center lg:w-full mt-3.5 blueText h2">
           <PortableText value={shorts.richText} />
         </div>
 
