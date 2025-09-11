@@ -185,3 +185,18 @@ export const vslQuery = groq`*[_type == "vsl"][0] {
   "thumbnailImage": thumbnailImage.asset->url,
   thumbnailAlt,
 }`;
+
+export const cgvQuery = groq`*[_type == "cgv"][0] {
+  title,
+  content,
+}`;
+
+export const mentionsLegalesQuery = groq`*[_type == "mentionsLegales"][0] {
+  title,
+  content,
+}`;
+
+export const termesConditionsVentesQuery = groq`*[_type == "termesConditionsVentes"][0] {
+  title,
+  content,
+}`;

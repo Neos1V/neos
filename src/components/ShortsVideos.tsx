@@ -22,16 +22,16 @@ const VideoCard = ({ videoUrl }: { videoUrl: string }) => {
 interface VerticalCarouselProps {
 	videos: ShortsVideo[];
 	reverse?: boolean;
-	delay?: number;
 }
 
-const VerticalCarousel = ({ videos, reverse = false, delay = 2000 }: VerticalCarouselProps) => {
+const VerticalCarousel = ({ videos, reverse = false }: VerticalCarouselProps) => {
 	const autoplayRef = useRef(
 		Autoplay({
-			delay,
+			delay: 0, // Défilement continu comme dans le premier code
 			stopOnInteraction: false,
 			stopOnMouseEnter: true,
-			playOnInit: true
+			playOnInit: true,
+			jump: false // Défilement fluide sans saut
 		})
 	);
 
@@ -39,9 +39,11 @@ const VerticalCarousel = ({ videos, reverse = false, delay = 2000 }: VerticalCar
 		{
 			axis: 'y',
 			loop: true,
-			direction: reverse ? 'rtl' : 'ltr', // Pour simuler la direction inversée
+			direction: reverse ? 'rtl' : 'ltr',
 			dragFree: true,
 			containScroll: 'trimSnaps',
+			duration: 12000, // Même durée que le premier code pour la fluidité
+			slidesToScroll: 1,
 		},
 		[autoplayRef.current]
 	);
@@ -102,30 +104,23 @@ export function ShortsVideos({ data }: { data: ShortsVideo[] }) {
 		<div className="mt-8 relative flex h-[1000px] w-full flex-row items-center justify-center overflow-hidden gap-[30px]">
 			<img src="avis.png" alt="avis" className="absolute -z-10" />
 
-			{/* Première colonne - direction normale */}
 			<VerticalCarousel
 				videos={firstRow}
-				delay={2000}
 			/>
 
-			{/* Deuxième colonne - direction inversée */}
 			<VerticalCarousel
 				videos={secondRow}
 				reverse={true}
-				delay={2200} // Légèrement différent pour éviter la synchronisation
 			/>
 
-			{/* Troisième colonne - direction normale */}
 			<VerticalCarousel
 				videos={thirdRow}
-				delay={2400}
 			/>
 
-			{/* Quatrième colonne - direction inversée */}
+			{/* Quatrième colonne - défilement vers le haut */}
 			<VerticalCarousel
 				videos={fourthRow}
 				reverse={true}
-				delay={2600}
 			/>
 
 			{/* Gradients pour l'effet de fondu */}

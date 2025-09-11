@@ -18,13 +18,18 @@ export default function Nav({ data }: { data: NavType }) {
       {/* Navigation principale */}
       <div className="shadow-md flex items-center justify-between px-6 py-3 border border-[#E5E7EB]/50 rounded-full w-fit bg-[#F8F8F8]/80 fixed left-1/2 -translate-x-1/2 top-[50px] z-50 md:w-fit md:rounded-full max-md:w-full max-md:rounded-none max-md:top-0 max-md:left-0 max-md:translate-x-0 max-md:px-[17px]">
         {/* Logo */}
-        <Image
-          src={data.logo}
-          alt="logo"
-          width={55}
-          height={22}
-          className="flex-shrink-0 md:w-[80px] md:h-[40px]"
-        />
+				<Link href="/"
+							className="flex-shrink-0 md:w-[80px] md:h-[40px] cursor-pointer w-[55px] h-[22px]"
+
+				>
+					<Image
+						src={data.logo}
+						alt="logo"
+						width={55}
+						height={22}
+						className="flex-shrink-0 md:w-[80px] md:h-[40px] cursor-pointer w-[55px] h-[22px]"
+					/>
+				</Link>
 
         {/* Navigation desktop */}
         <nav className="hidden md:flex gap-6 mx-8">

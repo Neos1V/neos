@@ -6,7 +6,6 @@ import Faces from "@/components/Faces";
 import FaqComponent from "@/components/FaqComponent";
 import ImageSection from "@/components/ImageSection";
 import Logos from "@/components/Logos";
-import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
 import Nav from "@/components/Nav";
 import Price from "@/components/Price";
 import CtaButton from "@/components/shared/CtaButton";
@@ -17,8 +16,8 @@ import Slider from "@/components/Slider";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { AnimatedTestimonialsMobile } from "@/components/ui/animated-testimonials-mobile";
 import Videos from "@/components/Videos";
-import { sanityFetch } from "@/sanity/lib/fetch";
 import VslVideo from "@/components/VslVideo";
+import { sanityFetch } from "@/sanity/lib/fetch";
 
 import {
   communityQuery,
@@ -255,21 +254,21 @@ export default async function HomePage() {
 
       <div className="relative mt-12 overflow-x-clip">
         {/* Vagues en arrière-plan */}
-					<img
-						src="bigWaves.svg"
-						alt="waves"
-						className="hidden md:block absolute bottom-[0] left-1/2 -translate-x-1/2 -z-10 w-full"
-					/>
-				{/*	<img*/}
-				{/*		src="wavesBottom.svg"*/}
-				{/*		alt="waves"*/}
-				{/*		className="hidden lg:block absolute top-[126px] left-1/2 -translate-x-1/2 -z-10 w-full"*/}
-				{/*	/>*/}
-				{/*	<img*/}
-				{/*		src="wavesTop.svg"*/}
-				{/*		alt="waves"*/}
-				{/*		className="hidden lg:block absolute bottom-[500px] left-1/2 -translate-x-1/2 -z-10 w-full"*/}
-				{/*	/>*/}
+        <img
+          src="bigWaves.svg"
+          alt="waves"
+          className="hidden md:block absolute bottom-[0] left-1/2 -translate-x-1/2 -z-10 w-full"
+        />
+        {/*	<img*/}
+        {/*		src="wavesBottom.svg"*/}
+        {/*		alt="waves"*/}
+        {/*		className="hidden lg:block absolute top-[126px] left-1/2 -translate-x-1/2 -z-10 w-full"*/}
+        {/*	/>*/}
+        {/*	<img*/}
+        {/*		src="wavesTop.svg"*/}
+        {/*		alt="waves"*/}
+        {/*		className="hidden lg:block absolute bottom-[500px] left-1/2 -translate-x-1/2 -z-10 w-full"*/}
+        {/*	/>*/}
         <img
           src="wavesMobile.svg"
           alt="waves"
@@ -281,8 +280,8 @@ export default async function HomePage() {
           className="absolute top-[30px] w-[100vw] left-1/2 -translate-x-1/2 md:hidden"
         />
 
-				{/*Video*/}
-				<VslVideo url={vsl.videoUrl} />
+        {/*Video*/}
+        <VslVideo url={vsl.videoUrl} />
         {/*<div className="w-[95%] mx-auto lg:w-3/4 lg:mx-auto relative z-20 mb-8 lg:mb-0">*/}
         {/*  <HeroVideoDialog*/}
         {/*    className="flex justify-center"*/}
@@ -458,7 +457,7 @@ export default async function HomePage() {
                 <span className="gradient-text text-[40px] lg:text-[64px] font-bold">
                   {item.number}
                 </span>
-                <p className="text-sm lg:text-base text-black/70">
+                <p className="text-center lg:text-left text-sm lg:text-base text-black/70">
                   {item.text}
                 </p>
               </div>
@@ -712,38 +711,38 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="mt-6 lg:mt-0 flex flex-col lg:flex-row gap-2 lg:gap-0 lg:w-3/5 justify-between">
-            <p className=" text-white">A propos</p>
+            <p className=" text-white">À propos</p>
             <p className="text-white">Feature</p>
             <p className=" text-white">Programme</p>
             <p className=" text-white">Testimonial</p>
             <p className=" text-white">Faq</p>
           </div>
         </div>
-        <div className="pt-8 flex justify-between flex-col lg:flex-row gap-3 lg:gap-0">
-          <p className="text-white">© 2025 NEOS. tout droit réservé</p>
-          <div className="flex items-center gap-1">
-            <p className="text-white">Made with 🤍 by</p>
-            <a
-              className="underline text-white"
-              href="https://www.neos.fr"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              La-landing.fr
-            </a>
-          </div>
-          <div className="flex justify-between flex-col lg:flex-row gap-2 lg:gap-0">
-            <Link className="underline text-white" href="https://www.neos.fr">
-              Privacy policy
-            </Link>
-            <Link className="underline text-white" href="https://www.neos.fr">
-              Terms of service
-            </Link>
-            <Link className="underline text-white" href="https://www.neos.fr">
-              Cookies settings
-            </Link>
-          </div>
-        </div>
+				<div className="pt-8 flex justify-between flex-col lg:flex-row gap-3 lg:gap-0">
+					<p className="text-white">© 2025 NEOS. tout droit réservé</p>
+					<div className="flex items-center gap-1">
+						<p className="text-white">Made with 🤍 by</p>
+						<a
+							className="underline text-white"
+							href="https://la-landing.fr"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							La-landing.fr
+						</a>
+					</div>
+					<div className="flex justify-between flex-col lg:flex-row gap-2">
+						<Link className="underline text-white" href="/cgv">
+							CGV
+						</Link>
+						<Link className="underline text-white" href="/mentions-legales">
+							Mentions légales
+						</Link>
+						<Link className="underline text-white" href="/termes-conditions-ventes">
+							Termes et conditions de ventes
+						</Link>
+					</div>
+				</div>
       </div>
     </div>
   );

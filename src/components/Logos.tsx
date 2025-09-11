@@ -19,19 +19,21 @@ function Logos({ logos }: { logos: string[] }) {
 						{tripleLogos.map((logo, index) => (
 							<div
 								key={`${logo}-${index}`}
-								className="min-w-[90px] lg:min-w-[160px] flex-none flex items-center justify-center"
+								className="min-w-[90px] lg:min-w-[160px] flex-none flex items-center justify-center mr-[30px] lg:mr-[80px]"
 								style={{
-									minWidth: "160px",
 									height: "60px",
-									marginRight: "80px",
 								}}
 							>
 								<Image
 									src={logo}
 									alt="Logo"
 									width={140}
-									height={50}
-									className="max-w-full max-h-full object-contain"
+									height={40}
+									className="object-contain"
+									style={{
+										height: "40px",
+										width: "auto"
+									}}
 								/>
 							</div>
 						))}
@@ -51,7 +53,19 @@ function Logos({ logos }: { logos: string[] }) {
 
           .animate-scroll {
               animation: scroll 30s linear infinite reverse;
-              width: calc((160px + 80px) * ${tripleLogos.length});
+          }
+
+          /* Largeur responsive selon la taille d'écran */
+          @media (max-width: 1023px) {
+              .animate-scroll {
+                  width: calc((90px + 30px) * ${tripleLogos.length});
+              }
+          }
+
+          @media (min-width: 1024px) {
+              .animate-scroll {
+                  width: calc((160px + 80px) * ${tripleLogos.length});
+              }
           }
 
           .animate-scroll:hover {

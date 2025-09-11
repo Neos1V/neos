@@ -187,3 +187,18 @@ export interface Vsl {
   thumbnailImage: string;
   thumbnailAlt: string;
 }
+
+export interface CgvDoc {
+  title: string;
+  content: PortableTextBlock[];
+}
+
+export interface MentionsLegalesDoc {
+  title: string;
+  content: PortableTextBlock[];
+}
+
+export interface TermesConditionsVentesDoc {
+  title: string;
+  content: PortableTextBlock[];
+}

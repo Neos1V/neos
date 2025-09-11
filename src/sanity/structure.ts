@@ -17,4 +17,20 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem("joinus").title("Join Us"),
       S.documentTypeListItem("footer").title("Footer"),
       S.documentTypeListItem("vsl").title("VSL"),
+      S.divider(),
+      S.listItem()
+        .title("Pages légales")
+        .child(
+          S.list()
+            .title("Pages légales")
+            .items([
+              S.documentTypeListItem("cgv").title("CGV"),
+              S.documentTypeListItem("mentionsLegales").title(
+                "Mentions légales"
+              ),
+              S.documentTypeListItem("termesConditionsVentes").title(
+                "Termes et conditions de ventes"
+              ),
+            ])
+        ),
     ]);
