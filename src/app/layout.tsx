@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
+import { Analytics } from '@vercel/analytics/next';
 
 const manropeFont = Manrope({
   variable: "--font-manrope",
@@ -21,7 +22,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${manropeFont.variable} overflow-x-hidden`}>
         {children}
-      </body>
+				<Analytics mode="production" />;
+			</body>
     </html>
   );
 }
