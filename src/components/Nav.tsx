@@ -33,20 +33,17 @@ export default function Nav({ data }: { data: NavType }) {
 
         {/* Navigation desktop */}
         <nav className="hidden md:flex gap-6 mx-8">
-          <Link href="#" className="whitespace-nowrap hover:text-blue-600 transition-colors">
-            A propos
+          <Link href="#createurs" className="whitespace-nowrap hover:text-blue-600 transition-colors">
+            Les créateurs
+					</Link>
+          <Link href="#concept" className="whitespace-nowrap hover:text-blue-600 transition-colors">
+            Le concept
           </Link>
-          <Link href="#" className="whitespace-nowrap hover:text-blue-600 transition-colors">
-            Features
+          <Link href="#programme" className="whitespace-nowrap hover:text-blue-600 transition-colors">
+            Le programme
           </Link>
-          <Link href="#" className="whitespace-nowrap hover:text-blue-600 transition-colors">
-            Programme
-          </Link>
-          <Link href="#" className="whitespace-nowrap hover:text-blue-600 transition-colors">
-            Testimonial
-          </Link>
-          <Link href="#" className="whitespace-nowrap hover:text-blue-600 transition-colors">
-            FAQ
+          <Link href="#avis" className="whitespace-nowrap hover:text-blue-600 transition-colors">
+            Les avis
           </Link>
         </nav>
 
@@ -94,39 +91,32 @@ export default function Nav({ data }: { data: NavType }) {
           {/* Navigation mobile */}
           <nav className="flex flex-col space-y-6">
             <Link
-              href="#"
+              href="#createurs"
               className="text-lg font-medium hover:text-blue-600 transition-colors py-2 border-b border-gray-100"
               onClick={toggleMenu}
             >
-              A propos
+              Les créateurs
             </Link>
             <Link
-              href="#"
+              href="#concept"
               className="text-lg font-medium hover:text-blue-600 transition-colors py-2 border-b border-gray-100"
               onClick={toggleMenu}
             >
-              Features
+              Le concept
             </Link>
             <Link
-              href="#"
+              href="#programme"
               className="text-lg font-medium hover:text-blue-600 transition-colors py-2 border-b border-gray-100"
               onClick={toggleMenu}
             >
-              Programme
+              Le programme
             </Link>
             <Link
-              href="#"
+              href="#avis"
               className="text-lg font-medium hover:text-blue-600 transition-colors py-2 border-b border-gray-100"
               onClick={toggleMenu}
             >
-              Testimonial
-            </Link>
-            <Link
-              href="#"
-              className="text-lg font-medium hover:text-blue-600 transition-colors py-2 border-b border-gray-100"
-              onClick={toggleMenu}
-            >
-              FAQ
+              Les avis
             </Link>
           </nav>
 

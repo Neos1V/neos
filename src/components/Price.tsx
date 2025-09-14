@@ -208,6 +208,7 @@ export default function Price({ data }: { data: Pricing }) {
           </div>
         </div>
       </div>
+			<div id="avis"></div>
     </div>
   );
 }

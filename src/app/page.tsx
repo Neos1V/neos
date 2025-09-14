@@ -307,6 +307,8 @@ export default async function HomePage() {
             </div>
           ))}
         </div>
+				<div id="createurs"></div>
+
       </div>
       <Logos logos={home.logos} />
       <Clients clients={home.clients} />
@@ -464,6 +466,7 @@ export default async function HomePage() {
             ))}
           </div>
         </div>
+				<div id="concept"></div>
       </div>
       <div className="mt-[85px] flex flex-col items-center justify-center">
         <Tooltip text={work.tooltip} />
@@ -581,6 +584,7 @@ export default async function HomePage() {
         <div className="lg:hidden">
           <AnimatedTestimonialsMobile testimonials={marque.marques} />
         </div>
+				<div id="programme"></div>
       </div>
       <div className="mt-[30px] lg:mt-[150px] w-full flex flex-col items-center">
         <div className="w-full flex flex-col items-center">
