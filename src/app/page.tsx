@@ -637,7 +637,8 @@ export default async function HomePage() {
           ))}
         </div>
       </div>
-      <Price data={pricing} />
+			<div id='price'></div>
+      <Price data={pricing} ctaLink={navData.ctaLink} />
       <div className="mt-20 lg:mb-20 w-full flex flex-col items-center">
         <Tooltip text={community.tooltip} />
         <div className="mt-3.5 blueText h2">
