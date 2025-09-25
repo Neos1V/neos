@@ -702,19 +702,22 @@ export default async function HomePage() {
         <div className="flex flex-col lg:flex-row justify-between border-b border-[#FFFFFF]/20 pb-11">
           <div className="flex flex-col w-2/5">
             <Image src={footer.logoNeos} width={158} height={70} alt="joinus" />
-            <div className="flex gap-4 mt-8">
-              {footer.socials.map((item, idx) => (
-                <a
-                  key={idx}
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Image src={item.logo} width={20} height={20} alt="joinus" />
-                </a>
-              ))}
-            </div>
-          </div>
+						<div className="flex gap-4 mt-8">
+							{footer.socials.map((item, idx) =>
+								item.link && (
+									<a
+										key={idx}
+										href={item.link}
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										<Image src={item.logo} width={20} height={20} alt="joinus" />
+									</a>
+								)
+							)}
+						</div>
+
+					</div>
           <div className="mt-6 lg:mt-0 flex flex-col lg:flex-row gap-2 lg:gap-0 lg:w-3/5 justify-between">
             <p className=" text-white">À propos</p>
             <p className="text-white">Feature</p>
