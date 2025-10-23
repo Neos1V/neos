@@ -19,6 +19,7 @@ export default async function Page() {
     query: footerQuery,
     tags: ["footer"],
   });
+	
 
   return (
     <div>
