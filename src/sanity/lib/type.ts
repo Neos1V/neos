@@ -131,6 +131,9 @@ export interface Pricing {
   btnText: string;
   description: PortableTextBlock[];
   arrayText: string[];
+  showPremiumSection: boolean;
+  premiumNew: string;
+  premiumOld: string;
   titrePremium: string;
   descriptionPremium: PortableTextBlock[];
   placeLeftPremium: string;

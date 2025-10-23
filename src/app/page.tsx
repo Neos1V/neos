@@ -307,8 +307,7 @@ export default async function HomePage() {
             </div>
           ))}
         </div>
-				<div id="createurs"></div>
-
+        <div id="createurs"></div>
       </div>
       <Logos logos={home.logos} />
       <Clients clients={home.clients} />
@@ -466,7 +465,7 @@ export default async function HomePage() {
             ))}
           </div>
         </div>
-				<div id="concept"></div>
+        <div id="concept"></div>
       </div>
       <div className="mt-[85px] flex flex-col items-center justify-center">
         <Tooltip text={work.tooltip} />
@@ -584,7 +583,7 @@ export default async function HomePage() {
         <div className="lg:hidden">
           <AnimatedTestimonialsMobile testimonials={marque.marques} />
         </div>
-				<div id="programme"></div>
+        <div id="programme"></div>
       </div>
       <div className="mt-[30px] lg:mt-[150px] w-full flex flex-col items-center">
         <div className="w-full flex flex-col items-center">
@@ -637,7 +636,7 @@ export default async function HomePage() {
           ))}
         </div>
       </div>
-			<div id='price'></div>
+      <div id="price"></div>
       <Price data={pricing} ctaLink={navData.ctaLink} />
       <div className="mt-20 lg:mb-20 w-full flex flex-col items-center">
         <Tooltip text={community.tooltip} />
@@ -702,22 +701,28 @@ export default async function HomePage() {
         <div className="flex flex-col lg:flex-row justify-between border-b border-[#FFFFFF]/20 pb-11">
           <div className="flex flex-col w-2/5">
             <Image src={footer.logoNeos} width={158} height={70} alt="joinus" />
-						<div className="flex gap-4 mt-8">
-							{footer.socials.map((item, idx) =>
-								item.link && (
-									<a
-										key={idx}
-										href={item.link}
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										<Image src={item.logo} width={20} height={20} alt="joinus" />
-									</a>
-								)
-							)}
-						</div>
-
-					</div>
+            <div className="flex gap-4 mt-8">
+              {footer.socials.map(
+                (item, idx) =>
+                  item.link && (
+                    <a
+                      key={idx}
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Image
+                        src={item.logo}
+                        width={20}
+                        height={20}
+                        alt="joinus"
+                      />
+                    </a>
+                  )
+              )}
+            </div>
+          </div>
+          /
           <div className="mt-6 lg:mt-0 flex flex-col lg:flex-row gap-2 lg:gap-0 lg:w-3/5 justify-between">
             <p className=" text-white">À propos</p>
             <p className="text-white">Feature</p>
@@ -726,31 +731,34 @@ export default async function HomePage() {
             <p className=" text-white">Faq</p>
           </div>
         </div>
-				<div className="pt-8 flex justify-between flex-col lg:flex-row gap-3 lg:gap-0">
-					<p className="text-white">© 2025 NEOS. tout droit réservé</p>
-					<div className="flex items-center gap-1">
-						<p className="text-white">Made with 🤍 by</p>
-						<a
-							className="underline text-white"
-							href="https://la-landing.fr"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							La-landing.fr
-						</a>
-					</div>
-					<div className="flex justify-between flex-col lg:flex-row gap-2">
-						<Link className="underline text-white" href="/cgv">
-							CGV
-						</Link>
-						<Link className="underline text-white" href="/mentions-legales">
-							Mentions légales
-						</Link>
-						<Link className="underline text-white" href="/termes-conditions-ventes">
-							Termes et conditions de ventes
-						</Link>
-					</div>
-				</div>
+        <div className="pt-8 flex justify-between flex-col lg:flex-row gap-3 lg:gap-0">
+          <p className="text-white">© 2025 NEOS. tout droit réservé</p>
+          <div className="flex items-center gap-1">
+            <p className="text-white">Made with 🤍 by</p>
+            <a
+              className="underline text-white"
+              href="https://la-landing.fr"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              La-landing.fr
+            </a>
+          </div>
+          <div className="flex justify-between flex-col lg:flex-row gap-2">
+            <Link className="underline text-white" href="/cgv">
+              CGV
+            </Link>
+            <Link className="underline text-white" href="/mentions-legales">
+              Mentions légales
+            </Link>
+            <Link
+              className="underline text-white"
+              href="/termes-conditions-ventes"
+            >
+              Termes et conditions de ventes
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -64,6 +64,24 @@ export const pricing = defineType({
       type: "string",
     },
     {
+      name: "showPremiumSection",
+      title: "Show Premium Section",
+      type: "boolean",
+      initialValue: true,
+    },
+    {
+      name: "premiumNew",
+      title: "Premium New Price",
+      type: "string",
+      initialValue: "49",
+    },
+    {
+      name: "premiumOld",
+      title: "Premium Old Price",
+      type: "string",
+      initialValue: "153",
+    },
+    {
       name: "premiumArray",
       title: "Premium Array",
       type: "array",
